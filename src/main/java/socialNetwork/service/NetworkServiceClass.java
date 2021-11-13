@@ -1,13 +1,16 @@
 package socialNetwork.service;
 
 import socialNetwork.domain.Entity;
+import socialNetwork.domain.FriendDTO;
 import socialNetwork.domain.Friendship;
 import socialNetwork.domain.User;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.UserRepository;
 import socialNetwork.service.statisticsUtils.Graph;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkService<ID, E> {
     public final UserRepository<ID, E> userRepository;
@@ -73,5 +76,37 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
         }
 
         return graph.maxConnectedComponents(validId);
+    }
+
+    @Override
+    public List<Friendship> getAllFriendShipsAsList(){
+        Iterable<Friendship> friendships = (Iterable<Friendship>)friendshipRepository.getAllFriendships();
+        List<Friendship> friendshipList = new LinkedList<>();
+        friendships.forEach(friendshipList::add);
+        return friendshipList;
+    }
+
+    /**
+     * Gets the friends for a user
+     * @param username - String - the username of the user
+     * @return List(FriendDTO) - a list of FriendDTO objects , each objects contains the first name and last name
+     * of the friend along with the date when the friendship with it was made
+     */
+    @Override
+    public List<FriendDTO> getAllFriends(String username) {
+        Long idUser = (Long)userRepository.getUserByUsername(username).getId();
+        return getAllFriendShipsAsList().stream()
+                .filter( friendship -> friendship.getId().getLeft().equals(idUser) || friendship.getId().getRight().equals(idUser))
+                .map(friendship -> {
+                    User user;
+                    if(friendship.getId().getRight().equals(idUser)){
+                        user = (User) userRepository.getUserByID((ID) friendship.getId().getLeft());
+                    }
+                    else{   // friendship.getId().getLeft().equals(idUser)
+                        user = (User) userRepository.getUserByID((ID) friendship.getId().getRight());
+                    }
+                    return new FriendDTO(user.getFirstName(),user.getLastName(),friendship.getDate());
+                })
+                .collect(Collectors.toList());
     }
 }

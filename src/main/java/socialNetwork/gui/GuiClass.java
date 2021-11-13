@@ -33,6 +33,7 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
         System.out.println("6. Remove friend.");
         System.out.println("7. Print number of communities.");
         System.out.println("8. Print the most social community.");
+        System.out.println("9. Get friend list for a user");
         System.out.println();
     }
 
@@ -72,6 +73,9 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
                         break;
                     case "8":
                         this.printTheMostSocialCommunity();
+                        break;
+                    case "9":
+                        this.printFriendListForUser();
                         break;
                     default:
                         System.out.println("Your option seem to be not exists, please try another.");
@@ -183,5 +187,12 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
         for(Integer id : mostSocialCommunity){
             System.out.print(id.toString() + " ");
         }
+    }
+
+    @Override
+    public void printFriendListForUser() {
+        System.out.println("Please enter the username:");
+        String username = in.nextLine();
+        controller.getAllFriendsForUser(username).forEach(System.out::println);
     }
 }

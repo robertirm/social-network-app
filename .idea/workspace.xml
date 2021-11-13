@@ -4,44 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat.values" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat.values.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/entities/entities.dat_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_23_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_23_AM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM_[Changes]/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM_[Changes]1/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2021_12_24_AM__Changes_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" afterDir="false" />
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Starting implementing functionalities for the fifth laboratory.&#10;Renamed StatisticsService to NetworkService.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/FriendDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/StatisticsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/StatisticsServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/StatisticsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/StatisticsServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/UserRepositoryMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/UserRepositoryMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,13 +59,45 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="lab5" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="lab5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/service/UserServiceClass.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/service/UserService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/FriendshipRepository.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFileAbstract.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFile.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryDB.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/FriendshipRepositoryDB.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/socialNetwork/repository/UserRepository.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
@@ -124,8 +145,23 @@
       <option name="presentableId" value="Default" />
       <updated>1636668938161</updated>
       <workItem from="1636668941329" duration="165000" />
-      <workItem from="1636803414351" duration="6820000" />
+      <workItem from="1636803414351" duration="16137000" />
     </task>
+    <task id="LOCAL-00001" summary="Starting implementing functionalities for the fifth laboratory.&#10;Renamed StatisticsService to NetworkService.">
+      <created>1636810359694</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636810359694</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Starting implementing functionalities for the fifth laboratory.&#10;Renamed StatisticsService to NetworkService.">
+      <created>1636810486036</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636810486036</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,11 +172,27 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/lab5" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Starting implementing functionalities for the fifth laboratory.&#10;Renamed StatisticsService to NetworkService." />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting implementing functionalities for the fifth laboratory.&#10;Renamed StatisticsService to NetworkService." />
   </component>
 </project>

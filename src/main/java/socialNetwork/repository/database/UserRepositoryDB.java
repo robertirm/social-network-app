@@ -207,4 +207,33 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
 
         return null;
     }
+
+    @Override
+    public E getUserByUsername(String username) {
+        String queryFind = "select * from users where username = (?)";
+        User user = null;
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement(queryFind)) {
+            ps.setString(1, username);
+            ResultSet resultSet = ps.executeQuery();
+
+            if(!resultSet.next()){
+                throw new EntityNullException();
+            }
+
+
+            Long idUser = resultSet.getLong("id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String userUsername = resultSet.getString("username");
+
+            user = new User(firstName, lastName, userUsername);
+            user.setId(idUser);
+            return (E)user;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

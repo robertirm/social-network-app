@@ -110,4 +110,9 @@ public class UserRepositoryMemory<ID, E extends Entity<ID>> implements UserRepos
         this.currentUserId = null;
         return entity;
     }
+
+    @Override
+    public E getUserByUsername(String username) {
+        return null;
+    }
 }
