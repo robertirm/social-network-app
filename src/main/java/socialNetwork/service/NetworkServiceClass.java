@@ -9,11 +9,11 @@ import socialNetwork.service.statisticsUtils.Graph;
 
 import java.util.List;
 
-public class StatisticsServiceClass <ID, E extends Entity<ID>> implements StatisticsService<ID, E> {
+public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkService<ID, E> {
     public final UserRepository<ID, E> userRepository;
     public final FriendshipRepository friendshipRepository;
 
-    public StatisticsServiceClass(UserRepository<ID, E> userRepository, FriendshipRepository friendshipRepository) {
+    public NetworkServiceClass(UserRepository<ID, E> userRepository, FriendshipRepository friendshipRepository) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
     }

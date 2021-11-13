@@ -1,7 +1,7 @@
 package socialNetwork.controller;
 
 import socialNetwork.domain.Entity;
-import socialNetwork.service.StatisticsService;
+import socialNetwork.service.NetworkService;
 import socialNetwork.service.UserService;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID, E> {
 
     public final UserService<ID, E> userService;
-    public final StatisticsService<ID, E> statisticsService;
+    public final NetworkService<ID, E> statisticsService;
 
-    public ControllerClass(UserService<ID, E> userService, StatisticsService<ID, E> statisticsService) {
+    public ControllerClass(UserService<ID, E> userService, NetworkService<ID, E> statisticsService) {
         this.userService = userService;
         this.statisticsService = statisticsService;
     }

@@ -13,11 +13,9 @@ import socialNetwork.gui.GuiClass;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.database.FriendshipRepositoryDB;
 import socialNetwork.repository.database.UserRepositoryDB;
-import socialNetwork.repository.file.FriendshipRepositoryFile;
-import socialNetwork.repository.file.UserRepositoryFile;
 import socialNetwork.repository.UserRepository;
-import socialNetwork.service.StatisticsService;
-import socialNetwork.service.StatisticsServiceClass;
+import socialNetwork.service.NetworkService;
+import socialNetwork.service.NetworkServiceClass;
 import socialNetwork.service.UserService;
 import socialNetwork.service.UserServiceClass;
 
@@ -44,7 +42,7 @@ public class Main {
 //        FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryFile<>(friendshipFilename, friendshipValidator);
         FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryDB<>(url, username, password, friendshipValidator);
         UserService<Long, User> userService = new UserServiceClass<>(userRepository, friendshipRepository);
-        StatisticsService<Long, User> statisticsService = new StatisticsServiceClass<>(userRepository, friendshipRepository);
+        NetworkService<Long, User> statisticsService = new NetworkServiceClass<>(userRepository, friendshipRepository);
         Controller<Long, User> controller = new ControllerClass<>(userService, statisticsService);
         Gui<Long, User> gui = new GuiClass<>(controller);
         gui.startGui();
