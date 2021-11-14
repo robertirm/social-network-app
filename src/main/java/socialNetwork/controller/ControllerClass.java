@@ -1,6 +1,7 @@
 package socialNetwork.controller;
 
 import socialNetwork.domain.Entity;
+import socialNetwork.domain.FriendDTO;
 import socialNetwork.service.NetworkService;
 import socialNetwork.service.UserService;
 
@@ -10,11 +11,11 @@ import java.util.List;
 public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID, E> {
 
     public final UserService<ID, E> userService;
-    public final NetworkService<ID, E> statisticsService;
+    public final NetworkService<ID, E> networkService;
 
     public ControllerClass(UserService<ID, E> userService, NetworkService<ID, E> statisticsService) {
         this.userService = userService;
-        this.statisticsService = statisticsService;
+        this.networkService = statisticsService;
     }
 
     @Override
@@ -69,11 +70,16 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
 
     @Override
     public int getNumberOfCommunities() {
-        return this.statisticsService.getNumberOfCommunities();
+        return this.networkService.getNumberOfCommunities();
     }
 
     @Override
     public List<Integer> getTheMostSocialCommunity() {
-        return this.statisticsService.getTheMostSocialCommunity();
+        return this.networkService.getTheMostSocialCommunity();
+    }
+
+    @Override
+    public List<FriendDTO> getAllFriendsForUser(String username) {
+        return networkService.getAllFriends(username);
     }
 }

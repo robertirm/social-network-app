@@ -1,6 +1,7 @@
 package socialNetwork.controller;
 
 import socialNetwork.domain.Entity;
+import socialNetwork.domain.FriendDTO;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface Controller<ID, E extends Entity<ID>> {
     void removeFriend(String username);
     int getNumberOfCommunities();
     List<Integer> getTheMostSocialCommunity();
+    List<FriendDTO> getAllFriendsForUser(String username);
 }

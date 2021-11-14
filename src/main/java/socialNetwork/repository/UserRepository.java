@@ -21,4 +21,6 @@ public interface UserRepository<ID, E extends Entity<ID>> {
     E addUser(E user);
 
     E removeUser(ID id);
+
+    E getUserByUsername(String username);
 }

@@ -25,4 +25,9 @@ public class UserRepositoryFile<ID, E extends Entity<ID>>  extends UserRepositor
         User user = (User) userEntity;
         return user.getId().toString() + ";" + user.getFirstName() + ";" + user.getLastName() + ";" + user.getUsername();
     }
+
+    @Override
+    public E getUserByUsername(String username) {
+        return null;
+    }
 }
