@@ -6,8 +6,12 @@ import socialNetwork.domain.Friendship;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.*;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+
+import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
 
@@ -34,6 +38,7 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
         System.out.println("7. Print number of communities.");
         System.out.println("8. Print the most social community.");
         System.out.println("9. Get friend list for a user");
+        System.out.println("10. Get friend list for a user by month");
         System.out.println();
     }
 
@@ -77,6 +82,9 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
                     case "9":
                         this.printFriendListForUser();
                         break;
+                    case "10":
+                        this.printFriendListForUserByMonth();
+                        break;
                     default:
                         System.out.println("Your option seem to be not exists, please try another.");
                 }
@@ -95,6 +103,9 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
                 System.out.println(exception.getMessage());
             }
             catch (LogInException exception){
+                System.out.println(exception.getMessage());
+            }
+            catch (DateTimeException exception){
                 System.out.println(exception.getMessage());
             }
         }
@@ -194,5 +205,18 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
         System.out.println("Please enter the username:");
         String username = in.nextLine();
         controller.getAllFriendsForUser(username).forEach(System.out::println);
+    }
+
+    @Override
+    public void printFriendListForUserByMonth() {
+        System.out.println("Please enter the username:");
+        String username = in.nextLine();
+        System.out.println("Please select month:");
+        String month = in.nextLine();
+        if(month.length() == 1){
+            month = "0" + month;
+        }
+        LocalDateTime dateTime = LocalDateTime.parse("1000-" + month + "-01 00:00", DATE_TIME_FORMATTER);
+        controller.getAllFriendsForUserByMonth(username, dateTime).forEach(System.out::println);
     }
 }
