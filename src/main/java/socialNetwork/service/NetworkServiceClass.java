@@ -1,9 +1,6 @@
 package socialNetwork.service;
 
-import socialNetwork.domain.Entity;
-import socialNetwork.domain.FriendDTO;
-import socialNetwork.domain.Friendship;
-import socialNetwork.domain.User;
+import socialNetwork.domain.*;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.UserRepository;
 import socialNetwork.service.networkUtils.Graph;
@@ -21,7 +18,6 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
     }
-
 
     @Override
     public int getNumberOfCommunities() {
@@ -106,7 +102,7 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
                     else{   // friendship.getId().getLeft().equals(idUser)
                         user = (User) userRepository.getUserByID((ID) friendship.getId().getRight());
                     }
-                    return new FriendDTO(user.getFirstName(),user.getLastName(),friendship.getDate());
+                    return new FriendDTO(user.getUsername(), friendship.getDate(), friendship.getStatus());
                 })
                 .collect(Collectors.toList());
     }
@@ -118,11 +114,29 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
                 .collect(Collectors.toList());
     }
 
-    public List<Friendship> getAllFriendsByStatus(String status){
-        Long idUser = (Long)this.userRepository.getCurrentUserId();
-        return getAllFriendShipsAsList().stream()
-                .filter( friendship -> friendship.getId().getLeft().equals(idUser) || friendship.getId().getRight().equals(idUser))
-                .filter(friendship -> friendship.getStatus().equals(status))
+    @Override
+    public List<FriendDTO> getAllFriendsByStatus(String status){
+        Long idUser = (Long)userRepository.getUserByUsername(this.userRepository.getCurrentUsername()).getId();
+        if(status.equals("pending")){
+            return getAllFriendShipsAsList().stream()
+                    .filter(friendship -> friendship.getId().getRight().equals(idUser))
+                    .filter(friendship -> friendship.getStatus().equals(status))
+                    .map(friendship -> {
+                        User user = (User) userRepository.getUserByID((ID) friendship.getId().getLeft());
+                        return new FriendDTO(user.getUsername(), friendship.getDate(), friendship.getStatus());
+                    })
+                    .collect(Collectors.toList());
+        }
+        return this.getAllFriends(this.userRepository.getCurrentUsername()).stream()
+                .filter(friendDTO -> friendDTO.getFriendshipStatus().equals(status))
                 .collect(Collectors.toList());
+    }
+
+    public void setFriendshipStatus(String friendUsername, String status){
+        Long idUserFriend = (Long)userRepository.getUserByUsername(friendUsername).getId();
+        Long idCurrentUser = (Long)this.userRepository.getCurrentUserId();
+        Friendship friendship = (Friendship) this.friendshipRepository.getFriendshipByID(new Tuple<>(idUserFriend, idCurrentUser));
+        friendship.setStatus(status);
+        this.friendshipRepository.updateFriendship(friendship);
     }
 }

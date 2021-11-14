@@ -42,6 +42,46 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
     }
 
     @Override
+    public E getFriendshipByID(ID id) {
+        String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
+
+        Tuple<Long, Long> idFriendship = (Tuple) id;
+
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement(queryFind)) {
+
+            ps.setLong(1, idFriendship.getLeft());
+            ps.setLong(2, idFriendship.getRight());
+            ps.setLong(3, idFriendship.getRight());
+            ps.setLong(4, idFriendship.getLeft());
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if(!resultSet.next()){
+                throw new EntityNullException();
+            }
+
+            Long idFirstUser = resultSet.getLong("id_first_user");
+            Long idSecondUser = resultSet.getLong("id_second_user");
+            Timestamp dateFriendship = resultSet.getTimestamp("date_friendship");
+            String statusFriendship = resultSet.getString("status_friendship");
+
+            String dateTimeString = dateFriendship.toString().strip().substring(0, 16);
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DATE_TIME_FORMATTER);
+            Friendship friendship = new Friendship(dateTime);
+            friendship.setId(new Tuple<>(idFirstUser, idSecondUser));
+            friendship.setStatus(statusFriendship);
+
+            return (E)friendship;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public Iterable<E> getAllFriendships() {
         HashSet<E> friendships = new HashSet<>();
 
@@ -162,6 +202,28 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             return friendshipEntity;
 
         }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public E updateFriendship(E friendshipEntity) {
+        String sql = "update friendships set status_friendship = ? where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
+
+        Friendship friendship = (Friendship) friendshipEntity;
+        try (Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, friendship.getStatus());
+            ps.setLong(2, friendship.getId().getLeft());
+            ps.setLong(3, friendship.getId().getRight());
+            ps.setLong(4, friendship.getId().getRight());
+            ps.setLong(5, friendship.getId().getLeft());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
