@@ -53,11 +53,13 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
                 Long idFirstUser = resultSet.getLong("id_first_user");
                 Long idSecondUser = resultSet.getLong("id_second_user");
                 Timestamp dateFriendship = resultSet.getTimestamp("date_friendship");
+                String statusFriendship = resultSet.getString("status_friendship");
 
                 String dateTimeString = dateFriendship.toString().strip().substring(0, 16);
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DATE_TIME_FORMATTER);
                 Friendship friendship = new Friendship(dateTime);
                 friendship.setId(new Tuple<>(idFirstUser, idSecondUser));
+                friendship.setStatus(statusFriendship);
                 friendships.add((E)friendship);
             }
             return friendships;
@@ -96,7 +98,7 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             e.printStackTrace();
         }
 
-        String queryAdd = "insert into friendships (id_first_user, id_second_user, date_friendship) values (?,?,?)";
+        String queryAdd = "insert into friendships (id_first_user, id_second_user, date_friendship, status_friendship) values (?,?,?,?)";
 
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryAdd)) {
@@ -104,6 +106,7 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             ps.setLong(1, friendship.getId().getLeft());
             ps.setLong(2, friendship.getId().getRight());
             ps.setTimestamp(3, Timestamp.valueOf(friendship.getDate()));
+            ps.setString(4, friendship.getStatus());
 
             ps.executeUpdate();
 

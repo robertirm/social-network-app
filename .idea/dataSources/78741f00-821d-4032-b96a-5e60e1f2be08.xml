@@ -3,14 +3,6 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.23">
     <root id="1">
       <ServerVersion>14.0</ServerVersion>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-13753||-9223372036854775808|c|G
-13753||10|c|G
-13753||10|C|G
-13753||10|T|G</Grants>
       <DateStyle>mdy</DateStyle>
       <TimeZones>true ACDT
 true ACSST
@@ -792,7 +784,7 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <IntrospectionStateNumber>872</IntrospectionStateNumber>
+      <IntrospectionStateNumber>883</IntrospectionStateNumber>
       <StartupTime>1636719217</StartupTime>
     </root>
     <database id="2" parent="1" name="SocialNetwork">
@@ -808,7 +800,7 @@ false Zulu
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>873</IntrospectionStateNumber>
+      <IntrospectionStateNumber>884</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16398|16395|1
 </Relations>
@@ -889,7 +881,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>873</IntrospectionStateNumber>
+      <IntrospectionStateNumber>884</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="21" parent="2" name="plpgsql">
@@ -999,7 +991,7 @@ false Zulu
     <table id="34" parent="20" name="friendships">
       <ObjectId>16409</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>820</StateNumber>
+      <StateNumber>881</StateNumber>
       <AccessMethodId>2</AccessMethodId>
     </table>
     <table id="35" parent="20" name="users">
@@ -1029,7 +1021,13 @@ false Zulu
       <StateNumber>820</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="39" parent="34" name="friendships_users_id_fk">
+    <column id="39" parent="34" name="status_friendship">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>881</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="40" parent="34" name="friendships_users_id_fk">
       <ObjectId>16412</ObjectId>
       <StateNumber>814</StateNumber>
       <ColNames>id_first_user</ColNames>
@@ -1039,7 +1037,7 @@ false Zulu
       <RefKeyName>users_pk</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="40" parent="34" name="friendships_users_id_fk_2">
+    <foreign-key id="41" parent="34" name="friendships_users_id_fk_2">
       <ObjectId>16417</ObjectId>
       <StateNumber>815</StateNumber>
       <ColNames>id_second_user</ColNames>
@@ -1049,7 +1047,7 @@ false Zulu
       <RefKeyName>users_pk</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="41" parent="35" name="id">
+    <column id="42" parent="35" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1057,25 +1055,25 @@ false Zulu
       <DefaultExpression>nextval(&apos;&quot;Users_id_seq&quot;&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="42" parent="35" name="first_name">
+    <column id="43" parent="35" name="first_name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>789</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="35" name="last_name">
+    <column id="44" parent="35" name="last_name">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>790</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="44" parent="35" name="username">
+    <column id="45" parent="35" name="username">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>748</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="45" parent="35" name="users_id_uindex">
+    <index id="46" parent="35" name="users_id_uindex">
       <ObjectId>16405</ObjectId>
       <StateNumber>749</StateNumber>
       <ColNames>id</ColNames>
@@ -1084,7 +1082,7 @@ false Zulu
       <ClassIds>1978</ClassIds>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="46" parent="35" name="users_pk">
+    <index id="47" parent="35" name="users_pk">
       <ObjectId>16407</ObjectId>
       <StateNumber>751</StateNumber>
       <ColNames>id</ColNames>
@@ -1094,7 +1092,7 @@ false Zulu
       <ClassIds>1978</ClassIds>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="47" parent="35" name="users_username_uindex">
+    <index id="48" parent="35" name="users_username_uindex">
       <ObjectId>16406</ObjectId>
       <StateNumber>750</StateNumber>
       <ColNames>username</ColNames>
@@ -1104,7 +1102,7 @@ false Zulu
       <ClassIds>3126</ClassIds>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="48" parent="35" name="users_pk">
+    <key id="49" parent="35" name="users_pk">
       <ObjectId>16408</ObjectId>
       <StateNumber>751</StateNumber>
       <ColNames>id</ColNames>

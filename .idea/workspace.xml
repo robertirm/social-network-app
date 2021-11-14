@@ -4,7 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added functionality for showing the friend list for a given user by specific month." />
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added test folder">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/storage_v2/_src_/database/SocialNetwork.4UUZQw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/78741f00-821d-4032-b96a-5e60e1f2be08/storage_v2/_src_/database/SocialNetwork.4UUZQw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/Friendship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/FriendshipRepositoryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/FriendshipRepositoryDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +47,9 @@
         <option value="JUnit5 Test Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="lab5-ShowAllFriendsUserBySpecificMonth" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -68,6 +97,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -80,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636668938161</updated>
       <workItem from="1636668941329" duration="1263000" />
-      <workItem from="1636882497315" duration="7761000" />
+      <workItem from="1636882497315" duration="12868000" />
     </task>
     <task id="LOCAL-00001" summary="Add main project">
       <created>1636669301510</created>
@@ -138,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636892048035</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added test folder">
+      <created>1636892532687</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1636892532687</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,9 +195,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add main project" />
-    <MESSAGE value="Added test folder" />
     <MESSAGE value="Create new branch" />
     <MESSAGE value="Added functionality for showing the friend list for a given user by specific month." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for showing the friend list for a given user by specific month." />
+    <MESSAGE value="Added test folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added test folder" />
   </component>
 </project>

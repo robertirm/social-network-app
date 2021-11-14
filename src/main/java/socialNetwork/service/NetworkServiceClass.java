@@ -117,4 +117,12 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
                 .filter(friendDTO -> friendDTO.getDataOfFriendship().getMonth() == dateTime.getMonth())
                 .collect(Collectors.toList());
     }
+
+    public List<Friendship> getAllFriendsByStatus(String status){
+        Long idUser = (Long)this.userRepository.getCurrentUserId();
+        return getAllFriendShipsAsList().stream()
+                .filter( friendship -> friendship.getId().getLeft().equals(idUser) || friendship.getId().getRight().equals(idUser))
+                .filter(friendship -> friendship.getStatus().equals(status))
+                .collect(Collectors.toList());
+    }
 }
