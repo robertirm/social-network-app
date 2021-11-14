@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added test folder">
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added test folder" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="lab5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636668938161</updated>
       <workItem from="1636668941329" duration="1263000" />
-      <workItem from="1636882497315" duration="2775000" />
+      <workItem from="1636882497315" duration="3118000" />
     </task>
     <task id="LOCAL-00001" summary="Add main project">
       <created>1636669301510</created>
@@ -105,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636886442666</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added test folder">
+      <created>1636886487377</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636886487377</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
