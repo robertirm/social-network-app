@@ -13,5 +13,6 @@ public interface NetworkService<ID, E extends Entity<ID>> {
     List<Friendship> getAllFriendShipsAsList();
     List<FriendDTO> getAllFriends(String username);
     List<FriendDTO> getAllFriendsByMonth(String username, LocalDateTime dateTime);
-    List<Friendship> getAllFriendsByStatus(String status);
+    List<FriendDTO> getAllFriendsByStatus(String status);
+    void setFriendshipStatus(String friendUsername, String status);
 }

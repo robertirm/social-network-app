@@ -32,6 +32,11 @@ public class FriendshipRepositoryMemory<ID, E extends Entity<ID>> implements Fri
     }
 
     @Override
+    public E getFriendshipByID(ID id) {
+        return null;
+    }
+
+    @Override
     public Iterable<E> getAllFriendships() {
         return friendships;
     }
@@ -63,5 +68,10 @@ public class FriendshipRepositoryMemory<ID, E extends Entity<ID>> implements Fri
 
         friendships.remove(friendship);
         return friendship;
+    }
+
+    @Override
+    public E updateFriendship(E friendship) {
+        return null;
     }
 }

@@ -22,5 +22,6 @@ public interface Controller<ID, E extends Entity<ID>> {
     List<Integer> getTheMostSocialCommunity();
     List<FriendDTO> getAllFriendsForUser(String username);
     List<FriendDTO> getAllFriendsForUserByMonth(String username, LocalDateTime dateTime);
-    List<Friendship> getAllFriendsByStatus(String status);
+    List<FriendDTO> getAllFriendsByStatus(String status);
+    void setFriendshipStatus(String friendUsername, String status);
 }

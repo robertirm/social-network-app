@@ -16,4 +16,6 @@ public interface Gui<ID, E extends Entity<ID>> {
     void printFriendListForUser();
     void printFriendListForUserByMonth();
     void printFriendListByStatus();
+    void approveFriendship();
+    void rejectFriendship();
 }

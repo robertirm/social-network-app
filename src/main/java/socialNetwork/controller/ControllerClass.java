@@ -91,7 +91,12 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
     }
 
     @Override
-    public List<Friendship> getAllFriendsByStatus(String status) {
+    public List<FriendDTO> getAllFriendsByStatus(String status) {
         return this.networkService.getAllFriendsByStatus(status);
+    }
+
+    @Override
+    public void setFriendshipStatus(String friendUsername, String status) {
+        this.networkService.setFriendshipStatus(friendUsername, status);
     }
 }

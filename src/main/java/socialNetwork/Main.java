@@ -25,7 +25,7 @@ public class Main {
 
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "GMsuper12";
+        String password = "";
 //        Validator<User> userValidator = new UserValidator();
 //        UserRepository<Long, User> repository = new UserRepositoryDB(url, username, password, userValidator);
 
