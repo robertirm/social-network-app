@@ -14,4 +14,5 @@ public interface Gui<ID, E extends Entity<ID>> {
     void printNumberOfCommunities();
     void printTheMostSocialCommunity();
     void printFriendListForUser();
+    void printFriendListForUserByMonth();
 }

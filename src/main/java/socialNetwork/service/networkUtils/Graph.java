@@ -1,4 +1,4 @@
-package socialNetwork.service.statisticsUtils;
+package socialNetwork.service.networkUtils;
 
 import java.util.ArrayList;
 

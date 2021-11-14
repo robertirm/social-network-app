@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added functionality for showing the friend list for a given user by specific month." />
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +23,9 @@
         <option value="JUnit5 Test Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="lab5-ShowAllFriendsUserBySpecificMonth" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -42,6 +47,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -68,6 +74,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -80,7 +87,10 @@
       <option name="presentableId" value="Default" />
       <updated>1636668938161</updated>
       <workItem from="1636668941329" duration="1263000" />
-      <workItem from="1636882497315" duration="7761000" />
+      <workItem from="1636882497315" duration="14384000" />
+      <workItem from="1636912961147" duration="12614000" />
+      <workItem from="1636963218125" duration="2576000" />
+      <workItem from="1636993338371" duration="1739000" />
     </task>
     <task id="LOCAL-00001" summary="Add main project">
       <created>1636669301510</created>
@@ -138,7 +148,63 @@
       <option name="project" value="LOCAL" />
       <updated>1636892048035</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added test folder">
+      <created>1636892532687</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1636892532687</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added new column (status_friendship) in friendship table, add functionality to show all friends for current user by selected status">
+      <created>1636897632145</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1636897632145</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added new column (status_friendship) in friendship table, add functionality to show all friends for current user by selected status">
+      <created>1636897661161</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1636897661161</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend username, friendship date and status, added getFriendshipByID functionality">
+      <created>1636924256061</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636924256061</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend username, friendship date and status, added getFriendshipByID functionality">
+      <created>1636924322432</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1636924322432</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend username, friendship date and status, added getFriendshipByID functionality">
+      <created>1636924334587</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1636924334587</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality">
+      <created>1636964975115</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1636964975115</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality">
+      <created>1636964984430</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1636964984430</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,9 +224,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add main project" />
-    <MESSAGE value="Added test folder" />
     <MESSAGE value="Create new branch" />
     <MESSAGE value="Added functionality for showing the friend list for a given user by specific month." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for showing the friend list for a given user by specific month." />
+    <MESSAGE value="Added test folder" />
+    <MESSAGE value="Added new column (status_friendship) in friendship table, add functionality to show all friends for current user by selected status" />
+    <MESSAGE value="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend username, friendship date and status, added getFriendshipByID functionality" />
+    <MESSAGE value="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality" />
   </component>
 </project>

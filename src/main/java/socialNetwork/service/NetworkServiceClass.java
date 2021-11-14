@@ -6,8 +6,9 @@ import socialNetwork.domain.Friendship;
 import socialNetwork.domain.User;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.UserRepository;
-import socialNetwork.service.statisticsUtils.Graph;
+import socialNetwork.service.networkUtils.Graph;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -107,6 +108,13 @@ public class NetworkServiceClass<ID, E extends Entity<ID>> implements NetworkSer
                     }
                     return new FriendDTO(user.getFirstName(),user.getLastName(),friendship.getDate());
                 })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FriendDTO> getAllFriendsByMonth(String username, LocalDateTime dateTime) {
+        return this.getAllFriends(username).stream()
+                .filter(friendDTO -> friendDTO.getDataOfFriendship().getMonth() == dateTime.getMonth())
                 .collect(Collectors.toList());
     }
 }

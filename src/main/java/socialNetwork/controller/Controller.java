@@ -3,6 +3,7 @@ package socialNetwork.controller;
 import socialNetwork.domain.Entity;
 import socialNetwork.domain.FriendDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Controller<ID, E extends Entity<ID>> {
@@ -19,4 +20,5 @@ public interface Controller<ID, E extends Entity<ID>> {
     int getNumberOfCommunities();
     List<Integer> getTheMostSocialCommunity();
     List<FriendDTO> getAllFriendsForUser(String username);
+    List<FriendDTO> getAllFriendsForUserByMonth(String username, LocalDateTime dateTime);
 }

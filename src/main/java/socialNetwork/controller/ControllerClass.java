@@ -5,6 +5,7 @@ import socialNetwork.domain.FriendDTO;
 import socialNetwork.service.NetworkService;
 import socialNetwork.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -80,6 +81,11 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
 
     @Override
     public List<FriendDTO> getAllFriendsForUser(String username) {
-        return networkService.getAllFriends(username);
+        return this.networkService.getAllFriends(username);
+    }
+
+    @Override
+    public List<FriendDTO> getAllFriendsForUserByMonth(String username, LocalDateTime dateTime) {
+        return this.networkService.getAllFriendsByMonth(username, dateTime);
     }
 }
