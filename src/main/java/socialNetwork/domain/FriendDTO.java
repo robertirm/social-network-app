@@ -2,6 +2,8 @@ package socialNetwork.domain;
 
 import java.time.LocalDateTime;
 
+import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
+
 public class FriendDTO {
     private String friendFirstName;
     private String friendLastName;
@@ -41,6 +43,6 @@ public class FriendDTO {
     public String toString() {
         return friendFirstName + " | " +
                 friendLastName + " | " +
-                dataOfFriendship;
+                dataOfFriendship.format(DATE_TIME_FORMATTER);
     }
 }
