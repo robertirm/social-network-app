@@ -11,9 +11,9 @@ import socialNetwork.domain.validator.Validator;
 import socialNetwork.gui.Gui;
 import socialNetwork.gui.GuiClass;
 import socialNetwork.repository.FriendshipRepository;
-import socialNetwork.repository.database.FriendshipRepositoryDB;
-import socialNetwork.repository.database.UserRepositoryDB;
 import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.database.FriendshipRepositoryClass;
+import socialNetwork.repository.database.UserRepositoryClass;
 import socialNetwork.service.NetworkService;
 import socialNetwork.service.NetworkServiceClass;
 import socialNetwork.service.UserService;
@@ -26,25 +26,15 @@ public class Main {
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
         String password = "";
-//        Validator<User> userValidator = new UserValidator();
-//        UserRepository<Long, User> repository = new UserRepositoryDB(url, username, password, userValidator);
 
-//        User user = new User("a","b","first");
-//        repository.addUser(user);
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
-        // UserRepository<Long, User> userRepository = new UserRepositoryMemory<>(userValidator);
-        //String userFilename = "data/users.csv";
-        //UserRepository<Long, User> userRepository = new UserRepositoryFile<>(userFilename, userValidator);
-        UserRepository<Long, User> userRepository = new UserRepositoryDB<>(url, username, password, userValidator);
-        // FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryMemory<>(friendValidator, userRepository);
-        String friendshipFilename = "data/friendship.csv";
-//        FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryFile<>(friendshipFilename, friendshipValidator);
-        FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryDB<>(url, username, password, friendshipValidator);
-        UserService<Long, User> userService = new UserServiceClass<>(userRepository, friendshipRepository);
-        NetworkService<Long, User> statisticsService = new NetworkServiceClass<>(userRepository, friendshipRepository);
-        Controller<Long, User> controller = new ControllerClass<>(userService, statisticsService);
-        Gui<Long, User> gui = new GuiClass<>(controller);
+        UserRepository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
+        FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
+        UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository);
+        NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository);
+        Controller controller = new ControllerClass(userService, statisticsService);
+        Gui gui = new GuiClass(controller);
         gui.startGui();
     }
 }

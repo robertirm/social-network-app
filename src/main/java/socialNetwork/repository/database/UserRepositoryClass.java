@@ -1,6 +1,5 @@
 package socialNetwork.repository.database;
 
-import socialNetwork.domain.Entity;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.exception.IdNullException;
@@ -11,19 +10,17 @@ import socialNetwork.repository.UserRepository;
 
 import java.sql.*;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
-public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepository<ID, E> {
+public class UserRepositoryClass implements UserRepository<Long, User> {
     private final String dbUrl;
     private final String dbUsername;
     private final String dbPassword;
-    private Validator<E> validator;
+    private final Validator<User> validator;
 
-    private Object currentUserId;
+    private Long currentUserId;
     private String username;
 
-    public UserRepositoryDB(String dbUrl, String dbUsername, String dbPassword, Validator<E> validator) {
+    public UserRepositoryClass(String dbUrl, String dbUsername, String dbPassword, Validator<User> validator) {
         this.dbUrl = dbUrl;
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
@@ -31,23 +28,18 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
     }
 
     @Override
-    public void writeToFile() {
-
-    }
-
-    @Override
-    public ID getCurrentUserId() {
+    public Long getCurrentUserId() {
         if(currentUserId == null){
             throw new LogInException();
         }
-        return (ID) currentUserId;
+
+        return currentUserId;
     }
 
     @Override
     public void setCurrentUser(String username) {
         boolean valid = false;
-        for(E entity : this.getAllUsers()){
-            User user = (User) entity;
+        for(User user : this.findAll()){
             if(user.getUsername().equals(username)){
                 this.currentUserId = user.getId();
                 this.username = username;
@@ -55,6 +47,7 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
                 break;
             }
         }
+
         if(!valid){
             throw new WrongUsernameException();
         }
@@ -66,21 +59,50 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
     }
 
     @Override
-    public Long getUsersCount() {
+    public User getUserByUsername(String username) {
+        String queryFind = "select * from users where username = (?)";
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement(queryFind)) {
+            ps.setString(1, username);
+            ResultSet resultSet = ps.executeQuery();
+
+            if(!resultSet.next()){
+                throw new EntityNullException();
+            }
+
+            Long idUser = resultSet.getLong("id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String userUsername = resultSet.getString("username");
+
+            User user = new User(firstName, lastName, userUsername);
+            user.setId(idUser);
+
+            return user;
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Long getCount() {
         Long usersCount = 0L;
-        for(E entity : this.getAllUsers()){
+        for(User ignored : this.findAll()){
             usersCount++;
         }
+
         return usersCount;
     }
 
     @Override
-    public E getUserByID(ID id) {
+    public User findOne(Long id) {
         String queryFind = "select * from users where id = (?)";
-        User user = null;
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
-            ps.setLong(1, (long)id);
+            ps.setLong(1, id);
             ResultSet resultSet = ps.executeQuery();
 
             if(!resultSet.next()){
@@ -92,19 +114,21 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
             String lastName = resultSet.getString("last_name");
             String username = resultSet.getString("username");
 
-            user = new User(firstName, lastName, username);
+            User user = new User(firstName, lastName, username);
             user.setId(idUser);
-            return (E)user;
 
-        }catch (SQLException e){
+            return user;
+
+        } catch (SQLException e){
             e.printStackTrace();
         }
+
         return null;
     }
 
     @Override
-    public Iterable<E> getAllUsers() {
-        HashSet<E> users = new HashSet<>();
+    public HashSet<User> findAll() {
+        HashSet<User> users = new HashSet<>();
 
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement statement = connection.prepareStatement("SELECT * from users");
@@ -118,49 +142,49 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
 
                 User user = new User(firstName, lastName, username);
                 user.setId(idUser);
-                users.add((E)user);
+                users.add(user);
             }
+
             return users;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return users;
     }
 
-    public E selectUser(E userEntity) {
-        User user = (User) userEntity;
+    public User selectUser(User user) {
         String queryFind = "select * from users where username = (?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
             ps.setString(1, user.getUsername());
             ResultSet resultSet = ps.executeQuery();
 
             if(resultSet.next()){
-                return userEntity;
+                return user;
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
+
         return null;
     }
 
     @Override
-    public E addUser(E userEntity) {
-        if(userEntity == null){
+    public User save(User user) {
+        if(user == null){
             throw new EntityNullException();
         }
-        validator.validate(userEntity);
-        User user = (User) userEntity;
 
-        if(selectUser(userEntity) != null) {
-            return userEntity;
+        validator.validate(user);
+
+        if(selectUser(user) != null) {
+            return user;
         }
-        
 
         String queryAdd = "insert into users (first_name, last_name, username) values (?,?,?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryAdd)) {
 
@@ -170,7 +194,7 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
 
             ps.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -178,30 +202,31 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
     }
 
     @Override
-    public E removeUser(ID id) {
+    public User delete(Long id) {
         if(id == null){
             throw new IdNullException();
         }
 
-        E user = this.getUserByID(id);
+        User user = this.findOne(id);
+
         if(user == null){
             throw new EntityNullException();
         }
 
         String queryDelete = "delete from users where id = (?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryDelete)) {
 
-            ps.setLong(1, (long) id);
+            ps.setLong(1, id);
 
             ps.executeUpdate();
 
             this.username = null;
             this.currentUserId = null;
+
             return user;
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -209,31 +234,7 @@ public class UserRepositoryDB<ID, E extends Entity<ID>> implements UserRepositor
     }
 
     @Override
-    public E getUserByUsername(String username) {
-        String queryFind = "select * from users where username = (?)";
-        User user = null;
-        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement(queryFind)) {
-            ps.setString(1, username);
-            ResultSet resultSet = ps.executeQuery();
-
-            if(!resultSet.next()){
-                throw new EntityNullException();
-            }
-
-
-            Long idUser = resultSet.getLong("id");
-            String firstName = resultSet.getString("first_name");
-            String lastName = resultSet.getString("last_name");
-            String userUsername = resultSet.getString("username");
-
-            user = new User(firstName, lastName, userUsername);
-            user.setId(idUser);
-            return (E)user;
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+    public User update(User user) {
         return null;
     }
 }

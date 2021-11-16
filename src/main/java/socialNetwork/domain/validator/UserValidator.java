@@ -8,8 +8,6 @@ public class UserValidator implements Validator<User> {
     @Override
     public void validate(User entity) throws ValidationException {
         String errorMessage = "";
-//        if (entity.getId() == null)
-//            errorMessage += "id error ";
         if (entity.getFirstName() == null || "".equals(entity.getFirstName()))
             errorMessage += "first name error ";
         if (entity.getLastName() == null || "".equals(entity.getLastName()))

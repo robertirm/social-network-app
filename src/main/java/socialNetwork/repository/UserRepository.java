@@ -2,9 +2,9 @@ package socialNetwork.repository;
 
 import socialNetwork.domain.Entity;
 
-public interface UserRepository<ID, E extends Entity<ID>> {
+import java.util.HashSet;
 
-    void writeToFile();
+public interface UserRepository <ID, E extends Entity<ID>> {
 
     ID getCurrentUserId();
 
@@ -12,15 +12,17 @@ public interface UserRepository<ID, E extends Entity<ID>> {
 
     String getCurrentUsername();
 
-    Long getUsersCount();
-
-    E getUserByID(ID id);
-
-    Iterable<E> getAllUsers();
-
-    E addUser(E user);
-
-    E removeUser(ID id);
-
     E getUserByUsername(String username);
+
+    Long getCount();
+
+    E findOne(ID id);
+
+    HashSet<E> findAll();
+
+    E save(E entity);
+
+    E delete(ID id);
+
+    E update(E entity);
 }

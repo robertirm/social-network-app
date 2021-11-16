@@ -1,8 +1,6 @@
 package socialNetwork.gui;
 
-import socialNetwork.domain.Entity;
-
-public interface Gui<ID, E extends Entity<ID>> {
+public interface Gui {
     void startGui();
     void exitApp();
     void printAll();

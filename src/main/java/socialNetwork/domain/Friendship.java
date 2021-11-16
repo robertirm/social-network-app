@@ -3,8 +3,7 @@ package socialNetwork.domain;
 import java.time.LocalDateTime;
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class Friendship extends Entity<Tuple<Long, Long>> implements Comparable<Friendship>{
-
+public class Friendship extends Entity<Tuple<Long, Long>> implements Comparable<Friendship> {
     LocalDateTime date;
     String status;
 

@@ -2,19 +2,19 @@ package socialNetwork.repository;
 
 import socialNetwork.domain.Entity;
 
+import java.util.HashSet;
+
 public interface FriendshipRepository <ID, E extends Entity<ID>> {
 
-    void writeToFile();
+    Long getCount();
 
-    Long getFriendshipsCount();
+    E findOne(ID id);
 
-    E getFriendshipByID(ID id);
+    HashSet<E> findAll();
 
-    Iterable<E> getAllFriendships();
+    E save(E entity);
 
-    E addFriendship(E friendship);
+    E delete(E entity);
 
-    E removeFriendship(E friendship);
-
-    E updateFriendship(E friendship);
+    E update(E entity);
 }

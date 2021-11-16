@@ -1,9 +1,7 @@
 package socialNetwork.repository.database;
 
-import socialNetwork.domain.Entity;
 import socialNetwork.domain.Friendship;
 import socialNetwork.domain.Tuple;
-import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.validator.Validator;
 import socialNetwork.repository.FriendshipRepository;
@@ -14,13 +12,13 @@ import java.util.HashSet;
 
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements FriendshipRepository<ID, E> {
+public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Long, Long>, Friendship> {
     private final String dbUrl;
     private final String dbUsername;
     private final String dbPassword;
-    private Validator<E> validator;
+    private final Validator<Friendship> validator;
 
-    public FriendshipRepositoryDB(String dbUrl, String dbUsername, String dbPassword, Validator<E> validator) {
+    public FriendshipRepositoryClass(String dbUrl, String dbUsername, String dbPassword, Validator<Friendship> validator) {
         this.dbUrl = dbUrl;
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
@@ -28,32 +26,25 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
     }
 
     @Override
-    public void writeToFile() {
-
-    }
-
-    @Override
-    public Long getFriendshipsCount() {
+    public Long getCount() {
         Long friendshipsCount = 0L;
-        for(E entity : this.getAllFriendships()){
+        for(Friendship ignored : this.findAll()){
             friendshipsCount++;
         }
+
         return friendshipsCount;
     }
 
     @Override
-    public E getFriendshipByID(ID id) {
+    public Friendship findOne(Tuple<Long, Long> id) {
         String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-
-        Tuple<Long, Long> idFriendship = (Tuple) id;
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
 
-            ps.setLong(1, idFriendship.getLeft());
-            ps.setLong(2, idFriendship.getRight());
-            ps.setLong(3, idFriendship.getRight());
-            ps.setLong(4, idFriendship.getLeft());
+            ps.setLong(1, id.getLeft());
+            ps.setLong(2, id.getRight());
+            ps.setLong(3, id.getRight());
+            ps.setLong(4, id.getLeft());
 
             ResultSet resultSet = ps.executeQuery();
 
@@ -72,9 +63,9 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             friendship.setId(new Tuple<>(idFirstUser, idSecondUser));
             friendship.setStatus(statusFriendship);
 
-            return (E)friendship;
+            return friendship;
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -82,8 +73,8 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
     }
 
     @Override
-    public Iterable<E> getAllFriendships() {
-        HashSet<E> friendships = new HashSet<>();
+    public HashSet<Friendship> findAll() {
+        HashSet<Friendship> friendships = new HashSet<>();
 
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement statement = connection.prepareStatement("SELECT * from friendships");
@@ -100,26 +91,27 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
                 Friendship friendship = new Friendship(dateTime);
                 friendship.setId(new Tuple<>(idFirstUser, idSecondUser));
                 friendship.setStatus(statusFriendship);
-                friendships.add((E)friendship);
+                friendships.add(friendship);
             }
+
             return friendships;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return friendships;
     }
 
     @Override
-    public E addFriendship(E friendshipEntity) {
-        if(friendshipEntity == null){
+    public Friendship save(Friendship friendship) {
+        if(friendship == null){
             throw new EntityNullException();
         }
 
-        validator.validate(friendshipEntity);
-        Friendship friendship = (Friendship) friendshipEntity;
+        validator.validate(friendship);
 
         String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
 
@@ -131,15 +123,14 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             ResultSet resultSet = ps.executeQuery();
 
             if(resultSet.next()){
-                return friendshipEntity;
+                return friendship;
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
         String queryAdd = "insert into friendships (id_first_user, id_second_user, date_friendship, status_friendship) values (?,?,?,?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryAdd)) {
 
@@ -150,7 +141,7 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
 
             ps.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -158,16 +149,14 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
     }
 
     @Override
-    public E removeFriendship(E friendshipEntity) {
-        if(friendshipEntity == null){
+    public Friendship delete(Friendship friendship) {
+        if(friendship == null){
             throw new EntityNullException();
         }
 
-        validator.validate(friendshipEntity);
-        Friendship friendship = (Friendship) friendshipEntity;
+        validator.validate(friendship);
 
         String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
 
@@ -182,13 +171,11 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
                 throw new EntityNullException();
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
-
         String queryDelete = "delete from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryDelete)) {
 
@@ -199,9 +186,9 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
 
             ps.executeUpdate();
 
-            return friendshipEntity;
+            return friendship;
 
-        }catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -209,10 +196,8 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
     }
 
     @Override
-    public E updateFriendship(E friendshipEntity) {
+    public Friendship update(Friendship friendship) {
         String sql = "update friendships set status_friendship = ? where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-
-        Friendship friendship = (Friendship) friendshipEntity;
         try (Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -223,6 +208,7 @@ public class FriendshipRepositoryDB <ID, E extends Entity<ID>> implements Friend
             ps.setLong(5, friendship.getId().getLeft());
 
             ps.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

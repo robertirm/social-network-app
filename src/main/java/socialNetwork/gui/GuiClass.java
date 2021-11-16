@@ -1,7 +1,6 @@
 package socialNetwork.gui;
 
 import socialNetwork.controller.Controller;
-import socialNetwork.domain.Entity;
 import socialNetwork.domain.Friendship;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.*;
@@ -13,19 +12,19 @@ import java.util.Scanner;
 
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
+public class GuiClass implements Gui{
 
-    public final Controller<ID, E> controller;
+    public final Controller controller;
     Scanner in;
 
-    public GuiClass(Controller<ID, E> controller) {
+    public GuiClass(Controller controller) {
         this.controller = controller;
         in = new Scanner(System.in);
     }
 
     private void printOptions() {
         System.out.println();
-        System.out.println("Current user: " + String.valueOf(controller.getCurrentUsername()));
+        System.out.println("Current user: " + controller.getCurrentUsername());
         System.out.println();
         System.out.println("Choose an options.");
         System.out.println("exit");
@@ -132,21 +131,16 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
     public void printAll() {
         System.out.println("Users: ");
         System.out.println();
-        Iterable<User> allUsers = (Iterable<User>) controller.getAllUsers();
+        Iterable<User> allUsers = controller.getAllUsers();
         for(User user : allUsers){
             System.out.println(user.toString());
-//            System.out.println("Friends: ");
-//            for(User friend : user.getFriendList()){
-//                System.out.println("    " + friend.toString());
-//            }
-//            System.out.println();
         }
 
         System.out.println();
 
         System.out.println("Friendships: ");
         System.out.println();
-        Iterable<Friendship> allFriendships = (Iterable<Friendship>) controller.getAllFriendships();
+        Iterable<Friendship> allFriendships = controller.getAllFriendships();
         for(Friendship friendship : allFriendships){
             System.out.println(friendship.toString());
         }

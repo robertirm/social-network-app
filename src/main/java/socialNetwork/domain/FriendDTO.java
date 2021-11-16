@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 public class FriendDTO {
-    private User user;
-    private LocalDateTime dataOfFriendship;
-    private String friendshipStatus;
+    private final User user;
+    private final LocalDateTime dataOfFriendship;
+    private final String friendshipStatus;
 
     public FriendDTO(User user, LocalDateTime dataOfFriendship, String friendshipStatus) {
         this.user= user;
@@ -29,7 +29,7 @@ public class FriendDTO {
     public String toString() {
         return "FriendDTO{" +
                 "username=" + user.getUsername() +
-                ", dataOfFriendship=" + dataOfFriendship +
+                ", dataOfFriendship=" + dataOfFriendship.format(DATE_TIME_FORMATTER) +
                 ", friendshipStatus='" + friendshipStatus + '\'' +
                 '}';
     }

@@ -1,21 +1,20 @@
 package socialNetwork.controller;
 
-import socialNetwork.domain.Entity;
-import socialNetwork.domain.FriendDTO;
-import socialNetwork.domain.Friendship;
+import socialNetwork.domain.*;
 import socialNetwork.service.NetworkService;
 import socialNetwork.service.UserService;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 
-public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID, E> {
+public class ControllerClass implements Controller {
 
-    public final UserService<ID, E> userService;
-    public final NetworkService<ID, E> networkService;
+    public final UserService<Long, User> userService;
+    public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
 
-    public ControllerClass(UserService<ID, E> userService, NetworkService<ID, E> statisticsService) {
+    public ControllerClass(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService) {
         this.userService = userService;
         this.networkService = statisticsService;
     }
@@ -41,13 +40,13 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
     }
 
     @Override
-    public Iterable<E> getAllUsers() {
+    public HashSet<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @Override
-    public Iterable<E> getAllFriendships() {
-        return userService.getAllFriendships();
+    public HashSet<Friendship> getAllFriendships() {
+        return networkService.getAllFriendships();
     }
 
     @Override
@@ -62,12 +61,12 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
 
     @Override
     public void addFriend(String username) {
-        userService.addFriendship(username);
+        networkService.addFriendship(username);
     }
 
     @Override
     public void removeFriend(String username) {
-        userService.removeFriendship(username);
+        networkService.removeFriendship(username);
     }
 
     @Override
