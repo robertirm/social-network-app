@@ -14,6 +14,7 @@ public interface Controller {
     void exitApp();
     String getCurrentUsername();
     void login(String username);
+    void logout();
     HashSet<User> getAllUsers();
     HashSet<Friendship> getAllFriendships();
     void signup(String firstName, String lastName, String username);

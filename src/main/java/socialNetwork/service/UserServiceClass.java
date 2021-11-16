@@ -5,18 +5,22 @@ import socialNetwork.domain.Tuple;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.exception.LogInException;
+import socialNetwork.domain.exception.WrongUsernameException;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.memory.LoginSystem;
 
 import java.util.HashSet;
 
 public class UserServiceClass implements UserService<Long, User> {
     public final UserRepository<Long, User> userRepository;
     public final FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository;
+    public final LoginSystem<Long, User> loginSystem;
 
-    public UserServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository) {
+    public UserServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
+        this.loginSystem = loginSystem;
     }
 
     private void loadFriendships(){
@@ -32,13 +36,29 @@ public class UserServiceClass implements UserService<Long, User> {
     public void exitApp() { }
 
     @Override
-    public void setCurrentUser(String username) {
-        this.userRepository.setCurrentUser(username);
+    public void login(String username) {
+        boolean valid = false;
+        for(User user : this.userRepository.findAll()){
+            if(user.getUsername().equals(username)){
+                this.loginSystem.login(user);
+                valid = true;
+                break;
+            }
+        }
+
+        if(!valid){
+            throw new WrongUsernameException();
+        }
+    }
+
+    @Override
+    public void logout() {
+        this.loginSystem.logout();
     }
 
     @Override
     public String getCurrentUsername() {
-        return this.userRepository.getCurrentUsername();
+        return this.loginSystem.getCurrentUsername();
     }
 
     @Override
@@ -54,12 +74,12 @@ public class UserServiceClass implements UserService<Long, User> {
 
     @Override
     public void removeUser() {
-        String currentUsername = this.userRepository.getCurrentUsername();
+        String currentUsername = this.loginSystem.getCurrentUsername();
         if(currentUsername == null){
             throw new LogInException();
         }
 
-        Long currentUserId =  this.userRepository.getCurrentUserId();
+        Long currentUserId =  this.loginSystem.getCurrentUserId();
         User currentUser = this.userRepository.findOne(currentUserId);
 
         if (currentUser == null){
@@ -82,12 +102,17 @@ public class UserServiceClass implements UserService<Long, User> {
         }
 
         //remove user from users
+        User removedUser = null;
         Iterable<User> allUsers = userRepository.findAll();
         for(User user : allUsers){
             if(user.getUsername().equals(currentUsername)){
-                this.userRepository.delete(user.getId());
+                removedUser = this.userRepository.delete(user.getId());
                 break;
             }
+        }
+
+        if(removedUser != null){
+            loginSystem.logout();
         }
     }
 }

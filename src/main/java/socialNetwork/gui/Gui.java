@@ -5,6 +5,7 @@ public interface Gui {
     void exitApp();
     void printAll();
     void login();
+    void logout();
     void signup();
     void deleteAccount();
     void addFriend();

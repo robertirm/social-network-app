@@ -6,12 +6,6 @@ import java.util.HashSet;
 
 public interface UserRepository <ID, E extends Entity<ID>> {
 
-    ID getCurrentUserId();
-
-    void setCurrentUser(String username);
-
-    String getCurrentUsername();
-
     E getUserByUsername(String username);
 
     Long getCount();

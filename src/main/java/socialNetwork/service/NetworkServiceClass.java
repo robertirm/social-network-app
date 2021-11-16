@@ -4,6 +4,7 @@ import socialNetwork.domain.*;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.repository.FriendshipRepository;
 import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.memory.LoginSystem;
 import socialNetwork.service.networkUtils.Graph;
 
 import java.time.LocalDateTime;
@@ -15,15 +16,17 @@ import java.util.stream.Collectors;
 public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Friendship> {
     public final UserRepository<Long, User> userRepository;
     public final FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository;
+    public final LoginSystem<Long, User> loginSystem;
 
-    public NetworkServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository) {
+    public NetworkServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
+        this.loginSystem = loginSystem;
     }
 
     @Override
     public void addFriendship(String username) {
-        Long currentUserId =  this.userRepository.getCurrentUserId();
+        Long currentUserId =  this.loginSystem.getCurrentUserId();
         User currentUser = this.userRepository.findOne(currentUserId);
         Iterable<User> allUsers = userRepository.findAll();
         User addedUser = null;
@@ -43,7 +46,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
 
     @Override
     public void removeFriendship(String username) {
-        Long currentUserId =  this.userRepository.getCurrentUserId();
+        Long currentUserId =  this.loginSystem.getCurrentUserId();
         User currentUser = this.userRepository.findOne(currentUserId);
 
         //remove from user friend list
@@ -165,7 +168,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
 
     @Override
     public List<FriendDTO> getAllFriendsByStatus(String status){
-        Long idUser = userRepository.getUserByUsername(this.userRepository.getCurrentUsername()).getId();
+        Long idUser = userRepository.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
         if(status.equals("pending")){
             return getAllFriendShipsAsList().stream()
                     .filter(friendship -> friendship.getId().getRight().equals(idUser))
@@ -176,14 +179,14 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
                     })
                     .collect(Collectors.toList());
         }
-        return this.getAllFriends(this.userRepository.getCurrentUsername()).stream()
+        return this.getAllFriends(this.loginSystem.getCurrentUsername()).stream()
                 .filter(friendDTO -> friendDTO.getFriendshipStatus().equals(status))
                 .collect(Collectors.toList());
     }
 
     public void setFriendshipStatus(String friendUsername, String status){
         Long idUserFriend = userRepository.getUserByUsername(friendUsername).getId();
-        Long idCurrentUser = this.userRepository.getCurrentUserId();
+        Long idCurrentUser = this.loginSystem.getCurrentUserId();
         Friendship friendship = this.friendshipRepository.findOne(new Tuple<>(idUserFriend, idCurrentUser));
         friendship.setStatus(status);
         this.friendshipRepository.update(friendship);

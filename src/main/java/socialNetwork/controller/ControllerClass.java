@@ -36,7 +36,12 @@ public class ControllerClass implements Controller {
 
     @Override
     public void login(String username) {
-        userService.setCurrentUser(username);
+        userService.login(username);
+    }
+
+    @Override
+    public void logout() {
+        this.userService.logout();
     }
 
     @Override

@@ -3,8 +3,6 @@ package socialNetwork.repository.database;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.exception.IdNullException;
-import socialNetwork.domain.exception.LogInException;
-import socialNetwork.domain.exception.WrongUsernameException;
 import socialNetwork.domain.validator.Validator;
 import socialNetwork.repository.UserRepository;
 
@@ -17,45 +15,11 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
     private final String dbPassword;
     private final Validator<User> validator;
 
-    private Long currentUserId;
-    private String username;
-
     public UserRepositoryClass(String dbUrl, String dbUsername, String dbPassword, Validator<User> validator) {
         this.dbUrl = dbUrl;
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
         this.validator = validator;
-    }
-
-    @Override
-    public Long getCurrentUserId() {
-        if(currentUserId == null){
-            throw new LogInException();
-        }
-
-        return currentUserId;
-    }
-
-    @Override
-    public void setCurrentUser(String username) {
-        boolean valid = false;
-        for(User user : this.findAll()){
-            if(user.getUsername().equals(username)){
-                this.currentUserId = user.getId();
-                this.username = username;
-                valid = true;
-                break;
-            }
-        }
-
-        if(!valid){
-            throw new WrongUsernameException();
-        }
-    }
-
-    @Override
-    public String getCurrentUsername() {
-        return this.username;
     }
 
     @Override
@@ -220,9 +184,6 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
             ps.setLong(1, id);
 
             ps.executeUpdate();
-
-            this.username = null;
-            this.currentUserId = null;
 
             return user;
 

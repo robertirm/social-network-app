@@ -4,47 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Merge branch 'lab5-ShowAllFriendsUserBySpecificMonth' into lab5&#10;&#10;# Conflicts:&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.bin&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.lock&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.bin&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;build/tmp/compileJava/previous-compilation-data.bin">
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Code refactoring: make architecture more clearly by removing non sense genericity, delete commented lines, move functions for friendship in network service instead of user service, rename repository methods">
+      <change afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/LoginSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/LoginSystemClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/controller/ControllerClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/domain/FriendDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/domain/FriendDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/domain/Friendship.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/domain/Friendship.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/Gui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/gui/GuiClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/FriendshipRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/FriendshipRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/database/FriendshipRepositoryDB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/memory/FriendshipRepositoryMemory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/memory/UserRepositoryMemory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/database/UserRepositoryClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/repository/database/UserRepositoryClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/NetworkServiceClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/UserServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/socialNetwork/service/UserServiceClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/controller/ControllerClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/FriendDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/FriendDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/Friendship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/validator/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/domain/validator/UserValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/gui/GuiClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/FriendshipRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/FriendshipRepositoryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/FriendshipRepositoryClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/FriendshipRepositoryFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/FriendshipRepositoryFileAbstract.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/file/UserRepositoryFileAbstract.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/FriendshipRepositoryMemory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/memory/UserRepositoryMemory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/repository/database/UserRepositoryClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/NetworkServiceClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/socialNetwork/service/UserServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socialNetwork/service/UserServiceClass.java" afterDir="false" />
@@ -80,6 +66,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -155,7 +143,7 @@
       <workItem from="1636882497315" duration="14384000" />
       <workItem from="1636912961147" duration="12614000" />
       <workItem from="1636963218125" duration="2576000" />
-      <workItem from="1636993338371" duration="11479000" />
+      <workItem from="1636993338371" duration="16026000" />
     </task>
     <task id="LOCAL-00001" summary="Add main project">
       <created>1636669301510</created>
@@ -276,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637058198908</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Code refactoring: make architecture more clearly by removing non sense genericity, delete commented lines, move functions for friendship in network service instead of user service, rename repository methods">
+      <created>1637067790275</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1637067790275</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Code refactoring: make architecture more clearly by removing non sense genericity, delete commented lines, move functions for friendship in network service instead of user service, rename repository methods">
+      <created>1637067998265</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1637067998265</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +305,7 @@
     <MESSAGE value="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend username, friendship date and status, added getFriendshipByID functionality" />
     <MESSAGE value="Added functionality to approve or reject friendship request, modified FriendsDTO structure for transferring friend, friendship date and status, added getFriendshipByID functionality" />
     <MESSAGE value="Merge branch 'lab5-ShowAllFriendsUserBySpecificMonth' into lab5&#10;&#10;# Conflicts:&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.bin&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.lock&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.bin&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;build/tmp/compileJava/previous-compilation-data.bin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'lab5-ShowAllFriendsUserBySpecificMonth' into lab5&#10;&#10;# Conflicts:&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.bin&#10;#&#9;.gradle/7.1/executionHistory/executionHistory.lock&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.bin&#10;#&#9;.gradle/7.1/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;build/tmp/compileJava/previous-compilation-data.bin" />
+    <MESSAGE value="Code refactoring: make architecture more clearly by removing non sense genericity, delete commented lines, move functions for friendship in network service instead of user service, rename repository methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code refactoring: make architecture more clearly by removing non sense genericity, delete commented lines, move functions for friendship in network service instead of user service, rename repository methods" />
   </component>
 </project>

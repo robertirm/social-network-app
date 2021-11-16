@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class GuiClass implements Gui{
+public class GuiClass implements Gui {
 
     public final Controller controller;
     Scanner in;
@@ -30,17 +30,18 @@ public class GuiClass implements Gui{
         System.out.println("exit");
         System.out.println("1. Print all.");
         System.out.println("2. Log In.");
-        System.out.println("3. Sign Up.");
-        System.out.println("4. Delete account.");
-        System.out.println("5. Add friend.");
-        System.out.println("6. Remove friend.");
-        System.out.println("7. Print number of communities.");
-        System.out.println("8. Print the most social community.");
-        System.out.println("9. Get friend list for a user");
-        System.out.println("10. Get friend list for a user by month");
-        System.out.println("11. Get friend list by status");
-        System.out.println("12. Approve friendship");
-        System.out.println("13. Reject friendship");
+        System.out.println("3. Log Out");
+        System.out.println("4. Sign Up.");
+        System.out.println("5. Delete account.");
+        System.out.println("6. Add friend.");
+        System.out.println("7. Remove friend.");
+        System.out.println("8. Print number of communities.");
+        System.out.println("9. Print the most social community.");
+        System.out.println("10. Get friend list for a user");
+        System.out.println("11. Get friend list for a user by month");
+        System.out.println("12. Get friend list by status");
+        System.out.println("13. Approve friendship");
+        System.out.println("14. Reject friendship");
         System.out.println();
     }
 
@@ -64,36 +65,39 @@ public class GuiClass implements Gui{
                         this.login();
                         break;
                     case "3":
-                        this.signup();
+                        this.logout();
                         break;
                     case "4":
-                        this.deleteAccount();
+                        this.signup();
                         break;
                     case "5":
-                        this.addFriend();
+                        this.deleteAccount();
                         break;
                     case "6":
-                        this.removeFriend();
+                        this.addFriend();
                         break;
                     case "7":
-                        this.printNumberOfCommunities();
+                        this.removeFriend();
                         break;
                     case "8":
-                        this.printTheMostSocialCommunity();
+                        this.printNumberOfCommunities();
                         break;
                     case "9":
-                        this.printFriendListForUser();
+                        this.printTheMostSocialCommunity();
                         break;
                     case "10":
+                        this.printFriendListForUser();
+                        break;
+                    case "11":
                         this.printFriendListForUserByMonth();
                         break;
-                    case  "11":
+                    case "12":
                         this.printFriendListByStatus();
                         break;
-                    case  "12":
+                    case  "13":
                         this.approveFriendship();
                         break;
-                    case  "13":
+                    case "14":
                         this.rejectFriendship();
                         break;
                     default:
@@ -154,6 +158,11 @@ public class GuiClass implements Gui{
         System.out.println("Please enter the username:");
         String username = in.nextLine();
         this.controller.login(username);
+    }
+
+    @Override
+    public void logout() {
+        this.controller.logout();
     }
 
     @Override

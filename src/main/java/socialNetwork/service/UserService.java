@@ -7,7 +7,8 @@ import java.util.HashSet;
 public interface UserService <ID, E extends Entity<ID>> {
     void startApp();
     void exitApp();
-    void setCurrentUser(String username);
+    void login(String username);
+    void logout();
     String getCurrentUsername();
     HashSet<E> getAllUsers();
     void addUser(String firstName, String lastName, String username);
