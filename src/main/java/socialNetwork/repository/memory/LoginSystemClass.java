@@ -3,7 +3,7 @@ package socialNetwork.repository.memory;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.LogInException;
 
-public class LoginSystemClass implements LoginSystem<Long, User>{
+public class LoginSystemClass implements LoginSystem<Long, User> {
     private Long currentUserId;
     private String currentUsername;
 

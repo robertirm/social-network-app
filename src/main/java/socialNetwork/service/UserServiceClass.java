@@ -6,18 +6,17 @@ import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.exception.LogInException;
 import socialNetwork.domain.exception.WrongUsernameException;
-import socialNetwork.repository.FriendshipRepository;
-import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.Repository;
 import socialNetwork.repository.memory.LoginSystem;
 
 import java.util.HashSet;
 
 public class UserServiceClass implements UserService<Long, User> {
-    public final UserRepository<Long, User> userRepository;
-    public final FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository;
+    public final Repository<Long, User> userRepository;
+    public final Repository<Tuple<Long, Long>, Friendship> friendshipRepository;
     public final LoginSystem<Long, User> loginSystem;
 
-    public UserServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
+    public UserServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
         this.loginSystem = loginSystem;
@@ -69,6 +68,12 @@ public class UserServiceClass implements UserService<Long, User> {
     @Override
     public void addUser(String firstName, String lastName, String username) {
         User newUser = new User(firstName, lastName, username);
+        Iterable<User> allUsers = this.userRepository.findAll();
+        for (User user : allUsers){
+            if(user.getUsername().equals(username)){
+                return;
+            }
+        }
         this.userRepository.save(newUser);
     }
 
@@ -94,22 +99,15 @@ public class UserServiceClass implements UserService<Long, User> {
             allFriendships = friendshipRepository.findAll();
             for(Friendship friendship : allFriendships){
                 if(friendship.getId().getLeft().equals(currentUser.getId()) || friendship.getId().getRight().equals(currentUser.getId())){
-                    friendshipRepository.delete(friendship);
+                    friendshipRepository.delete(friendship.getId());
                     allRemoved = false;
                     break;
                 }
             }
         }
 
-        //remove user from users
-        User removedUser = null;
-        Iterable<User> allUsers = userRepository.findAll();
-        for(User user : allUsers){
-            if(user.getUsername().equals(currentUsername)){
-                removedUser = this.userRepository.delete(user.getId());
-                break;
-            }
-        }
+        // remove user from users
+        User removedUser = this.userRepository.delete(currentUserId);
 
         if(removedUser != null){
             loginSystem.logout();

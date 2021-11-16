@@ -3,8 +3,9 @@ package socialNetwork.repository.database;
 import socialNetwork.domain.Friendship;
 import socialNetwork.domain.Tuple;
 import socialNetwork.domain.exception.EntityNullException;
+import socialNetwork.domain.exception.IdNullException;
 import socialNetwork.domain.validator.Validator;
-import socialNetwork.repository.FriendshipRepository;
+import socialNetwork.repository.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.HashSet;
 
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Long, Long>, Friendship> {
+public class FriendshipRepositoryClass implements Repository<Tuple<Long, Long>, Friendship> {
     private final String dbUrl;
     private final String dbUsername;
     private final String dbPassword;
@@ -37,6 +38,10 @@ public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Lon
 
     @Override
     public Friendship findOne(Tuple<Long, Long> id) {
+        if(id == null){
+            throw new IdNullException();
+        }
+
         String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
@@ -49,7 +54,7 @@ public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Lon
             ResultSet resultSet = ps.executeQuery();
 
             if(!resultSet.next()){
-                throw new EntityNullException();
+                return null;
             }
 
             Long idFirstUser = resultSet.getLong("id_first_user");
@@ -111,23 +116,8 @@ public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Lon
 
         validator.validate(friendship);
 
-        String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement(queryFind)) {
-
-            ps.setLong(1, friendship.getId().getLeft());
-            ps.setLong(2, friendship.getId().getRight());
-            ps.setLong(3, friendship.getId().getRight());
-            ps.setLong(4, friendship.getId().getLeft());
-
-            ResultSet resultSet = ps.executeQuery();
-
-            if(resultSet.next()){
-                return friendship;
-            }
-
-        } catch (SQLException e){
-            e.printStackTrace();
+        if(this.findOne(friendship.getId()) != null){
+            return friendship;
         }
 
         String queryAdd = "insert into friendships (id_first_user, id_second_user, date_friendship, status_friendship) values (?,?,?,?)";
@@ -149,30 +139,11 @@ public class FriendshipRepositoryClass implements FriendshipRepository<Tuple<Lon
     }
 
     @Override
-    public Friendship delete(Friendship friendship) {
-        if(friendship == null){
+    public Friendship delete(Tuple<Long, Long> id) {
+        Friendship friendship = this.findOne(id);
+
+        if(friendship == null) {
             throw new EntityNullException();
-        }
-
-        validator.validate(friendship);
-
-        String queryFind = "select * from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";
-        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement(queryFind)) {
-
-            ps.setLong(1, friendship.getId().getLeft());
-            ps.setLong(2, friendship.getId().getRight());
-            ps.setLong(3, friendship.getId().getRight());
-            ps.setLong(4, friendship.getId().getLeft());
-
-            ResultSet resultSet = ps.executeQuery();
-
-            if(!resultSet.next()){
-                throw new EntityNullException();
-            }
-
-        } catch (SQLException e){
-            e.printStackTrace();
         }
 
         String queryDelete = "delete from friendships where id_first_user = (?) and id_second_user = (?) or id_first_user = (?) and id_second_user = (?)";

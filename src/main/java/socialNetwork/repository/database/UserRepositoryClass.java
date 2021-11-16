@@ -4,12 +4,12 @@ import socialNetwork.domain.User;
 import socialNetwork.domain.exception.EntityNullException;
 import socialNetwork.domain.exception.IdNullException;
 import socialNetwork.domain.validator.Validator;
-import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.Repository;
 
 import java.sql.*;
 import java.util.HashSet;
 
-public class UserRepositoryClass implements UserRepository<Long, User> {
+public class UserRepositoryClass implements Repository<Long, User> {
     private final String dbUrl;
     private final String dbUsername;
     private final String dbPassword;
@@ -34,6 +34,10 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
 
     @Override
     public User findOne(Long id) {
+        if(id == null){
+            throw new IdNullException();
+        }
+
         String queryFind = "select * from users where id = (?)";
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryFind)) {
@@ -41,7 +45,7 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
             ResultSet resultSet = ps.executeQuery();
 
             if(!resultSet.next()){
-                throw new EntityNullException();
+                return null;
             }
 
             Long idUser = resultSet.getLong("id");
@@ -89,24 +93,6 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
         return users;
     }
 
-    public User selectUser(User user) {
-        String queryFind = "select * from users where username = (?)";
-        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement(queryFind)) {
-            ps.setString(1, user.getUsername());
-            ResultSet resultSet = ps.executeQuery();
-
-            if(resultSet.next()){
-                return user;
-            }
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     @Override
     public User save(User user) {
         if(user == null){
@@ -115,7 +101,7 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
 
         validator.validate(user);
 
-        if(selectUser(user) != null) {
+        if(user.getId() != null && this.findOne(user.getId()) != null){
             return user;
         }
 
@@ -138,10 +124,6 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
 
     @Override
     public User delete(Long id) {
-        if(id == null){
-            throw new IdNullException();
-        }
-
         User user = this.findOne(id);
 
         if(user == null){

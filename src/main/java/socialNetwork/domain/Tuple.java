@@ -2,7 +2,6 @@ package socialNetwork.domain;
 
 import java.util.Objects;
 
-
 /**
  * Define a Tuple o generic type entities
  * @param <E1> - tuple first entity type
@@ -36,7 +35,6 @@ public class Tuple<E1, E2> {
     @Override
     public String toString() {
         return "" + e1 + "," + e2;
-
     }
 
     @Override

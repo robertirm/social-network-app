@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 
-
 public class ControllerClass implements Controller {
-
     public final UserService<Long, User> userService;
     public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
 

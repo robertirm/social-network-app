@@ -1,6 +1,5 @@
 package socialNetwork.controller;
 
-import socialNetwork.domain.Entity;
 import socialNetwork.domain.FriendDTO;
 import socialNetwork.domain.Friendship;
 import socialNetwork.domain.User;

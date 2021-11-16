@@ -4,8 +4,7 @@ import socialNetwork.domain.Entity;
 
 import java.util.HashSet;
 
-public interface FriendshipRepository <ID, E extends Entity<ID>> {
-
+public interface Repository<ID, E extends Entity<ID>> {
     Long getCount();
 
     E findOne(ID id);
@@ -14,7 +13,7 @@ public interface FriendshipRepository <ID, E extends Entity<ID>> {
 
     E save(E entity);
 
-    E delete(E entity);
+    E delete(ID id);
 
     E update(E entity);
 }

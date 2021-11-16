@@ -2,8 +2,7 @@ package socialNetwork.service;
 
 import socialNetwork.domain.*;
 import socialNetwork.domain.exception.EntityNullException;
-import socialNetwork.repository.FriendshipRepository;
-import socialNetwork.repository.UserRepository;
+import socialNetwork.repository.Repository;
 import socialNetwork.repository.memory.LoginSystem;
 import socialNetwork.service.networkUtils.Graph;
 
@@ -14,11 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Friendship> {
-    public final UserRepository<Long, User> userRepository;
-    public final FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository;
+    public final Repository<Long, User> userRepository;
+    public final Repository<Tuple<Long, Long>, Friendship> friendshipRepository;
     public final LoginSystem<Long, User> loginSystem;
 
-    public NetworkServiceClass(UserRepository<Long, User> userRepository, FriendshipRepository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
+    public NetworkServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
         this.loginSystem = loginSystem;
@@ -62,9 +61,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
             throw new EntityNullException();
         }
 
-        Friendship imaginaryFriendship = new Friendship(LocalDateTime.now());
-        imaginaryFriendship.setId(new Tuple<>(currentUser.getId(), removedUser.getId()));
-        friendshipRepository.delete(imaginaryFriendship);
+        friendshipRepository.delete(new Tuple<>(currentUser.getId(), removedUser.getId()));
     }
 
     @Override
