@@ -23,35 +23,6 @@ public class UserRepositoryClass implements UserRepository<Long, User> {
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        String queryFind = "select * from users where username = (?)";
-        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement(queryFind)) {
-            ps.setString(1, username);
-            ResultSet resultSet = ps.executeQuery();
-
-            if(!resultSet.next()){
-                throw new EntityNullException();
-            }
-
-            Long idUser = resultSet.getLong("id");
-            String firstName = resultSet.getString("first_name");
-            String lastName = resultSet.getString("last_name");
-            String userUsername = resultSet.getString("username");
-
-            User user = new User(firstName, lastName, userUsername);
-            user.setId(idUser);
-
-            return user;
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
     public Long getCount() {
         Long usersCount = 0L;
         for(User ignored : this.findAll()){

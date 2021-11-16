@@ -135,6 +135,16 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         return friendshipList;
     }
 
+    private User getUserByUsername(String username){
+        for(User user : this.userRepository.findAll()){
+            if(user.getUsername().equals(username)){
+                return user;
+            }
+        }
+
+        throw new EntityNullException();
+    }
+
     /**
      * Gets the friends for a user
      * @param username - String - the username of the user
@@ -143,7 +153,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
      */
     @Override
     public List<FriendDTO> getAllFriends(String username) {
-        Long idUser = userRepository.getUserByUsername(username).getId();
+        Long idUser = this.getUserByUsername(username).getId();
         return getAllFriendShipsAsList().stream()
                 .filter( friendship -> friendship.getId().getLeft().equals(idUser) || friendship.getId().getRight().equals(idUser))
                 .map(friendship -> {
@@ -168,7 +178,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
 
     @Override
     public List<FriendDTO> getAllFriendsByStatus(String status){
-        Long idUser = userRepository.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
+        Long idUser = this.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
         if(status.equals("pending")){
             return getAllFriendShipsAsList().stream()
                     .filter(friendship -> friendship.getId().getRight().equals(idUser))
@@ -185,7 +195,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
     }
 
     public void setFriendshipStatus(String friendUsername, String status){
-        Long idUserFriend = userRepository.getUserByUsername(friendUsername).getId();
+        Long idUserFriend = this.getUserByUsername(friendUsername).getId();
         Long idCurrentUser = this.loginSystem.getCurrentUserId();
         Friendship friendship = this.friendshipRepository.findOne(new Tuple<>(idUserFriend, idCurrentUser));
         friendship.setStatus(status);
