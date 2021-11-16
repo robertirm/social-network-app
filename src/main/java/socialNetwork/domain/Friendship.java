@@ -6,13 +6,23 @@ import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 public class Friendship extends Entity<Tuple<Long, Long>> implements Comparable<Friendship>{
 
     LocalDateTime date;
+    String status;
 
     public Friendship(LocalDateTime date) {
         this.date = date;
+        this.status = "pending";
     }
 
     public LocalDateTime getDate(){
         return this.date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
@@ -20,6 +30,7 @@ public class Friendship extends Entity<Tuple<Long, Long>> implements Comparable<
         return "Friendship{" +
                 "id=" + id +
                 ", date=" + date.format(DATE_TIME_FORMATTER) +
+                ", status='" + status + '\'' +
                 '}';
     }
 

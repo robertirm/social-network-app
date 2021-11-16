@@ -2,6 +2,7 @@ package socialNetwork.controller;
 
 import socialNetwork.domain.Entity;
 import socialNetwork.domain.FriendDTO;
+import socialNetwork.domain.Friendship;
 import socialNetwork.service.NetworkService;
 import socialNetwork.service.UserService;
 
@@ -87,5 +88,15 @@ public class ControllerClass<ID, E extends Entity<ID>> implements Controller<ID,
     @Override
     public List<FriendDTO> getAllFriendsForUserByMonth(String username, LocalDateTime dateTime) {
         return this.networkService.getAllFriendsByMonth(username, dateTime);
+    }
+
+    @Override
+    public List<FriendDTO> getAllFriendsByStatus(String status) {
+        return this.networkService.getAllFriendsByStatus(status);
+    }
+
+    @Override
+    public void setFriendshipStatus(String friendUsername, String status) {
+        this.networkService.setFriendshipStatus(friendUsername, status);
     }
 }

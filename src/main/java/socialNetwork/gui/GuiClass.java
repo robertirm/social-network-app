@@ -39,6 +39,9 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
         System.out.println("8. Print the most social community.");
         System.out.println("9. Get friend list for a user");
         System.out.println("10. Get friend list for a user by month");
+        System.out.println("11. Get friend list by status");
+        System.out.println("12. Approve friendship");
+        System.out.println("13. Reject friendship");
         System.out.println();
     }
 
@@ -84,6 +87,15 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
                         break;
                     case "10":
                         this.printFriendListForUserByMonth();
+                        break;
+                    case  "11":
+                        this.printFriendListByStatus();
+                        break;
+                    case  "12":
+                        this.approveFriendship();
+                        break;
+                    case  "13":
+                        this.rejectFriendship();
                         break;
                     default:
                         System.out.println("Your option seem to be not exists, please try another.");
@@ -204,7 +216,11 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
     public void printFriendListForUser() {
         System.out.println("Please enter the username:");
         String username = in.nextLine();
-        controller.getAllFriendsForUser(username).forEach(System.out::println);
+        controller.getAllFriendsForUser(username).forEach(
+                x -> System.out.println(x.getUser().getLastName() + " | " +
+                                        x.getUser().getFirstName() + " | " +
+                                        x.getDataOfFriendship().format(DATE_TIME_FORMATTER))
+        );
     }
 
     @Override
@@ -217,6 +233,34 @@ public class GuiClass<ID, E extends Entity<ID>> implements Gui<ID, E>{
             month = "0" + month;
         }
         LocalDateTime dateTime = LocalDateTime.parse("1000-" + month + "-01 00:00", DATE_TIME_FORMATTER);
-        controller.getAllFriendsForUserByMonth(username, dateTime).forEach(System.out::println);
+        this.controller.getAllFriendsForUserByMonth(username, dateTime).forEach(
+                x -> System.out.println(x.getUser().getLastName() + " | " +
+                        x.getUser().getFirstName() + " | " +
+                        x.getDataOfFriendship().format(DATE_TIME_FORMATTER))
+        );
+    }
+
+    @Override
+    public void printFriendListByStatus() {
+        System.out.println("Please enter the status");
+        System.out.println("Choose 'pending' or 'approved' or 'rejected'");
+        String status = in.nextLine();
+        this.controller.getAllFriendsByStatus(status).forEach(System.out::println);
+    }
+
+    @Override
+    public void approveFriendship() {
+        this.controller.getAllFriendsByStatus("pending").forEach(System.out::println);
+        System.out.println("Please enter the friend username:");
+        String friendUsername = in.nextLine();
+        this.controller.setFriendshipStatus(friendUsername, "approved");
+    }
+
+    @Override
+    public void rejectFriendship() {
+        this.controller.getAllFriendsByStatus("pending").forEach(System.out::println);
+        System.out.println("Please enter the friend username:");
+        String friendUsername = in.nextLine();
+        this.controller.setFriendshipStatus(friendUsername, "rejected");
     }
 }

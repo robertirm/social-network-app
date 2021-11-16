@@ -5,44 +5,32 @@ import java.time.LocalDateTime;
 import static socialNetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 public class FriendDTO {
-    private String friendFirstName;
-    private String friendLastName;
+    private User user;
     private LocalDateTime dataOfFriendship;
+    private String friendshipStatus;
 
-    public FriendDTO(String friendFirstName, String friendLastName, LocalDateTime dataOfFriendship) {
-        this.friendFirstName = friendFirstName;
-        this.friendLastName = friendLastName;
+    public FriendDTO(User user, LocalDateTime dataOfFriendship, String friendshipStatus) {
+        this.user= user;
         this.dataOfFriendship = dataOfFriendship;
+        this.friendshipStatus = friendshipStatus;
     }
 
-    public String getFriendFirstName() {
-        return friendFirstName;
-    }
-
-    public void setFriendFirstName(String friendFirstName) {
-        this.friendFirstName = friendFirstName;
-    }
-
-    public String getFriendLastName() {
-        return friendLastName;
-    }
-
-    public void setFriendLastName(String friendLastName) {
-        this.friendLastName = friendLastName;
-    }
+    public User getUser() { return user; }
 
     public LocalDateTime getDataOfFriendship() {
         return dataOfFriendship;
     }
 
-    public void setDataOfFriendship(LocalDateTime dataOfFriendship) {
-        this.dataOfFriendship = dataOfFriendship;
+    public String getFriendshipStatus() {
+        return friendshipStatus;
     }
 
     @Override
     public String toString() {
-        return friendFirstName + " | " +
-                friendLastName + " | " +
-                dataOfFriendship.format(DATE_TIME_FORMATTER);
+        return "FriendDTO{" +
+                "username=" + user.getUsername() +
+                ", dataOfFriendship=" + dataOfFriendship +
+                ", friendshipStatus='" + friendshipStatus + '\'' +
+                '}';
     }
 }
