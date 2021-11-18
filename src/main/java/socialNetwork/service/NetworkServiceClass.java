@@ -7,6 +7,7 @@ import socialNetwork.repository.memory.LoginSystem;
 import socialNetwork.service.networkUtils.Graph;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.stream.Collectors;
 public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Friendship> {
     public final Repository<Long, User> userRepository;
     public final Repository<Tuple<Long, Long>, Friendship> friendshipRepository;
+    public final Repository<Long,Message> messageRepository;
     public final LoginSystem<Long, User> loginSystem;
 
-    public NetworkServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, LoginSystem<Long, User> loginSystem) {
+    public NetworkServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, Repository<Long, Message> messageRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
+        this.messageRepository = messageRepository;
         this.loginSystem = loginSystem;
     }
 
@@ -198,4 +201,75 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         friendship.setStatus(status);
         this.friendshipRepository.update(friendship);
     }
+
+    @Override
+    public void sendMessage(Message message) {
+        messageRepository.save(message);
+    }
+
+    @Override
+    public List<Message> getSentMessages(String username) {
+        List<Message> messageList = new LinkedList<>();
+        for(Message message : messageRepository.findAll()){
+            if(message.getSender().getUsername().equals(username))
+                messageList.add(message);
+        }
+        return messageList;
+    }
+
+    @Override
+    public List<Message> getReceivedMessages(String username) {
+        List<Message> messageList = new LinkedList<>();
+        for(Message message : messageRepository.findAll()){
+            List<User> receivers = message.getReceivers().stream()
+                    .filter(x-> x.getUsername().equals(username))
+                    .collect(Collectors.toList());
+            boolean hasReplied = false;
+            for (Message reply: message.getReplies())
+                if (reply.getSender().getUsername().equals(username)) {
+                    hasReplied = true;
+                    break;
+                }
+            if(receivers.size() > 0 && !hasReplied) messageList.add(message);
+        }
+        return messageList;
+    }
+
+    @Override
+    public Message getMessageById(Long id) {
+        return messageRepository.findOne(id);
+    }
+
+
+    @Override
+    public List<List<Message>> getConversations(String username1, String username2) {
+        List<List<Message>> conversations = new ArrayList<>();
+        HashSet<Message> allMessages = messageRepository.findAll();
+
+        for (Message message: allMessages){
+            if(message.isAReply().equals(false) && (message.getSender().getUsername().equals(username1) || message.getSender().getUsername().equals(username2))) {
+                List<Message> conversationThread = new ArrayList<>();
+                conversationThread.add(message);
+
+                List<Message> replies = message.getReplies();
+                while (replies != null) {
+                    boolean foundReply = false;
+                    for (Message reply : replies) {
+                        if (reply.getSender().getUsername().equals(username1) || reply.getSender().getUsername().equals(username2)) {
+                            conversationThread.add(reply);
+                            replies = reply.getReplies();
+                            foundReply = true;
+                            break;
+                        }
+                    }
+                    if(!foundReply)replies = null;
+                }
+                if(conversationThread.size() > 1)
+                    conversations.add(conversationThread);
+            }
+        }
+        return conversations;
+    }
+
+
 }

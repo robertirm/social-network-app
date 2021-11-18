@@ -17,4 +17,7 @@ public interface Gui {
     void printFriendListByStatus();
     void approveFriendship();
     void rejectFriendship();
+    void sendMessage();
+    void showInbox();
+    void showConversations();
 }

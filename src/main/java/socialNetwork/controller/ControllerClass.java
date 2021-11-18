@@ -33,6 +33,11 @@ public class ControllerClass implements Controller {
     }
 
     @Override
+    public Long getCurrentUserId() {
+        return userService.getCurrentUserId();
+    }
+
+    @Override
     public void login(String username) {
         userService.login(username);
     }
@@ -100,5 +105,35 @@ public class ControllerClass implements Controller {
     @Override
     public void setFriendshipStatus(String friendUsername, String status) {
         this.networkService.setFriendshipStatus(friendUsername, status);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userService.getUserById(id);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userService.getUserByUsername(username);
+    }
+
+    @Override
+    public void sendMessage(Message message) {
+        this.networkService.sendMessage(message);
+    }
+
+    @Override
+    public List<Message> getReceivedMessages(String username) {
+        return this.networkService.getReceivedMessages(username);
+    }
+
+    @Override
+    public Message getMessageById(Long id) {
+        return this.networkService.getMessageById(id);
+    }
+
+    @Override
+    public List<List<Message>> getConversations(String username1, String username2) {
+        return this.networkService.getConversations(username1,username2);
     }
 }

@@ -2,11 +2,13 @@ package socialNetwork.gui;
 
 import socialNetwork.controller.Controller;
 import socialNetwork.domain.Friendship;
+import socialNetwork.domain.Message;
 import socialNetwork.domain.User;
 import socialNetwork.domain.exception.*;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,22 +28,25 @@ public class GuiClass implements Gui {
         System.out.println();
         System.out.println("Current user: " + controller.getCurrentUsername());
         System.out.println();
-        System.out.println("Choose an options.");
+        System.out.println("Choose an option");
         System.out.println("exit");
-        System.out.println("1. Print all.");
-        System.out.println("2. Log In.");
+        System.out.println("1. Print all");
+        System.out.println("2. Log In");
         System.out.println("3. Log Out");
-        System.out.println("4. Sign Up.");
-        System.out.println("5. Delete account.");
-        System.out.println("6. Add friend.");
-        System.out.println("7. Remove friend.");
-        System.out.println("8. Print number of communities.");
-        System.out.println("9. Print the most social community.");
+        System.out.println("4. Sign Up");
+        System.out.println("5. Delete account");
+        System.out.println("6. Add friend");
+        System.out.println("7. Remove friend");
+        System.out.println("8. Print number of communities");
+        System.out.println("9. Print the most social community");
         System.out.println("10. Get friend list for a user");
         System.out.println("11. Get friend list for a user by month");
         System.out.println("12. Get friend list by status");
         System.out.println("13. Approve friendship");
         System.out.println("14. Reject friendship");
+        System.out.println("15. Send Message");
+        System.out.println("16. Show Inbox");
+        System.out.println("17. Show Conversations");
         System.out.println();
     }
 
@@ -99,6 +104,15 @@ public class GuiClass implements Gui {
                         break;
                     case "14":
                         this.rejectFriendship();
+                        break;
+                    case "15":
+                        this.sendMessage();
+                        break;
+                    case "16":
+                        this.showInbox();
+                        break;
+                    case "17":
+                        this.showConversations();
                         break;
                     default:
                         System.out.println("Your option seem to be not exists, please try another.");
@@ -266,4 +280,116 @@ public class GuiClass implements Gui {
         String friendUsername = in.nextLine();
         this.controller.setFriendshipStatus(friendUsername, "rejected");
     }
+
+    @Override
+    public void sendMessage() {
+        if(this.controller.getCurrentUsername() == null)
+            System.out.println("Please login first");
+        else{
+            System.out.println("Write your message:");
+            String text = in.nextLine();
+            System.out.println("Send to: (usernames separated by comma)");
+            String receivers = in.nextLine();
+            String[] users = receivers.split(",");
+            Message message = new Message(controller.getUserById(controller.getCurrentUserId()),LocalDateTime.now(),text, false);
+            for(String user: users){
+                message.addReceiver(controller.getUserByUsername(user));
+            }
+            controller.sendMessage(message);
+            System.out.println("Message sent!");
+        }
+    }
+    @Override
+    public void showInbox() {
+        if(this.controller.getCurrentUsername() == null)
+            System.out.println("Please login first");
+        else{
+            List<Message> inbox = controller.getReceivedMessages(controller.getCurrentUsername());
+            System.out.println("You have " + inbox.size()+" message(s)!");
+            for (Message message: inbox){
+                System.out.println("ID:"+message.getId() + " | " + "DATE: " + message.getMessageDate().format(DATE_TIME_FORMATTER) + " | " + "FROM: "+message.getSender().getUsername() + " | " + "MESSAGE: " + message.getMessageContent());
+            }
+            System.out.println("\n Do you want to reply to any message? (type 'yes' or 'no)");
+            String answer = in.nextLine();
+            if(answer.equals("yes")){
+                System.out.println("Enter the id of the message to reply to:");
+                Long id = in.nextLong();
+                in.nextLine();
+                Message message = controller.getMessageById(id);
+                if(!canReply(id, inbox)) {
+                    System.out.println("You can't reply to this message");
+                }
+                else{
+                    System.out.println("Reply all? (type 'yes' or 'no)");
+                    String answer2 = in.nextLine();
+                    if(answer2.equals("yes")){
+                        System.out.println("Write your message:");
+                        String text = in.nextLine();
+
+                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true);
+
+                        replyMessage.addReceiver(message.getSender());
+                        for(User receiver: message.getReceivers()){
+                            if(!receiver.getId().equals(controller.getCurrentUserId()))
+                                replyMessage.addReceiver(receiver);
+                        }
+
+                        message.addReply(replyMessage);
+
+                        controller.sendMessage(replyMessage);
+                        controller.sendMessage(message);
+                    }
+                    else{
+                        System.out.println("Write your message:");
+                        String text = in.nextLine();
+
+                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true);
+                        replyMessage.addReceiver(message.getSender());
+
+                        message.addReply(replyMessage);
+
+                        controller.sendMessage(replyMessage);
+                        controller.sendMessage(message);
+                    }
+                }
+            }
+        }
+    }
+    private boolean canReply(Long id,List<Message> inbox){
+        for (Message message: inbox){
+            if(message.getId().equals(id))
+                return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public void showConversations() {
+        if(this.controller.getCurrentUsername() == null)
+            System.out.println("Please login first");
+        else{
+            System.out.println("Enter username:");
+            String username = in.nextLine();
+            if(controller.getUserByUsername(username) == null){
+                System.out.println("This username doesn't exist");
+            }
+            else {
+                controller.getConversations(controller.getCurrentUsername(), username)
+                        .stream()
+                        .sorted((o1, o2) -> o2.get(0).getMessageDate().compareTo(o1.get(0).getMessageDate()))
+                        .forEach(list -> {
+                            System.out.println("=====================================");
+                            list.forEach(el -> {
+                                System.out.println("ID:" + el.getId() + " | " + "DATE: " + el.getMessageDate().format(DATE_TIME_FORMATTER) + " | " + "FROM: " + el.getSender().getUsername() + " | " + "MESSAGE: " + el.getMessageContent());
+                            });
+                            System.out.println("=====================================");
+                        });
+            }
+        }
+    }
+
+
+
+
 }

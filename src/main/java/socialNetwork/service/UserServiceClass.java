@@ -61,6 +61,11 @@ public class UserServiceClass implements UserService<Long, User> {
     }
 
     @Override
+    public Long getCurrentUserId() {
+        return loginSystem.getCurrentUserId();
+    }
+
+    @Override
     public HashSet<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -113,4 +118,19 @@ public class UserServiceClass implements UserService<Long, User> {
             loginSystem.logout();
         }
     }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findOne(id);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        for(User user : this.getAllUsers()) {
+            if (user.getUsername().equals(username))
+                return user;
+        }
+        return null;
+    }
+
 }
