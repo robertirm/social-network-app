@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.PrintAllController">
+   <children>
+      <BorderPane prefHeight="392.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0">
+         <center>
+            <TableView fx:id="tableViewUsers" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tableColumnFirstName" prefWidth="75.0" text="FirstName" />
+                <TableColumn fx:id="tableColumnLastName" prefWidth="75.0" text="LastName" />
+                  <TableColumn fx:id="tableColumnUsername" prefWidth="75.0" text="Username" />
+              </columns>
+            </TableView>
+         </center>
+         <left>
+            <VBox prefHeight="392.0" prefWidth="107.0" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
