@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "";
+        String password = "bobert";
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
