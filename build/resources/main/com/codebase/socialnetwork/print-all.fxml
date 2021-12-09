@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.PrintAllController">
    <children>
@@ -20,7 +20,10 @@
             </TableView>
          </center>
          <left>
-            <VBox prefHeight="392.0" prefWidth="107.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="392.0" prefWidth="107.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="changeSceneButton" mnemonicParsing="false" onAction="#switchScene" text="change view" />
+               </children></VBox>
          </left>
       </BorderPane>
    </children>
