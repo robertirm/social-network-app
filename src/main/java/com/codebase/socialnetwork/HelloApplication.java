@@ -1,6 +1,8 @@
 package com.codebase.socialnetwork;
 
-import com.codebase.socialnetwork.controller.PrintAllController;
+import com.codebase.socialnetwork.controller.Controller;
+import com.codebase.socialnetwork.controller.ControllerClass;
+import com.codebase.socialnetwork.controller.LoginController;
 import com.codebase.socialnetwork.domain.Friendship;
 import com.codebase.socialnetwork.domain.Message;
 import com.codebase.socialnetwork.domain.Tuple;
@@ -14,10 +16,11 @@ import com.codebase.socialnetwork.repository.database.MessageRepositoryClass;
 import com.codebase.socialnetwork.repository.database.UserRepositoryClass;
 import com.codebase.socialnetwork.repository.memory.LoginSystem;
 import com.codebase.socialnetwork.repository.memory.LoginSystemClass;
+import com.codebase.socialnetwork.service.NetworkService;
+import com.codebase.socialnetwork.service.NetworkServiceClass;
 import com.codebase.socialnetwork.service.UserService;
 import com.codebase.socialnetwork.service.UserServiceClass;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -41,20 +44,24 @@ public class HelloApplication extends Application {
 
         LoginSystem<Long, User> loginSystem = new LoginSystemClass();
         UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);
+        NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository, messageRepository, loginSystem);
+
+        Controller controller = new ControllerClass(userService, statisticsService);
 
 
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("print-all.fxml"));
+        loader.setLocation(getClass().getResource("views/loginPage.fxml"));
 
         AnchorPane root=loader.load();
 
-        PrintAllController printAllController = loader.getController();
-        printAllController.setService(userService);
+        LoginController guiController = loader.getController();
+        guiController.setBackEndController(controller);
 
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 1280, 720);
 
         stage.setTitle("Print All!");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
 
@@ -64,14 +71,3 @@ public class HelloApplication extends Application {
         launch();
     }
 }
-
-/*
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("notaView.fxml"));
-
-        //FXMLLoader loader = new FXMLLoader(TestSem8.class.getResource("notaView.fxml"));
-        AnchorPane root=loader.load();
-
-        NotaController ctrl=loader.getController();
-        ctrl.setService(new ServiceManager());
- */
