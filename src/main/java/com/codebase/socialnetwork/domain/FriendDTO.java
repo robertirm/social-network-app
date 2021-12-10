@@ -10,7 +10,7 @@ public class FriendDTO {
     private final String friendshipStatus;
 
     public FriendDTO(User user, LocalDateTime dataOfFriendship, String friendshipStatus) {
-        this.user= user;
+        this.user = user;
         this.dataOfFriendship = dataOfFriendship;
         this.friendshipStatus = friendshipStatus;
     }
