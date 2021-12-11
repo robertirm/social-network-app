@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -81,22 +80,17 @@
                               <TextField fx:id="textFieldName" prefHeight="26.0" prefWidth="158.0" />
                            </children>
                         </HBox>
-                        <ListView prefHeight="642.0" prefWidth="228.0" />
+                        <ListView fx:id="listViewFriendType" prefHeight="642.0" prefWidth="228.0" />
                      </children>
                   </VBox>
-                  <ScrollPane fx:id="scrollPaneFriends" layoutX="223.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="871.0">
+                  <ScrollPane fx:id="scrollPaneFriends" fitToHeight="true" fitToWidth="true" layoutX="222.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="872.0" vbarPolicy="ALWAYS">
                      <content>
-                        <GridPane fx:id="gridPaneFriends" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="788.0">
+                        <GridPane fx:id="gridPaneFriends">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" percentHeight="34.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" percentHeight="33.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" percentHeight="33.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
                         </GridPane>
                      </content>
                   </ScrollPane>

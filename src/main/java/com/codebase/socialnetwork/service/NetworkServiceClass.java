@@ -176,25 +176,83 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
                 .collect(Collectors.toList());
     }
 
+//    @Override
+//    public List<FriendDTO> getAllFriendsByStatus(String status){
+//        Long idUser = this.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
+//        if(status.equals("pending")){
+//            return getAllFriendShipsAsList().stream()
+//                    .filter(friendship -> friendship.getId().getRight().equals(idUser))
+//                    .filter(friendship -> friendship.getStatus().equals(status))
+//                    .map(friendship -> {
+//                        User user = userRepository.findOne(friendship.getId().getLeft());
+//                        return new FriendDTO(user, friendship.getDate(), friendship.getStatus());
+//                    })
+//                    .collect(Collectors.toList());
+//        }
+//        return this.getAllFriends(this.loginSystem.getCurrentUsername()).stream()
+//                .filter(friendDTO -> friendDTO.getFriendshipStatus().equals(status))
+//                .collect(Collectors.toList());
+//    }
+
     @Override
     public List<FriendDTO> getAllFriendsByStatus(String status){
         Long idUser = this.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
-        if(status.equals("pending")){
-            return getAllFriendShipsAsList().stream()
-                    .filter(friendship -> friendship.getId().getRight().equals(idUser))
-                    .filter(friendship -> friendship.getStatus().equals(status))
-                    .map(friendship -> {
-                        User user = userRepository.findOne(friendship.getId().getLeft());
-                        return new FriendDTO(user, friendship.getDate(), friendship.getStatus());
-                    })
-                    .collect(Collectors.toList());
+        switch (status) {
+            case "Friends":
+                return this.getAllFriends(this.loginSystem.getCurrentUsername()).stream()
+                        .filter(friendDTO -> friendDTO.getFriendshipStatus().equals("approved"))
+                        .collect(Collectors.toList());
+            case "Request":
+                return getAllFriendShipsAsList().stream()
+                        .filter(friendship -> friendship.getId().getRight().equals(idUser))
+                        .filter(friendship -> friendship.getStatus().equals("pending"))
+                        .map(friendship -> {
+                            User user = userRepository.findOne(friendship.getId().getLeft());
+                            return new FriendDTO(user, friendship.getDate(), friendship.getStatus());
+                        })
+                        .collect(Collectors.toList());
+            case "Sent Request":
+                return getAllFriendShipsAsList().stream()
+                        .filter(friendship -> friendship.getId().getLeft().equals(idUser))
+                        .filter(friendship -> friendship.getStatus().equals("pending"))
+                        .map(friendship -> {
+                            User user = userRepository.findOne(friendship.getId().getRight());
+                            return new FriendDTO(user, friendship.getDate(), friendship.getStatus());
+                        })
+                        .collect(Collectors.toList());
+            default:
+                HashSet<User> allUsers = this.userRepository.findAll();
+                List<FriendDTO> friends = this.getAllFriends(this.loginSystem.getCurrentUsername());
+
+                List<FriendDTO> others = new ArrayList<>();
+
+                for (User user : allUsers) {
+                    if(user.getUsername().equals(this.loginSystem.getCurrentUsername())){
+                        continue;
+                    }
+                    boolean valid = true;
+                    for (FriendDTO friendDTO : friends) {
+                        if(!friendDTO.getFriendshipStatus().equals("rejected")) {
+                            if (user.getUsername().equals(friendDTO.getUser().getUsername())) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (valid) {
+                        others.add(new FriendDTO(user, LocalDateTime.now(), "other"));
+                    }
+                }
+
+                return others;
         }
-        return this.getAllFriends(this.loginSystem.getCurrentUsername()).stream()
-                .filter(friendDTO -> friendDTO.getFriendshipStatus().equals(status))
-                .collect(Collectors.toList());
     }
 
     public void setFriendshipStatus(String friendUsername, String status){
+        if(status.equals("rejected")){
+            removeFriendship(friendUsername);
+            return;
+        }
         Long idUserFriend = this.getUserByUsername(friendUsername).getId();
         Long idCurrentUser = this.loginSystem.getCurrentUserId();
         Friendship friendship = this.friendshipRepository.findOne(new Tuple<>(idUserFriend, idCurrentUser));

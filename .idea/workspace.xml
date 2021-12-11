@@ -4,23 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Update lab5 branch">
+    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Add search friends option by username substring">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/images/hacker.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/domain/FriendDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/domain/FriendDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +62,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lab6" />
+        <entry key="$PROJECT_DIR$" value="lab6-friendController-gridPaneIntoTableView" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MySpace/3.Workspace/Faculty/Map/lab/demogui" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -88,6 +85,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\SocialNetworkGroup\src\main\resources\com\codebase\socialnetwork\images" />
       <recent name="D:\Facultate\Semestrul 3\MAP\master\src\main\resources\com\codebase\socialnetwork\views" />
       <recent name="D:\Facultate\Semestrul 3\MAP\master\src\main\resources\com\codebase\socialnetwork" />
       <recent name="D:\Facultate\Semestrul 3\SocialNetwork\src\main\java\com\codebase\socialnetwork" />
@@ -130,6 +128,8 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +146,7 @@
       <workItem from="1638913972308" duration="131000" />
       <workItem from="1638983463588" duration="77000" />
       <workItem from="1639047165435" duration="32832000" />
-      <workItem from="1639123200450" duration="22281000" />
+      <workItem from="1639123200450" duration="40533000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to JavaFX Application">
       <created>1638828198212</created>
@@ -176,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639083965436</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add search friends option by username substring">
+      <created>1639166625766</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1639166625766</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +205,7 @@
     <MESSAGE value="Switch to JavaFX Application" />
     <MESSAGE value="Add .gitignore file" />
     <MESSAGE value="Initialise views and controllers and create login system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialise views and controllers and create login system" />
+    <MESSAGE value="Add search friends option by username substring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add search friends option by username substring" />
   </component>
 </project>
