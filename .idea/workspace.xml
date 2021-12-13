@@ -5,20 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Add search friends option by username substring">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/images/hacker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/SceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MessagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MessagesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/PrintAllController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/domain/validator/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/domain/validator/UserValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/signupPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/signupPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,10 +67,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="lab6" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lab6-friendController-gridPaneIntoTableView" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

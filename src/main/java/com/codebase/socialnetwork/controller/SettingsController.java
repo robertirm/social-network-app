@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-public class SettingsController {
-    public Controller backEndController;
+public class SettingsController extends SceneController {
 
     public void setBackEndController(Controller backEndController) {
         this.backEndController = backEndController;
@@ -27,92 +26,4 @@ public class SettingsController {
     @FXML
     public Label usernameLabel;
 
-
-    @FXML
-    public void switchToProfilePage(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-        ProfileController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void switchToFriendsPage(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-        FriendsController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void switchToMessagesPage(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/messagesPage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-
-        MessagesController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void switchToSettingsPage(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/settingsPage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-
-        SettingsController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void switchToLogin(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/loginPage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-        LoginController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
 }
