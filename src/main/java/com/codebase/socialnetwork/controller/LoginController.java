@@ -17,13 +17,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-public class LoginController {
-    public Controller backEndController;
+public class LoginController extends SceneController{
 
     public void setBackEndController(Controller backEndController) {
         this.backEndController = backEndController;
     }
-
 
     @FXML
     TextField usernameLoginTextField;
@@ -33,48 +31,13 @@ public class LoginController {
     Label errorLoginLabel;
 
     @FXML void loginAction(ActionEvent event){
-        String username = usernameLoginTextField.getText();
+        String username = usernameLoginTextField.getText().trim();
         try{
             backEndController.login(username);
             switchToProfilePage(event);
         }catch (WrongUsernameException | IOException e){
             errorLoginLabel.setText("The user doesn't exist!");
         }
-    }
-
-    @FXML
-    public void switchToProfilePage(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-        ProfileController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void switchToSignUp(ActionEvent event) throws IOException {
-        URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/signupPage.fxml").toUri().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-
-        SignupController controller = loader.getController();
-        controller.setBackEndController(backEndController);
-
-        Stage window = (Stage)( (Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
     }
 
 }
