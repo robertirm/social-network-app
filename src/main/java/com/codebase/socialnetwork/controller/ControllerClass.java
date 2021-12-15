@@ -136,4 +136,34 @@ public class ControllerClass implements Controller {
     public List<List<Message>> getConversations(String username1, String username2) {
         return this.networkService.getConversations(username1,username2);
     }
+
+    @Override
+    public List<Conversation> getConversations(String username) {
+        return this.networkService.getConversations(username);
+    }
+
+    @Override
+    public Message createMessage(Message message, String text) {
+        Message replyMessage = new Message(this.getUserByUsername(this.getCurrentUsername()), LocalDateTime.now(),text, true);
+        replyMessage.addReceiver(message.getSender());
+//        for(User receiver: message.getReceivers()){
+//            if(!receiver.getId().equals(this.getCurrentUserId()))
+//                replyMessage.addReceiver(receiver);
+//        }
+        message.addReply(replyMessage);
+        this.sendMessage(replyMessage);
+        this.sendMessage(message);
+        return replyMessage;
+    }
+
+    @Override
+    public Message createMessage(String text, List<User> receivers){
+        Message message = new Message(this.getUserById(this.getCurrentUserId()),LocalDateTime.now(),text, false);
+        for(User user: receivers){
+            message.addReceiver(user);
+        }
+        this.sendMessage(message);
+        return message;
+    }
+
 }

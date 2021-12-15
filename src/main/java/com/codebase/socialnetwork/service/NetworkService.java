@@ -1,5 +1,6 @@
 package com.codebase.socialnetwork.service;
 
+import com.codebase.socialnetwork.domain.Conversation;
 import com.codebase.socialnetwork.domain.Entity;
 import com.codebase.socialnetwork.domain.FriendDTO;
 import com.codebase.socialnetwork.domain.Message;
@@ -23,4 +24,6 @@ public interface NetworkService<ID, E extends Entity<ID>> {
     List<Message> getReceivedMessages(String username);
     Message getMessageById(Long id);
     List<List<Message>> getConversations(String username1, String username2);
+    List<Conversation> getConversations(String username);
+
 }

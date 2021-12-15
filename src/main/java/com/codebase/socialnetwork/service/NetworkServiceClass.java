@@ -7,10 +7,7 @@ import com.codebase.socialnetwork.repository.memory.LoginSystem;
 import com.codebase.socialnetwork.service.networkUtils.Graph;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Friendship> {
@@ -24,6 +21,7 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         this.friendshipRepository = friendshipRepository;
         this.messageRepository = messageRepository;
         this.loginSystem = loginSystem;
+
     }
 
     @Override
@@ -176,24 +174,6 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
                 .collect(Collectors.toList());
     }
 
-//    @Override
-//    public List<FriendDTO> getAllFriendsByStatus(String status){
-//        Long idUser = this.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
-//        if(status.equals("pending")){
-//            return getAllFriendShipsAsList().stream()
-//                    .filter(friendship -> friendship.getId().getRight().equals(idUser))
-//                    .filter(friendship -> friendship.getStatus().equals(status))
-//                    .map(friendship -> {
-//                        User user = userRepository.findOne(friendship.getId().getLeft());
-//                        return new FriendDTO(user, friendship.getDate(), friendship.getStatus());
-//                    })
-//                    .collect(Collectors.toList());
-//        }
-//        return this.getAllFriends(this.loginSystem.getCurrentUsername()).stream()
-//                .filter(friendDTO -> friendDTO.getFriendshipStatus().equals(status))
-//                .collect(Collectors.toList());
-//    }
-
     @Override
     public List<FriendDTO> getAllFriendsByStatus(String status){
         Long idUser = this.getUserByUsername(this.loginSystem.getCurrentUsername()).getId();
@@ -268,7 +248,8 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
     @Override
     public List<Message> getSentMessages(String username) {
         List<Message> messageList = new LinkedList<>();
-        for(Message message : messageRepository.findAll()){
+        HashSet<Message> allMessages = messageRepository.findAll();
+        for(Message message : allMessages){
             if(message.getSender().getUsername().equals(username))
                 messageList.add(message);
         }
@@ -278,7 +259,8 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
     @Override
     public List<Message> getReceivedMessages(String username) {
         List<Message> messageList = new LinkedList<>();
-        for(Message message : messageRepository.findAll()){
+        HashSet<Message> allMessages = messageRepository.findAll();
+        for(Message message : allMessages){
             List<User> receivers = message.getReceivers().stream()
                     .filter(x-> x.getUsername().equals(username))
                     .collect(Collectors.toList());
@@ -328,6 +310,46 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         }
         return conversations;
     }
+
+    @Override
+    public List<Conversation> getConversations(String username) {
+        List<Conversation> conversations = new ArrayList<>();
+        HashSet<Message> allMessages = messageRepository.findAll();
+
+        for (Message message: allMessages) {
+            if (message.isAReply().equals(false) && checkConversation(username,message)){
+                List<Message> conversationThread = new ArrayList<>();
+                conversationThread.add(message);
+
+                List<Message> replies = message.getReplies();
+                while (replies.size() != 0) {
+                    List<Message> newReplies = new ArrayList<>();
+                    conversationThread.addAll(replies);
+                    for (Message reply : replies) {
+                        newReplies.addAll(reply.getReplies());
+                    }
+                    replies.clear();
+                    replies.addAll(newReplies);
+                }
+                conversationThread.sort(Comparator.comparing(Message::getMessageDate));
+                conversations.add(new Conversation(conversationThread));
+            }
+        }
+        return conversations;
+
+    }
+
+    private boolean checkConversation(String username, Message message){
+        if(message.getSender().getUsername().equals(username))
+            return true;
+        for(User receiver : message.getReceivers()){
+            if(receiver.getUsername().equals(username))
+                return true;
+        }
+        return false;
+    }
+
+
 
 
 }

@@ -59,7 +59,7 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(root, 1280, 720);
 
-        stage.setTitle("Print All!");
+        stage.setTitle("App");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
