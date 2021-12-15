@@ -30,12 +30,60 @@ public class MessageRepositoryClass implements Repository<Long, Message> {
     }
 
     @Override
-    public Message findOne(Long idMessage) {
-        for(Message message: this.findAll()){
-            if(message.getId().equals(idMessage))
-                return message;
+    public Message findOne(Long id) {
+        Message message =null;
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM messages WHERE id_message = " + id);
+            ResultSet resultSet = ps.executeQuery()){
+
+            while(resultSet.next()){
+                Long idMessage = resultSet.getLong("id_message");
+                Long idSender = resultSet.getLong("id_sender");
+                String messageContent =resultSet.getString("message_content");
+                Timestamp messageDate = resultSet.getTimestamp("message_date");
+                int isAReply = resultSet.getInt("is_a_reply");
+                Boolean isAReplyValue = isAReply != 0;
+                String messageDateString = messageDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
+
+                message = new Message(userRepository.findOne(idSender),dateOfMessage,messageContent, isAReplyValue);
+                message.setId(idMessage);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-        return null;
+
+        if(message != null) {
+            try (Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+                 PreparedStatement ps = connection.prepareStatement("SELECT * FROM sending_relation WHERE id_message=" + message.getId());
+                 ResultSet resultSet = ps.executeQuery()) {
+
+                while (resultSet.next()) {
+                    Long idReceiver = resultSet.getLong("id_receiver");
+                    User foundUser = userRepository.findOne(idReceiver);
+                    if (foundUser != null)
+                        message.addReceiver(foundUser);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try (Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+                 PreparedStatement ps = connection.prepareStatement("SELECT * FROM reply_relation WHERE id_message=" + message.getId());
+                 ResultSet resultSet = ps.executeQuery()) {
+
+                while (resultSet.next()) {
+                    Long idReceiver = resultSet.getLong("id_reply");
+                    Message foundMessage = this.findOne(idReceiver);
+                    if (foundMessage != null)
+                        message.addReply(foundMessage);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return message;
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.codebase.socialnetwork.controller;
 
-import com.codebase.socialnetwork.domain.FriendDTO;
-import com.codebase.socialnetwork.domain.Friendship;
-import com.codebase.socialnetwork.domain.Message;
-import com.codebase.socialnetwork.domain.User;
+import com.codebase.socialnetwork.domain.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,4 +32,7 @@ public interface Controller {
     List<Message> getReceivedMessages(String username);
     Message getMessageById(Long id);
     List<List<Message>> getConversations(String username1, String username2);
+    List<Conversation> getConversations(String username);
+    Message createMessage(Message message,String text);
+    Message createMessage(String text, List<User> receivers);
 }

@@ -53,4 +53,12 @@ public class Message extends Entity<Long>{
     public Boolean isAReply() {
         return isAReply;
     }
+
+    @Override
+    public String toString() {
+        return this.sender.getUsername() + " : " + this.messageContent;
+    }
+
+
+
 }
