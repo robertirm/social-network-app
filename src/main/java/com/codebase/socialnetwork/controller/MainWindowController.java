@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -17,6 +20,15 @@ public class MainWindowController {
     private StackPane pageHolder;
 
     @FXML
+    protected VBox mainPageButtonLayout;
+
+    @FXML
+    protected HBox mainPageTopLayout;
+
+    @FXML
+    protected Pane coloredLoginPane;
+
+    @FXML
     private Label usernameLabel;
 
     public void setPage(Node node){
@@ -25,6 +37,12 @@ public class MainWindowController {
 
     public void setUsername(String username){
         usernameLabel.setText(username);
+    }
+
+    public void setButtonsLayoutVisible(boolean value){
+        mainPageButtonLayout.setVisible(value);
+        mainPageTopLayout.setVisible(value);
+        coloredLoginPane.setVisible(!value);
     }
 
     public static void setBackEndController(Controller backEndController) {

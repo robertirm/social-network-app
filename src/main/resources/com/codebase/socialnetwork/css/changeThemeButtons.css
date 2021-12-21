@@ -1,0 +1,24 @@
+#buttonTheme1 {
+    -fx-background-color: linear-gradient(to right, black , red);
+    -fx-background-radius: 50%;
+}
+#buttonTheme2 {
+    -fx-background-color: linear-gradient(to right, black , green);
+    -fx-background-radius: 50%;
+}
+#buttonTheme3 {
+    -fx-background-color: linear-gradient(to right, black , mediumpurple);
+    -fx-background-radius: 50%
+}
+#buttonTheme4 {
+    -fx-background-color: linear-gradient(to right, whitesmoke , #003356);
+    -fx-background-radius: 50%;
+}
+#buttonTheme5 {
+    -fx-background-color: linear-gradient(to right, whitesmoke , #b22c26);
+    -fx-background-radius: 50%;
+}
+#buttonTheme6 {
+    -fx-background-color: linear-gradient(to right, whitesmoke , #ef7195);
+    -fx-background-radius: 50%;
+}

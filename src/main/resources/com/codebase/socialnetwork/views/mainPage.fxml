@@ -6,13 +6,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" styleClass="pageAnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.MainWindowController">
    <children>
-      <StackPane fx:id="pageHolder" layoutX="100.0" layoutY="50.0" prefHeight="526.0" prefWidth="924.0" />
-      <VBox layoutY="50.0" prefHeight="526.0" prefWidth="100.0">
+      <StackPane fx:id="pageHolder" layoutX="92.0" layoutY="50.0" prefHeight="526.0" prefWidth="934.0" />
+      <VBox fx:id="mainPageButtonLayout" layoutX="-4.0" layoutY="50.0" prefHeight="526.0" prefWidth="100.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToProfilePage" prefHeight="65.0" prefWidth="100.0" text="Profile" />
             <Button mnemonicParsing="false" onAction="#switchToFriendsPage" prefHeight="65.0" prefWidth="100.0" text="Friends" />
@@ -24,17 +25,18 @@
             <Button mnemonicParsing="false" onAction="#logoutAction" prefHeight="65.0" prefWidth="100.0" text="Log Out" />
          </children>
       </VBox>
-      <HBox layoutX="5.0" prefHeight="50.0" prefWidth="1014.0">
+      <HBox fx:id="mainPageTopLayout" layoutX="-5.0" layoutY="-3.0" prefHeight="54.0" prefWidth="1031.0">
          <children>
             <Separator prefWidth="50.0" />
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" text="Blana" />
             <Separator prefWidth="175.0" />
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Current" />
+            <Label id="currentPageNameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Current" />
             <Separator prefWidth="175.0" />
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="150.0" text="username" />
          </children>
       </HBox>
+      <Pane fx:id="coloredLoginPane" prefHeight="576.0" prefWidth="291.0" />
    </children>
 </AnchorPane>

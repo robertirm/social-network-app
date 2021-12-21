@@ -9,5 +9,6 @@ public class ProfileController extends MainWindowController {
     @FXML
     public void initialize() {
         MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
+        MainWindow.setVisibility(true);
     }
 }

@@ -1,5 +1,6 @@
 package com.codebase.socialnetwork.controller;
 
+import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.exception.WrongUsernameException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class LoginController extends MainWindowController {
 
     @FXML
     public void initialize() {
+        MainWindow.setVisibility(false);
     }
 
     @FXML

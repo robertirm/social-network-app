@@ -8,20 +8,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.MessagesController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="526.0" prefWidth="924.0">
+      <AnchorPane fx:id="messagesPagePane" prefHeight="526.0" prefWidth="924.0">
          <children>
-            <TextField fx:id="sendMessageTextField" layoutX="296.0" layoutY="451.0" prefHeight="42.0" prefWidth="400.0" promptText="Wrtie tour text here" />
-            <Button fx:id="sendMessageButton" layoutX="716.0" layoutY="451.0" mnemonicParsing="false" onAction="#onSendMessageButtonClick" prefHeight="42.0" prefWidth="58.0" text="SEND" />
-            <ListView fx:id="listViewCurrentConversation" layoutX="225.0" prefHeight="426.0" prefWidth="644.0" />
-            <ListView fx:id="listViewConversations" layoutY="60.0" prefHeight="466.0" prefWidth="207.0" />
-            <Button fx:id="createNewChatButton" layoutX="18.0" mnemonicParsing="false" onAction="#onCreateNewChatButtonClick" prefHeight="42.0" prefWidth="171.0" text="START NEW CHAT" />
-            <AnchorPane fx:id="createNewChatPane" layoutX="225.0" layoutY="1.0" prefHeight="426.0" prefWidth="644.0">
+            <TextField fx:id="sendMessageTextField" layoutX="298.0" layoutY="461.0" prefHeight="42.0" prefWidth="400.0" promptText="Wrtie tour text here" />
+            <Button fx:id="sendMessageButton" layoutX="718.0" layoutY="461.0" mnemonicParsing="false" onAction="#onSendMessageButtonClick" prefHeight="42.0" prefWidth="58.0" text="SEND" />
+            <ListView fx:id="listViewCurrentConversation" layoutX="227.0" layoutY="26.0" prefHeight="426.0" prefWidth="644.0" />
+            <ListView fx:id="listViewConversations" layoutX="14.0" layoutY="62.0" prefHeight="441.0" prefWidth="192.0" />
+            <Button layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateNewChatButtonClick" prefHeight="34.0" prefWidth="170.0" text="START NEW CHAT" />
+            <AnchorPane fx:id="createNewChatPane" layoutX="227.0" layoutY="27.0" prefHeight="426.0" prefWidth="644.0">
                <children>
                   <TextField fx:id="sendNewMessageTextField" layoutX="55.0" layoutY="295.0" prefHeight="47.0" prefWidth="441.0" promptText="Write your text here" />
                   <Button fx:id="sendNewMessageButton" layoutX="520.0" layoutY="295.0" mnemonicParsing="false" onAction="#onSendNewMessageButtonClick" prefHeight="47.0" prefWidth="68.0" text="SEND" />
                   <ListView fx:id="usersListView" layoutX="58.0" layoutY="45.0" prefHeight="218.0" prefWidth="288.0" />
                   <Label layoutX="64.0" layoutY="14.0" prefHeight="34.0" prefWidth="218.0" text="ALL USERS:" />
-                  <Button fx:id="addUserButton" layoutX="276.0" layoutY="16.0" mnemonicParsing="false" onAction="#onAddUserButtonClick" prefHeight="30.0" prefWidth="68.0" text="ADD" />
+                  <Button fx:id="addUserButton" layoutX="270.0" layoutY="15.0" mnemonicParsing="false" onAction="#onAddUserButtonClick" prefHeight="30.0" prefWidth="76.0" text="ADD" />
                   <Button fx:id="cancelNewChatButton" layoutX="249.0" layoutY="359.0" mnemonicParsing="false" onAction="#onCancelNewChatButtonClick" prefHeight="30.0" prefWidth="93.0" text="CANCEL" />
                   <ListView fx:id="receiversListView" layoutX="370.0" layoutY="45.0" prefHeight="218.0" prefWidth="218.0" />
                   <Button fx:id="removeUserButton" layoutX="512.0" layoutY="16.0" mnemonicParsing="false" onAction="#onRemoveUserButtonClick" prefHeight="30.0" prefWidth="76.0" text="REMOVE" />

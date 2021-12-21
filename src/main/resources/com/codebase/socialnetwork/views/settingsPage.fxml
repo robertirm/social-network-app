@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.SettingsController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.SettingsController">
+   <children>
+      <Label layoutX="61.0" layoutY="67.0" prefHeight="43.0" prefWidth="70.0" text="Theme :" />
+      <ButtonBar id="themeButtonsBar" layoutX="96.0" layoutY="47.0" prefHeight="83.0" prefWidth="524.0">
+        <buttons>
+          <Button id="buttonTheme1" mnemonicParsing="false" onAction="#changeTheme1" prefHeight="62.0" styleClass="themeButton" text="1" />
+            <Button id="buttonTheme2" mnemonicParsing="false" onAction="#changeTheme2" prefHeight="64.0" styleClass="themeButton" text="2" />
+            <Button id="buttonTheme3" mnemonicParsing="false" onAction="#changeTheme3" prefHeight="62.0" styleClass="themeButton" text="3" />
+            <Button id="buttonTheme4" mnemonicParsing="false" onAction="#changeTheme4" prefHeight="62.0" styleClass="themeButton" text="4" />
+            <Button id="buttonTheme5" mnemonicParsing="false" onAction="#changeTheme5" prefHeight="63.0" styleClass="themeButton" text="5" />
+            <Button id="buttonTheme6" mnemonicParsing="false" onAction="#changeTheme6" prefHeight="62.0" styleClass="themeButton" text="6" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

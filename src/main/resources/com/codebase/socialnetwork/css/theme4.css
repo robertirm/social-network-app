@@ -1,0 +1,123 @@
+@import url(changeThemeButtons.css);
+
+
+/* ================ WHOLE PROJECT ==================*/
+.root {
+    -light-main-color : #003356;
+    -dark-main-color : #00253e;
+
+    -light-color : white;
+    -forth-color : black;
+
+
+    -fx-font-family: Arial;
+    /* colors for highlighting an item*/
+    -fx-accent: -light-main-color;
+    -fx-focus-color: -light-main-color;
+}
+
+.pageAnchorPane {
+    -fx-background-color: derive(-light-color,15%);
+}
+
+.button {
+    -fx-background-color: -light-main-color;
+    -fx-text-fill: -light-color;
+}
+
+.label {
+    -fx-text-fill: -dark-main-color;
+}
+
+
+
+/* =============== MAIN PAGE ====================*/
+#mainPageTopLayout {
+    -fx-background-color: -dark-main-color;
+}
+#mainPageTopLayout > #currentPageNameLabel {
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+#mainPageTopLayout > .label {
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+}
+#mainPageButtonLayout {
+    -fx-background-color: -dark-main-color;
+}
+#mainPageButtonLayout > .button {
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 15px;
+    -fx-border-radius: 0%;
+}
+
+#mainPageButtonLayout > .button:hover{
+    -fx-background-color: derive(-dark-main-color,20%);
+    -fx-text-fill: -light-color;
+    -fx-font-size: 15px;
+    -fx-border-radius: 0%;
+}
+#coloredLoginPane {
+    -fx-background-color: -dark-main-color;
+}
+
+/* ================ LOGIN PAGE ==================*/
+#welcomeLoginLabel {
+    -fx-font-weight: bold;
+    -fx-font-size: 19px;
+    -fx-font-family: Elephant;
+    -fx-text-fill: -dark-main-color;
+}
+#dontHaveAccountLabel {
+    -fx-text-fill: -dark-main-color;
+    -fx-font-style: italic;
+}
+
+/* ================ SIGN UP PAGE ==================*/
+#errorSignUpLabel {
+    -fx-text-fill: -light-main-color;
+}
+#signUpMessage {
+    -fx-font-weight: bold;
+    -fx-font-size: 19px;
+    -fx-font-family: Elephant;
+    -fx-text-fill: -dark-main-color;
+}
+
+/* ================ FRIENDS PAGE ==================*/
+#searchFriendLabel {
+    -fx-background-color:-light-main-color;
+    -fx-text-fill: -light-color;
+}
+#gridPaneFriends {
+    -fx-background-color: derive(-light-color,15%);
+    -fx-text-fill: -dark-main-color;
+}
+#scrollPaneFriends {
+    -fx-background-color: derive(-light-color,15%);
+}
+#friendsRightPane {
+    -fx-padding: 15px 20px 20px 15px;
+}
+/* ================ MESSAGE PAGE ===================*/
+/*#sendMessageTextField {*/
+/*    -fx-border-radius: 25px;*/
+/*}*/
+#listViewConversations{
+    -fx-font-size: 15px;
+}
+#listViewCurrentConversation{
+    -fx-font-size: 18px;
+}
+#messagesPagePane {
+    -fx-background-color: derive(-light-color,15%);
+}
+#createNewChatPane > .label{
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: -light-main-color;
+    -fx-font-size: 14px;
+}
+
