@@ -18,24 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MessagesController extends SceneController{
+public class MessagesController extends MainWindowController {
 
     ObservableList<Conversation> conversationsObservableList = FXCollections.observableArrayList();
     ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
     ObservableList<User> userObservableList = FXCollections.observableArrayList();
     ObservableList<User> receivers = FXCollections.observableArrayList();
 
-
-    public void setBackEndController( Controller backEndController) {
-        this.backEndController = backEndController;
-        usernameLabel.setText(backEndController.getCurrentUsername());
-        conversationsObservableList.setAll(backEndController.getConversations(backEndController.getCurrentUsername()));
-        userObservableList.setAll(backEndController.getAllUsers());
-        this.initialize();
-    }
-
-    @FXML
-    public Label usernameLabel;
     @FXML
     ListView<Conversation> listViewConversations;
     @FXML
@@ -72,6 +61,10 @@ public class MessagesController extends SceneController{
 
         conversationsObservableList.addListener((ListChangeListener<Conversation>) c -> listViewConversations.setItems(conversationsObservableList));
 
+//        usernameLabel.setText(backEndController.getCurrentUsername());
+//        MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
+        conversationsObservableList.setAll(backEndController.getConversations(backEndController.getCurrentUsername()));
+        userObservableList.setAll(backEndController.getAllUsers());
     }
 
     public void onSendMessageButtonClick(ActionEvent event) throws IOException {

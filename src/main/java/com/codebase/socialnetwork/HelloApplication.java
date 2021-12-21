@@ -1,7 +1,7 @@
 package com.codebase.socialnetwork;
 
 import com.codebase.socialnetwork.controller.Controller;
-import com.codebase.socialnetwork.controller.ControllerClass;
+import com.codebase.socialnetwork.controller.BackendController;
 import com.codebase.socialnetwork.controller.LoginController;
 import com.codebase.socialnetwork.domain.Friendship;
 import com.codebase.socialnetwork.domain.Message;
@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "";
+        String password = "GMsuper12";
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
@@ -46,7 +46,7 @@ public class HelloApplication extends Application {
         UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);
         NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository, messageRepository, loginSystem);
 
-        Controller controller = new ControllerClass(userService, statisticsService);
+        Controller controller = new BackendController(userService, statisticsService);
 
 
         FXMLLoader loader=new FXMLLoader();

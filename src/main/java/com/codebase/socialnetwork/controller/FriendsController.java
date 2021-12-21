@@ -1,9 +1,9 @@
 package com.codebase.socialnetwork.controller;
 
 import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
+
+import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.FriendDTO;
-import com.codebase.socialnetwork.domain.User;
-import com.codebase.socialnetwork.service.UserService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,19 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,21 +26,10 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class FriendsController extends SceneController {
+
+public class FriendsController extends MainWindowController {
     ObservableList<FriendDTO> observableListFriendDTO = FXCollections.observableArrayList();
     List<FriendDTO> friendDTOList;
-
-    public void setBackEndController(Controller backEndController) {
-        this.backEndController = backEndController;
-        usernameLabel.setText(backEndController.getCurrentUsername());
-        //observableListFriendDTO.setAll(backEndController.getAllFriendsForUser(usernameLabel.getText()));
-        observableListFriendDTO.setAll(backEndController.getAllFriendsByStatus("Others"));
-        friendDTOList = new ArrayList<>(observableListFriendDTO);
-        listViewFriendType.getSelectionModel().select(0);
-    }
-
-    @FXML
-    public Label usernameLabel;
 
    @FXML
     TextField textFieldName;
@@ -87,6 +69,13 @@ public class FriendsController extends SceneController {
        });
 
        scrollPaneFriends.setContent(gridPaneFriends);
+
+       // usernameLabel.setText(backEndController.getCurrentUsername());
+//       MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
+       //observableListFriendDTO.setAll(backEndController.getAllFriendsForUser(usernameLabel.getText()));
+       observableListFriendDTO.setAll(backEndController.getAllFriendsByStatus("Others"));
+       friendDTOList = new ArrayList<>(observableListFriendDTO);
+       listViewFriendType.getSelectionModel().select(0);
    }
 
    private void updateFriendDTOList() {
@@ -285,8 +274,6 @@ public class FriendsController extends SceneController {
         return anchorPane;
     }
 
-
-
     // https://stackoverflow.com/questions/45450489/how-to-implement-a-gridview-style-in-javafx
    private void updateGridPaneFriends(){
        int numberOfColumns = gridPaneFriends.getColumnCount();
@@ -317,6 +304,4 @@ public class FriendsController extends SceneController {
        }
        scrollPaneFriends.setContent(gridPaneFriends);
    }
-
-
 }

@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 
-public class ControllerClass implements Controller {
+public class BackendController implements Controller {
     public final UserService<Long, User> userService;
     public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
 
-    public ControllerClass(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService) {
+    public BackendController(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService) {
         this.userService = userService;
         this.networkService = statisticsService;
     }
@@ -165,5 +165,4 @@ public class ControllerClass implements Controller {
         this.sendMessage(message);
         return message;
     }
-
 }
