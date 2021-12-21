@@ -19,6 +19,7 @@ public class LoginController extends MainWindowController {
 
     @FXML
     public void initialize() {
+
     }
 
     @FXML

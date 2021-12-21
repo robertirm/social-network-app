@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.LoginController">
+<AnchorPane fx:id="loginpageAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.LoginController">
     <children>
       <TextField fx:id="usernameLoginTextField" layoutX="330.0" layoutY="200.0" prefHeight="26.0" prefWidth="264.0" promptText="username" />
       <PasswordField fx:id="passwordLoginTextField" layoutX="330.0" layoutY="240.0" prefHeight="26.0" prefWidth="264.0" promptText="password" />
-      <Button layoutX="422.0" layoutY="286.0" mnemonicParsing="false" onAction="#loginAction" prefWidth="79.0" style="-fx-background-color: #04293A;" text="Login" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="330.0" layoutY="122.0" prefHeight="66.0" prefWidth="264.0" text="Welcome! Please login">
+      <Button layoutX="422.0" layoutY="286.0" mnemonicParsing="false" onAction="#loginAction" prefWidth="79.0" text="Login" />
+      <Label fx:id="welcomeLoginLabel" alignment="CENTER" layoutX="330.0" layoutY="122.0" prefHeight="66.0" prefWidth="264.0" text="Welcome! Please login">
          <font>
             <Font name="Elephant" size="19.0" />
          </font>
@@ -21,11 +21,7 @@
          <font>
             <Font name="System Italic" size="12.0" />
          </font></Label>
-      <Button layoutX="501.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToSignUpPage" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #04293A;" text="Create" textFill="WHITE" />
-      <Label layoutX="355.0" layoutY="377.0" prefHeight="26.0" prefWidth="168.0" text="Don't have an account ?">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
+      <Button layoutX="501.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToSignUpPage" prefHeight="26.0" prefWidth="73.0" text="Create" />
+      <Label id="dontHaveAccountLabel" layoutX="355.0" layoutY="377.0" prefHeight="26.0" prefWidth="168.0" text="Don't have an account ?" />
     </children>
 </AnchorPane>

@@ -11,7 +11,7 @@
     <children>
       <TextField fx:id="usernameTextField" layoutX="388.0" layoutY="166.0" prefHeight="26.0" prefWidth="264.0" promptText="username" />
       <PasswordField fx:id="passwordTextField" layoutX="388.0" layoutY="284.0" prefHeight="26.0" prefWidth="264.0" promptText="password" />
-      <Button layoutX="414.0" layoutY="415.0" mnemonicParsing="false" onAction="#signUpAction" prefWidth="79.0" style="-fx-background-color: #04293A;" text="Sign up" textFill="WHITE" />
+      <Button layoutX="414.0" layoutY="415.0" mnemonicParsing="false" onAction="#signUpAction" prefWidth="79.0" text="Sign up" textFill="WHITE" />
       <Label alignment="CENTER" layoutX="300.0" layoutY="85.0" prefHeight="66.0" prefWidth="264.0" text="SIGN UP">
          <font>
             <Font name="Elephant" size="19.0" />
@@ -29,6 +29,6 @@
       <Label layoutX="276.0" layoutY="327.0" prefHeight="26.0" prefWidth="94.0" text="Confim Password" />
       <TextField fx:id="firstNameTextField" layoutX="388.0" layoutY="245.0" prefHeight="26.0" prefWidth="264.0" promptText="last name" />
       <TextField fx:id="lastNameTextField" layoutX="388.0" layoutY="205.0" prefHeight="26.0" prefWidth="264.0" promptText="first name" />
-      <Button layoutX="524.0" layoutY="415.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefWidth="79.0" style="-fx-background-color: #04293A;" text="Cancel" textFill="WHITE" />
+      <Button layoutX="524.0" layoutY="415.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefWidth="79.0" text="Cancel" textFill="WHITE" />
     </children>
 </AnchorPane>

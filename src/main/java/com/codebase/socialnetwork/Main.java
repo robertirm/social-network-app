@@ -85,9 +85,9 @@ public class Main extends Application {
                 mainPane
         );
 
-//        scene.getStylesheets().setAll(
-//                getClass().getResource("style.css").toExternalForm()
-//        );
+        scene.getStylesheets().setAll(
+                getClass().getResource("css/theme4.css").toExternalForm()
+        );
 
         return scene;
     }
