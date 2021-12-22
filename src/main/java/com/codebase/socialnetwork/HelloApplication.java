@@ -31,38 +31,38 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
-        String username = "postgres";
-        String password = "GMsuper12";
-
-        Validator<User> userValidator = new UserValidator();
-        Validator<Friendship> friendshipValidator = new FriendshipValidator();
-
-        Repository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
-        Repository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
-        Repository<Long, Message> messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
-
-        LoginSystem<Long, User> loginSystem = new LoginSystemClass();
-        UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);
-        NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository, messageRepository, loginSystem);
-
-        Controller controller = new BackendController(userService, statisticsService);
-
-
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("views/loginPage.fxml"));
-
-        AnchorPane root=loader.load();
-
-        LoginController guiController = loader.getController();
-        guiController.setBackEndController(controller);
-
-        Scene scene = new Scene(root, 1280, 720);
-
-        stage.setTitle("App");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+//        String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
+//        String username = "postgres";
+//        String password = "GMsuper12";
+//
+//        Validator<User> userValidator = new UserValidator();
+//        Validator<Friendship> friendshipValidator = new FriendshipValidator();
+//
+//        Repository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
+//        Repository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
+//        Repository<Long, Message> messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
+//
+//        LoginSystem<Long, User> loginSystem = new LoginSystemClass();
+//        UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);
+//        NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository, messageRepository, loginSystem);
+//
+//        Controller controller = new BackendController(userService, statisticsService, postService);
+//
+//
+//        FXMLLoader loader=new FXMLLoader();
+//        loader.setLocation(getClass().getResource("views/loginPage.fxml"));
+//
+//        AnchorPane root=loader.load();
+//
+//        LoginController guiController = loader.getController();
+//        guiController.setBackEndController(controller);
+//
+//        Scene scene = new Scene(root, 1280, 720);
+//
+//        stage.setTitle("App");
+//        stage.setScene(scene);
+//        stage.setResizable(false);
+//        stage.show();
 
 
     }
