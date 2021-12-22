@@ -3,7 +3,7 @@
     -fx-background-radius: 50%;
 }
 #buttonTheme2 {
-    -fx-background-color: linear-gradient(to right, black , green);
+    -fx-background-color: linear-gradient(to right, black , orange);
     -fx-background-radius: 50%;
 }
 #buttonTheme3 {

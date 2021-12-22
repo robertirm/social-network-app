@@ -53,6 +53,7 @@ public class ProfileController extends MainWindowController {
 
         setProfileInfo();
         updatePosts();
+        MainWindow.setVisibility(true);
 //        Image image = new Image("com/codebase/socialnetwork/images/hacker.png");
 //        imageViewProfilePicture.setImage(image);
 
@@ -167,7 +168,7 @@ public class ProfileController extends MainWindowController {
         numberOfPhotos = 0;
         gridPaneProfile.getChildren().clear();
         for(Post post : backEndController.getAllPosts()){
-            if(post.getType().equals("other")){
+            if(post.getType().equals("other") && post.getUsername().equals(backEndController.getCurrentUsername())){
                 createNewPost(post);
             }
         }

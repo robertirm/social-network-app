@@ -17,7 +17,7 @@
             <Font name="Elephant" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="errorLoginLabel" layoutX="349.0" layoutY="440.0" prefHeight="18.0" prefWidth="225.0" textFill="#c10707">
+      <Label fx:id="errorLoginLabel" layoutX="449.0" layoutY="440.0" prefHeight="18.0" prefWidth="225.0" textFill="#c10707">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></Label>

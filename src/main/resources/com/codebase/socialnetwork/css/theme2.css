@@ -3,12 +3,11 @@
 
 /* ================ WHOLE PROJECT ==================*/
 .root {
-    -light-main-color : #4f772d;
-    -dark-main-color : #31572c;
+    -light-main-color : #f16902;
+    -dark-main-color : #f57d3b;
 
     -light-color : white;
     -forth-color : black;
-
 
     -fx-font-family: Arial;
     /* colors for highlighting an item*/
