@@ -2,6 +2,7 @@ package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -35,4 +36,7 @@ public interface Controller {
     List<Conversation> getConversations(String username);
     Message createMessage(Message message,String text);
     Message createMessage(String text, List<User> receivers);
+    HashSet<Post> getAllPosts();
+    void addPost(InputStream imageStream, String description, int likes, String type, String username);
+    void updatePost(InputStream imageStream, String description, int likes, Long idPost);
 }

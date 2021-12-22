@@ -33,7 +33,7 @@
             <Separator prefWidth="175.0" />
             <Label id="currentPageNameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Current" />
             <Separator prefWidth="175.0" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" />
             <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="150.0" text="username" />
          </children>
       </HBox>

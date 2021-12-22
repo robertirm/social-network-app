@@ -4,31 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Add styling to gui components using css&#10;Create different style themes">
+    <list default="true" id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Refactor design, introduce main page for common things in every page">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/domain/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/repository/database/PostRepositoryClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/PostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/PostServiceClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/HelloApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/BackendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/BackendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/changeThemeButtons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/changeThemeButtons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme3.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme5.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme5.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme6.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme6.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/loginPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/signupPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/signupPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,13 +64,14 @@
       <list>
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/lab7-ProfilePage" />
+    <option name="BRANCH" value="lab6" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -159,7 +159,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5ffd388b-11e7-4910-b856-8a0cef7608ca" name="Changes" comment="Update lab5 branch" />
+      <changelist id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Refactor design, introduce main page for common things in every page" />
       <created>1638822140594</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -171,8 +171,7 @@
       <workItem from="1639047165435" duration="32832000" />
       <workItem from="1639123200450" duration="40533000" />
       <workItem from="1639487232879" duration="39676000" />
-      <workItem from="1640168010891" duration="1903000" />
-      <workItem from="1640170282419" duration="1247000" />
+      <workItem from="1640093373920" duration="27414000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to JavaFX Application">
       <created>1638828198212</created>
@@ -216,7 +215,28 @@
       <option name="project" value="LOCAL" />
       <updated>1639437035174</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactor design, introduce main page for common things in every page">
+      <created>1640046701990</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1640046701990</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactor design, introduce main page for common things in every page">
+      <created>1640046716603</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1640046716603</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Refactor design, introduce main page for common things in every page">
+      <created>1640046742086</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1640046742086</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +260,28 @@
     <MESSAGE value="Initialise views and controllers and create login system" />
     <MESSAGE value="Add search friends option by username substring" />
     <MESSAGE value="Refactor controllers to remove duplicated code.&#10;Add sign up functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor controllers to remove duplicated code.&#10;Add sign up functionality." />
+    <MESSAGE value="Refactor design, introduce main page for common things in every page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor design, introduce main page for common things in every page" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

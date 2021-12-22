@@ -2,8 +2,10 @@ package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
 import com.codebase.socialnetwork.service.NetworkService;
+import com.codebase.socialnetwork.service.PostService;
 import com.codebase.socialnetwork.service.UserService;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -11,10 +13,12 @@ import java.util.List;
 public class BackendController implements Controller {
     public final UserService<Long, User> userService;
     public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
+    public final PostService<Long, Post> postService;
 
-    public BackendController(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService) {
+    public BackendController(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService, PostService<Long, Post> postService) {
         this.userService = userService;
         this.networkService = statisticsService;
+        this.postService = postService;
     }
 
     @Override
@@ -164,5 +168,20 @@ public class BackendController implements Controller {
         }
         this.sendMessage(message);
         return message;
+    }
+
+    @Override
+    public HashSet<Post> getAllPosts() {
+        return postService.getAllPosts();
+    }
+
+    @Override
+    public void addPost(InputStream imageStream, String description, int likes, String type, String username) {
+        postService.addPost(imageStream, description, likes, type, username);
+    }
+
+    @Override
+    public void updatePost(InputStream imageStream, String description, int likes, Long idPost) {
+        postService.updatePost(imageStream, description, likes, idPost);
     }
 }
