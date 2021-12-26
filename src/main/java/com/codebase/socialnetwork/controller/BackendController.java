@@ -184,4 +184,19 @@ public class BackendController implements Controller {
     public void updatePost(InputStream imageStream, String description, int likes, Long idPost) {
         postService.updatePost(imageStream, description, likes, idPost);
     }
+
+    @Override
+    public Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
+        return networkService.getNumberOfSentMessages(startDate,endDate);
+    }
+
+    @Override
+    public Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
+        return networkService.getNumberOfReceivedMessages(startDate,endDate);
+    }
+
+    @Override
+    public List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate) {
+        return networkService.getMessagesFromFriend(friend,startDate,endDate);
+    }
 }

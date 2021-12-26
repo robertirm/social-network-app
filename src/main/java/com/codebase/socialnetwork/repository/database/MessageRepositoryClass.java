@@ -2,15 +2,21 @@ package com.codebase.socialnetwork.repository.database;
 
 import com.codebase.socialnetwork.domain.Message;
 import com.codebase.socialnetwork.domain.User;
+import com.codebase.socialnetwork.repository.MessageRepository;
 import com.codebase.socialnetwork.repository.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
 
-public class MessageRepositoryClass implements Repository<Long, Message> {
+//public class MessageRepositoryClass implements Repository<Long, Message>
+public class MessageRepositoryClass implements MessageRepository {
     private final String dbUrl;
     private final String dbUsername;
     private final String dbPassword;
@@ -21,6 +27,15 @@ public class MessageRepositoryClass implements Repository<Long, Message> {
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
         this.userRepository = userRepository;
+//        LocalDateTime st = LocalDateTime.of(2021, Month.DECEMBER, 15, 12,0,0,0);
+//        LocalDateTime sf = LocalDateTime.of(2021, Month.DECEMBER, 30, 12,0,0,0);
+//
+//        System.out.println("messages date size : " + this.getNumberOfSentMessages(4L,st,sf));
+//        System.out.println("messages date size : " + this.getNumberOfReceivedMessages(4L,st,sf));
+//
+//        this.getMessagesFromFriend(userRepository.findOne(10L), userRepository.findOne(4L), st,sf).forEach(x->{
+//            System.out.println(x.getMessageContent() + " | " + x.getMessageDate() + " | ");
+//        });
     }
 
     @Override
@@ -28,6 +43,7 @@ public class MessageRepositoryClass implements Repository<Long, Message> {
         //TODO
         return null;
     }
+
 
     @Override
     public Message findOne(Long id) {
@@ -215,5 +231,87 @@ public class MessageRepositoryClass implements Repository<Long, Message> {
     public Message update(Message entity) {
         //TODO
         return null;
+    }
+
+    @Override
+    public Integer getNumberOfSentMessages(Long idUser,LocalDateTime startDate, LocalDateTime endDate) {
+        String start = startDate.format(DATE_TIME_FORMATTER);
+        String end = endDate.format(DATE_TIME_FORMATTER);
+
+        int counter = 0;
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement("select count(messages.id_message) from messages " +
+                                                "where id_sender = "+ idUser +"   and message_date >= '" + start + "' and message_date <= '" +end + "'");
+            ResultSet resultSet = ps.executeQuery()){
+
+            if (resultSet.next()){
+                counter = resultSet.getInt("count");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return counter;
+    }
+
+    @Override
+    public Integer getNumberOfReceivedMessages(Long idUser, LocalDateTime startDate, LocalDateTime endDate) {
+        String start = startDate.format(DATE_TIME_FORMATTER);
+        String end = endDate.format(DATE_TIME_FORMATTER);
+
+        int counter = 0;
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement(
+                    "select count(messages.id_message) from messages " +
+                        "inner join sending_relation on messages.id_message = sending_relation.id_message " +
+                        "where messages.id_sender !="+ idUser + " and sending_relation.id_receiver =" + idUser +
+                        " and message_date >= '" + start + "' and message_date <= '" +end + "'"
+            );
+            ResultSet resultSet = ps.executeQuery()){
+
+            if (resultSet.next()){
+                counter = resultSet.getInt("count");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return counter;
+    }
+
+    @Override
+    public List<Message> getMessagesFromFriend(User user, User friend, LocalDateTime startDate, LocalDateTime endDate) {
+        String start = startDate.format(DATE_TIME_FORMATTER);
+        String end = endDate.format(DATE_TIME_FORMATTER);
+
+        List<Message> messages = new ArrayList<>();
+
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement(
+                    "select distinct messages.id_message,message_content,message_date from messages " +
+                        "inner join sending_relation ON messages.id_message = sending_relation.id_message " +
+                        "where messages.id_sender = " + friend.getId() + " and sending_relation.id_receiver = " + user.getId() +
+                        " and message_date >= '" + start + "' and message_date <= '" +end + "'");
+
+            ResultSet resultSet = ps.executeQuery()){
+            while (resultSet.next()){
+                Long idMessage = resultSet.getLong("id_message");
+                String messageContent =resultSet.getString("message_content");
+
+                Timestamp messageDate = resultSet.getTimestamp("message_date");
+                String messageDateString = messageDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
+
+                Message message = new Message(friend,dateOfMessage,messageContent, true);
+                message.setId(idMessage);
+                messages.add(message);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return messages;
     }
 }

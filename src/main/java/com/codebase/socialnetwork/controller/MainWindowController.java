@@ -31,6 +31,9 @@ public class MainWindowController {
     @FXML
     private Label usernameLabel;
 
+    @FXML
+    protected Label currentPageLabel;
+
     public void setPage(Node node){
         pageHolder.getChildren().setAll(node);
     }
@@ -59,21 +62,33 @@ public class MainWindowController {
             }
             case MainWindow.PROFILE -> {
                 MainWindow.loadPage(MainWindow.PROFILE);
+                if(currentPageLabel != null)currentPageLabel.setText("/profile");
             }
             case MainWindow.FRIENDS -> {
                 MainWindow.loadPage(MainWindow.FRIENDS);
+                currentPageLabel.setText("/friends");
             }
             case MainWindow.MESSAGES -> {
                 MainWindow.loadPage(MainWindow.MESSAGES);
+                currentPageLabel.setText("/messages");
+
             }
             case MainWindow.EVENTS -> {
                 MainWindow.loadPage(MainWindow.EVENTS);
+                currentPageLabel.setText("/events");
             }
             case MainWindow.STATISTICS -> {
                 MainWindow.loadPage(MainWindow.STATISTICS);
+                currentPageLabel.setText("/statistics");
+
             }
             case MainWindow.SETTINGS -> {
                 MainWindow.loadPage(MainWindow.SETTINGS);
+                currentPageLabel.setText("/settings");
+            }
+            case MainWindow.WELCOME -> {
+                MainWindow.loadPage(MainWindow.WELCOME);
+               // currentPageLabel.setText("");
             }
         }
     }
@@ -116,6 +131,11 @@ public class MainWindowController {
     @FXML
     public void switchToSettingsPage(ActionEvent event) throws IOException{
         switchPage(event, MainWindow.SETTINGS);
+    }
+
+    @FXML
+    public void switchToWelcomePage(ActionEvent event) throws IOException{
+        switchPage(event, MainWindow.WELCOME);
     }
 
     @FXML

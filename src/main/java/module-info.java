@@ -6,6 +6,9 @@ module com.codebase.socialnetwork {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires org.apache.pdfbox;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.core;
 
     opens com.codebase.socialnetwork to javafx.fxml;
     exports com.codebase.socialnetwork;

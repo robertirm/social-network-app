@@ -7,6 +7,7 @@ import com.codebase.socialnetwork.domain.*;
 import com.codebase.socialnetwork.domain.validator.FriendshipValidator;
 import com.codebase.socialnetwork.domain.validator.UserValidator;
 import com.codebase.socialnetwork.domain.validator.Validator;
+import com.codebase.socialnetwork.repository.MessageRepository;
 import com.codebase.socialnetwork.repository.Repository;
 import com.codebase.socialnetwork.repository.database.FriendshipRepositoryClass;
 import com.codebase.socialnetwork.repository.database.MessageRepositoryClass;
@@ -17,7 +18,6 @@ import com.codebase.socialnetwork.repository.memory.LoginSystemClass;
 import com.codebase.socialnetwork.service.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -40,7 +40,7 @@ public class Main extends Application {
 
         Repository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
         Repository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
-        Repository<Long, Message> messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
+        MessageRepository messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
         Repository<Long, Post> postRepository = new PostRepositoryClass(url, username, password);
 
         LoginSystem<Long, User> loginSystem = new LoginSystemClass();

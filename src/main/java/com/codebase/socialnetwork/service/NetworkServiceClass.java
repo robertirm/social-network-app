@@ -2,6 +2,7 @@ package com.codebase.socialnetwork.service;
 
 import com.codebase.socialnetwork.domain.*;
 import com.codebase.socialnetwork.domain.exception.EntityNullException;
+import com.codebase.socialnetwork.repository.MessageRepository;
 import com.codebase.socialnetwork.repository.Repository;
 import com.codebase.socialnetwork.repository.memory.LoginSystem;
 import com.codebase.socialnetwork.service.networkUtils.Graph;
@@ -13,10 +14,10 @@ import java.util.stream.Collectors;
 public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Friendship> {
     public final Repository<Long, User> userRepository;
     public final Repository<Tuple<Long, Long>, Friendship> friendshipRepository;
-    public final Repository<Long,Message> messageRepository;
+    public final MessageRepository messageRepository;
     public final LoginSystem<Long, User> loginSystem;
 
-    public NetworkServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, Repository<Long, Message> messageRepository, LoginSystem<Long, User> loginSystem) {
+    public NetworkServiceClass(Repository<Long, User> userRepository, Repository<Tuple<Long, Long>, Friendship> friendshipRepository, MessageRepository messageRepository, LoginSystem<Long, User> loginSystem) {
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
         this.messageRepository = messageRepository;
@@ -337,6 +338,22 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         }
         return conversations;
 
+    }
+
+    @Override
+    public Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
+        return this.messageRepository.getNumberOfSentMessages(this.loginSystem.getCurrentUserId(), startDate,endDate);
+    }
+
+    @Override
+    public Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
+        return this.messageRepository.getNumberOfReceivedMessages(this.loginSystem.getCurrentUserId(), startDate,endDate);
+
+    }
+
+    @Override
+    public List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate) {
+        return this.messageRepository.getMessagesFromFriend(this.getUserByUsername(this.loginSystem.getCurrentUsername()),friend,startDate,endDate);
     }
 
     private boolean checkConversation(String username, Message message){

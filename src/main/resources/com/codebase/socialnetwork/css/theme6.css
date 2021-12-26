@@ -38,7 +38,8 @@
 }
 #mainPageTopLayout > .label {
     -fx-text-fill: -light-color;
-    -fx-font-size: 20px;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
 }
 #mainPageButtonLayout {
     -fx-background-color: -dark-main-color;
@@ -58,6 +59,20 @@
 }
 #coloredLoginPane {
     -fx-background-color: -dark-main-color;
+}
+.tooltip {
+    -fx-show-delay: 100ms;
+    -fx-background-color: -light-main-color;
+    -fx-font-size: 20;
+}
+
+/* ================ WELCOME PAGE ==================*/
+#welcomeLabel {
+    -fx-text-fill: -dark-main-color;
+    -fx-font-size: 100px;
+    -fx-alignment: center;
+    -fx-font-family: "Edwardian Script ITC";
+    -fx-font-weight: bold;
 }
 
 /* ================ LOGIN PAGE ==================*/
@@ -119,3 +134,16 @@
     -fx-font-size: 14px;
 }
 
+/* ================= STATISTICS PAGE ===================*/
+#activityPane > .label {
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: -light-main-color;
+    -fx-font-size: 14px;
+}
+#historyPane > .label{
+    fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: -light-main-color;
+    -fx-font-size: 14px;
+}

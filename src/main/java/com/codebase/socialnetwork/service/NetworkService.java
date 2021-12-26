@@ -1,9 +1,6 @@
 package com.codebase.socialnetwork.service;
 
-import com.codebase.socialnetwork.domain.Conversation;
-import com.codebase.socialnetwork.domain.Entity;
-import com.codebase.socialnetwork.domain.FriendDTO;
-import com.codebase.socialnetwork.domain.Message;
+import com.codebase.socialnetwork.domain.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -25,5 +22,7 @@ public interface NetworkService<ID, E extends Entity<ID>> {
     Message getMessageById(Long id);
     List<List<Message>> getConversations(String username1, String username2);
     List<Conversation> getConversations(String username);
-
+    Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
+    Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
 }

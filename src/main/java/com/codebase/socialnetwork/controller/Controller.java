@@ -39,4 +39,7 @@ public interface Controller {
     HashSet<Post> getAllPosts();
     void addPost(InputStream imageStream, String description, int likes, String type, String username);
     void updatePost(InputStream imageStream, String description, int likes, Long idPost);
+    Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
+    Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
 }

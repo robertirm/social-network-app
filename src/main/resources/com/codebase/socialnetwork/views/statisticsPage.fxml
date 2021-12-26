@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.codebase.socialnetwork.controller.StatisticsController" />
+<AnchorPane fx:id="statisticsPageAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.StatisticsController">
+   <children>
+      <Pane fx:id="activityPane" layoutX="106.0" layoutY="32.0">
+         <children>
+            <Label prefHeight="38.0" prefWidth="295.0" text="Your activity during a time period:" />
+            <DatePicker fx:id="activityStartDatePicker" layoutX="41.0" layoutY="40.0" prefHeight="26.0" prefWidth="166.0" />
+            <DatePicker fx:id="activityEndDatePicker" layoutX="41.0" layoutY="74.0" prefHeight="26.0" prefWidth="166.0" />
+            <Label layoutY="40.0" prefHeight="26.0" prefWidth="42.0" text="Start:" />
+            <Label layoutY="73.0" prefHeight="26.0" prefWidth="42.0" text="End:" />
+            <Button fx:id="viewPieChartButton" layoutX="217.0" layoutY="40.0" mnemonicParsing="false" onAction="#onViewActivityButton" prefHeight="59.0" prefWidth="78.0" text="View" />
+         </children>
+      </Pane>
+      <PieChart fx:id="pieChart" layoutX="58.0" layoutY="145.0" prefHeight="300.0" prefWidth="386.0" />
+      <Button fx:id="saveActivityPdfButton" layoutX="165.0" layoutY="463.0" mnemonicParsing="false" onAction="#onSaveActivityPdfButton" prefHeight="38.0" prefWidth="153.0" text="EXPORT AS PDF" />
+      <Pane fx:id="historyPane" layoutX="507.0" layoutY="28.0">
+         <children>
+            <DatePicker fx:id="historyStartDatePicker" layoutX="42.0" layoutY="44.0" prefHeight="26.0" prefWidth="165.0" />
+            <DatePicker fx:id="historyEndDatePicker" layoutX="41.0" layoutY="78.0" prefHeight="26.0" prefWidth="166.0" />
+            <Label layoutY="44.0" prefHeight="26.0" prefWidth="42.0" text="Start:" />
+            <Label layoutY="77.0" prefHeight="26.0" prefWidth="42.0" text="End:" />
+            <Button fx:id="viewBarChartButton" layoutX="217.0" layoutY="44.0" mnemonicParsing="false" onAction="#onViewHistoryButton" prefHeight="59.0" prefWidth="78.0" text="View" />
+            <Label prefHeight="38.0" prefWidth="195.0" text="Messages history with" />
+            <ComboBox fx:id="historyComboBox" layoutX="169.0" layoutY="6.0" prefHeight="26.0" prefWidth="129.0" promptText="choose friend" />
+         </children>
+      </Pane>
+      <BarChart fx:id="barChart" layoutX="492.0" layoutY="145.0" prefHeight="300.0" prefWidth="386.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button fx:id="saveHistoryPdfButton" layoutX="608.0" layoutY="463.0" mnemonicParsing="false" onAction="#onSaveHistoryPdfButton" prefHeight="38.0" prefWidth="154.0" text="EXPORT AS PDF" />
+   </children>
+</AnchorPane>

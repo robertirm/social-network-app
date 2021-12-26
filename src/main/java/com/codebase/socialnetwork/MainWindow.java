@@ -18,6 +18,7 @@ public class MainWindow {
     public static final String EVENTS = "views/eventsPage.fxml";
     public static final String STATISTICS = "views/statisticsPage.fxml";
     public static final String SETTINGS = "views/settingsPage.fxml";
+    public static final String WELCOME = "views/welcomePage.fxml";
 
     public static final String THEME_1 = "css/theme1.css";
     public static final String THEME_2 = "css/theme2.css";

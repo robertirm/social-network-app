@@ -99,7 +99,8 @@
 }
 #mainPageTopLayout > .label {
     -fx-text-fill: -light-color;
-    -fx-font-size: 20px;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
 }
 #mainPageButtonLayout {
     -fx-background-color: -forth-color;
@@ -120,8 +121,21 @@
 #coloredLoginPane {
     -fx-background-color: -dark-main-color;
 }
+.tooltip {
+    -fx-show-delay: 100ms;
+    -fx-background-color: -light-main-color;
+    -fx-font-size: 20;
+}
 
+/* ================ WELCOME PAGE ==================*/
+#welcomeLabel {
+    -fx-text-fill: -light-color;
+    -fx-font-size: 100px;
+    -fx-alignment: center;
+    -fx-font-family: "Edwardian Script ITC";
+    -fx-font-weight: bold;
 
+}
 
 
 /* ================ LOGIN PAGE ==================*/
@@ -183,3 +197,29 @@
 }
 
 
+/* ================= STATISTICS PAGE ===================*/
+#activityPane > .label {
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: -light-main-color;
+    -fx-font-size: 14px;
+}
+.chart-pie-label-line {
+    -fx-stroke: -light-color;
+    -fx-fill: -light-color;
+}
+
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: -light-color;
+    -fx-font-size: 1em;
+}
+.chart-legend {
+    -fx-background-color:  derive(-forth-color, 30%);
+    -fx-stroke: #daa520;
+}
+#historyPane > .label{
+    fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: -light-main-color;
+    -fx-font-size: 14px;
+}
