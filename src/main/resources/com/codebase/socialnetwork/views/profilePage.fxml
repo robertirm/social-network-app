@@ -2,14 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.ProfileController">
    <children>
@@ -20,19 +18,21 @@
       </ImageView>
       <Button fx:id="buttonChange" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#changeProfilePicture" prefHeight="26.0" prefWidth="75.0" text="Change" />
       <Button layoutX="103.0" layoutY="173.0" mnemonicParsing="false" onAction="#sharePhotos" prefHeight="26.0" prefWidth="110.0" text="Share" />
-      <ScrollPane fx:id="scrollPaneProfile" layoutX="223.0" layoutY="14.0" prefHeight="512.0" prefWidth="702.0" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="gridPaneProfile" prefHeight="509.0" prefWidth="685.0">
+      <TextArea fx:id="textAreaProfileDescription" editable="false" layoutX="14.0" layoutY="253.0" prefHeight="224.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
+      <Button fx:id="buttonProfileDescription" layoutX="75.0" layoutY="485.0" mnemonicParsing="false" onAction="#editProfileDescription" prefHeight="26.0" prefWidth="56.0" text="Edit" />
+      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="200.0" text="username" />
+      <AnchorPane fx:id="anchorPaneProfile" layoutX="225.0" layoutY="24.0" prefHeight="453.0" prefWidth="694.0">
+         <children>
+            <GridPane fx:id="gridPaneProfile" prefHeight="454.0" prefWidth="694.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
             </GridPane>
-         </content>
-      </ScrollPane>
-      <TextArea fx:id="textAreaProfileDescription" editable="false" layoutX="14.0" layoutY="253.0" prefHeight="224.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
-      <Button fx:id="buttonProfileDescription" layoutX="75.0" layoutY="485.0" mnemonicParsing="false" onAction="#editProfileDescription" prefHeight="26.0" prefWidth="56.0" text="Edit" />
-      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="211.0" prefHeight="26.0" prefWidth="200.0" text="username" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="buttonPrevPage" layoutX="462.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToPrevPostsPage" text="Previous Page" />
+      <Button fx:id="buttonNextPage" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
    </children>
 </AnchorPane>

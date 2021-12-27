@@ -15,6 +15,7 @@ import com.codebase.socialnetwork.repository.database.PostRepositoryClass;
 import com.codebase.socialnetwork.repository.database.UserRepositoryClass;
 import com.codebase.socialnetwork.repository.memory.LoginSystem;
 import com.codebase.socialnetwork.repository.memory.LoginSystemClass;
+import com.codebase.socialnetwork.repository.paging.PagingRepository;
 import com.codebase.socialnetwork.service.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,7 @@ public class Main extends Application {
         mainStage = stage;
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "bobert";
+        String password = "";
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
@@ -41,7 +42,7 @@ public class Main extends Application {
         Repository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
         Repository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
         MessageRepository messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
-        Repository<Long, Post> postRepository = new PostRepositoryClass(url, username, password);
+        PagingRepository<Long, Post> postRepository = new PostRepositoryClass(url, username, password);
 
         LoginSystem<Long, User> loginSystem = new LoginSystemClass();
         UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);

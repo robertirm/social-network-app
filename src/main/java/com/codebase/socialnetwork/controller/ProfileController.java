@@ -28,7 +28,7 @@ public class ProfileController extends MainWindowController {
     ImageView imageViewProfilePicture;
 
     @FXML
-    ScrollPane scrollPaneProfile;
+    AnchorPane anchorPaneProfile;
 
     @FXML
     GridPane gridPaneProfile;
@@ -46,13 +46,19 @@ public class ProfileController extends MainWindowController {
     Button buttonChange;
 
     @FXML
+    Button buttonPrevPage;
+
+    @FXML
+    Button buttonNextPage;
+
+    @FXML
     public void initialize() throws IOException {
         MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
         labelUsernameProfilePage.setText(backEndController.getCurrentUsername());
         numberOfPhotos = 0;
 
         setProfileInfo();
-        updatePosts();
+        initPosts();
         MainWindow.setVisibility(true);
 //        Image image = new Image("com/codebase/socialnetwork/images/hacker.png");
 //        imageViewProfilePicture.setImage(image);
@@ -66,13 +72,11 @@ public class ProfileController extends MainWindowController {
     }
 
     public void setProfileInfo(){
-        for(Post post : backEndController.getAllPosts()){
-            if(post.getType().equals("profile") && post.getUsername().equals(backEndController.getCurrentUsername())){
-                Image image = new Image(post.getImageStream());
-                imageViewProfilePicture.setImage(image);
-                textAreaProfileDescription.setText(post.getDescription());
-                break;
-            }
+        Post post = backEndController.getProfilePost(backEndController.getCurrentUsername());
+        if(post != null){
+            Image image = new Image(post.getImageStream());
+            imageViewProfilePicture.setImage(image);
+            textAreaProfileDescription.setText(post.getDescription());
         }
     }
 
@@ -93,13 +97,11 @@ public class ProfileController extends MainWindowController {
             String type = "profile";
             String username = backEndController.getCurrentUsername();
 
-            // if profile info already exists
-            for(Post post : backEndController.getAllPosts()){
-                if(post.getType().equals("profile") && post.getUsername().equals(username)){
-                    backEndController.updatePost(post.getImageStream(), description, likes, post.getId());
-                    setProfileInfo();
-                    return;
-                }
+            Post post = backEndController.getProfilePost(username);
+            if(post != null){
+                backEndController.updatePost(post.getImageStream(), description, likes, post.getId(), username);
+                setProfileInfo();
+                return;
             }
 
             Path currentRelativePath = Paths.get("");
@@ -127,13 +129,12 @@ public class ProfileController extends MainWindowController {
             String type = "profile";
             String username = backEndController.getCurrentUsername();
 
-            // if profile info already exists
-            for(Post post : backEndController.getAllPosts()){
-                if(post.getType().equals("profile") && post.getUsername().equals(username)){
-                    backEndController.updatePost(fileInputStream, description, likes, post.getId());
-                    setProfileInfo();
-                    return;
-                }
+            // if profile info already existS
+            Post post = backEndController.getProfilePost(username);
+            if(post != null){
+                backEndController.updatePost(fileInputStream, description, likes, post.getId(), username);
+                setProfileInfo();
+                return;
             }
 
             //if not exists profile
@@ -147,7 +148,7 @@ public class ProfileController extends MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File file = fileChooser.showOpenDialog(Main.mainStage);
         if(file != null){
 //            Image image = new Image(file.toURI().toString());
@@ -164,32 +165,55 @@ public class ProfileController extends MainWindowController {
         }
     }
 
+    private void initPosts(){
+        numberOfPhotos = 0;
+        gridPaneProfile.getChildren().clear();
+        for(Post post : backEndController.getPostsOnCurrentPage(0, backEndController.getCurrentUsername())){
+            createNewPost(post);
+        }
+    }
+
     private void updatePosts(){
         numberOfPhotos = 0;
         gridPaneProfile.getChildren().clear();
-        for(Post post : backEndController.getAllPosts()){
-            if(post.getType().equals("other") && post.getUsername().equals(backEndController.getCurrentUsername())){
-                createNewPost(post);
-            }
+        for(Post post : backEndController.getPostsOnCurrentPage(-1, backEndController.getCurrentUsername())){
+            createNewPost(post);
+        }
+    }
+
+    @FXML
+    public void goToPrevPostsPage(){
+        numberOfPhotos = 0;
+        gridPaneProfile.getChildren().clear();
+        for(Post post : backEndController.getPrevPosts(backEndController.getCurrentUsername())){
+            createNewPost(post);
+        }
+    }
+
+    @FXML
+    public void goToNextPostsPage(){
+        numberOfPhotos = 0;
+        gridPaneProfile.getChildren().clear();
+        for(Post post : backEndController.getNextPosts(backEndController.getCurrentUsername())){
+            createNewPost(post);
         }
     }
 
     private void createNewPost(Post post){
         Image image = new Image(post.getImageStream());
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(0.33 * scrollPaneProfile.getPrefHeight());
+        anchorPane.setPrefHeight(0.33 * gridPaneProfile.getPrefHeight());
 
         VBox vBox = new VBox();
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.33 * scrollPaneProfile.getPrefHeight());
-        imageView.setFitWidth(0.33 * scrollPaneProfile.getPrefWidth());
+        imageView.setFitHeight(0.27 * gridPaneProfile.getPrefHeight());
+        imageView.setFitWidth(0.32 * gridPaneProfile.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         HBox hBox = new HBox();
 
-        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));
-        hBox.getChildren().add(labelPhotoLikes);
+        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));;
 
         Button buttonLike = new Button("Like");
         buttonLike.setId(post.getId().toString());
@@ -202,11 +226,16 @@ public class ProfileController extends MainWindowController {
                 int numberOfLikes = Integer.parseInt(labelPhotoLikes.getText());
                 numberOfLikes += 1;
                 labelPhotoLikes.setText(String.valueOf(numberOfLikes));
-                backEndController.updatePost(null, post.getDescription(), numberOfLikes, post.getId());
+                backEndController.updatePost(null, post.getDescription(), numberOfLikes, post.getId(), backEndController.getCurrentUsername());
             }
         });
 
         hBox.getChildren().add(buttonLike);
+        Label labelBeforeLikes = new Label("    You have ");
+        hBox.getChildren().add(labelBeforeLikes);
+        hBox.getChildren().add(labelPhotoLikes);
+        Label labelAfterLikes = new Label(" likes...");
+        hBox.getChildren().add(labelAfterLikes);
 
         vBox.getChildren().add(hBox);
 

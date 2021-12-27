@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BackendController implements Controller {
     public final UserService<Long, User> userService;
@@ -171,8 +172,13 @@ public class BackendController implements Controller {
     }
 
     @Override
-    public HashSet<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public HashSet<Post> getAllPosts(String username) {
+        return postService.getAllPosts(username);
+    }
+
+    @Override
+    public Post getProfilePost(String username) {
+        return postService.getProfilePost(username);
     }
 
     @Override
@@ -181,8 +187,23 @@ public class BackendController implements Controller {
     }
 
     @Override
-    public void updatePost(InputStream imageStream, String description, int likes, Long idPost) {
-        postService.updatePost(imageStream, description, likes, idPost);
+    public void updatePost(InputStream imageStream, String description, int likes, Long idPost, String username) {
+        postService.updatePost(imageStream, description, likes, idPost, username);
+    }
+
+    @Override
+    public Set<Post> getPrevPosts(String username) {
+        return postService.getPrevPosts(username);
+    }
+
+    @Override
+    public Set<Post> getNextPosts(String username) {
+        return postService.getNextPosts(username);
+    }
+
+    @Override
+    public Set<Post> getPostsOnCurrentPage(int page, String username) {
+        return postService.getPostsOnCurrentPage(page, username);
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public interface Controller {
     void startApp();
@@ -36,9 +37,13 @@ public interface Controller {
     List<Conversation> getConversations(String username);
     Message createMessage(Message message,String text);
     Message createMessage(String text, List<User> receivers);
-    HashSet<Post> getAllPosts();
+    HashSet<Post> getAllPosts(String username);
+    Post getProfilePost(String username);
     void addPost(InputStream imageStream, String description, int likes, String type, String username);
-    void updatePost(InputStream imageStream, String description, int likes, Long idPost);
+    void updatePost(InputStream imageStream, String description, int likes, Long idPost, String username);
+    Set<Post> getPrevPosts(String username);
+    Set<Post> getNextPosts(String username);
+    Set<Post> getPostsOnCurrentPage(int page, String username);
     Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
     Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);

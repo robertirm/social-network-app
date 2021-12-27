@@ -4,6 +4,7 @@ import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.FriendDTO;
+import com.codebase.socialnetwork.domain.Post;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -104,12 +105,22 @@ public class FriendsController extends MainWindowController {
 
        // <Image url="@../images/logo2.jpg" />
        //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-       String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
-       Path imagePath = Paths.get(imgURL);
-       File imageFile = imagePath.toFile();
-       Image image = new Image(imageFile.toURI().toString());
+
+       Image image;
+       Post post = backEndController.getProfilePost(friendDTO.getUser().getUsername());
+       if(post != null){
+           image = new Image(post.getImageStream());
+       }
+       else {
+           String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
+           Path imagePath = Paths.get(imgURL);
+           File imageFile = imagePath.toFile();
+           image = new Image(imageFile.toURI().toString());
+       }
 
        ImageView imageView = new ImageView(image);
+       imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
+       imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
        vBox.getChildren().add(imageView);
 
        Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
@@ -143,12 +154,22 @@ public class FriendsController extends MainWindowController {
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-        String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
-        Path imagePath = Paths.get(imgURL);
-        File imageFile = imagePath.toFile();
-        Image image = new Image(imageFile.toURI().toString());
+
+        Image image;
+        Post post = backEndController.getProfilePost(friendDTO.getUser().getUsername());
+        if(post != null){
+            image = new Image(post.getImageStream());
+        }
+        else {
+            String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
+            Path imagePath = Paths.get(imgURL);
+            File imageFile = imagePath.toFile();
+            image = new Image(imageFile.toURI().toString());
+        }
 
         ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
+        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
@@ -182,12 +203,22 @@ public class FriendsController extends MainWindowController {
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-        String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
-        Path imagePath = Paths.get(imgURL);
-        File imageFile = imagePath.toFile();
-        Image image = new Image(imageFile.toURI().toString());
+
+        Image image;
+        Post post = backEndController.getProfilePost(friendDTO.getUser().getUsername());
+        if(post != null){
+            image = new Image(post.getImageStream());
+        }
+        else {
+            String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
+            Path imagePath = Paths.get(imgURL);
+            File imageFile = imagePath.toFile();
+            image = new Image(imageFile.toURI().toString());
+        }
 
         ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
+        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
@@ -241,12 +272,22 @@ public class FriendsController extends MainWindowController {
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
-        String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
-        Path imagePath = Paths.get(imgURL);
-        File imageFile = imagePath.toFile();
-        Image image = new Image(imageFile.toURI().toString());
+
+        Image image;
+        Post post = backEndController.getProfilePost(friendDTO.getUser().getUsername());
+        if(post != null){
+            image = new Image(post.getImageStream());
+        }
+        else {
+            String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
+            Path imagePath = Paths.get(imgURL);
+            File imageFile = imagePath.toFile();
+            image = new Image(imageFile.toURI().toString());
+        }
 
         ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
+        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
