@@ -4,47 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Update profile style and fixed posts showing for the user">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/WelcomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/repository/MessageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/welcomePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/repository/database/MessageRepositoryClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/repository/database/MessageRepositoryClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/service/NetworkService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/service/NetworkService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/service/NetworkServiceClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/service/NetworkServiceClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/BackendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/BackendController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/repository/database/MessageRepositoryClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/repository/database/MessageRepositoryClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/service/NetworkServiceClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme3.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme5.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme5.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme6.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme6.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/statisticsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/statisticsPage.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Add observer pattern for friendships, make Friends Controller Observer and Backend Controller Observable which notify observers when friendships are created, deleted or has status changed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,9 +40,9 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="CSS File" />
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -263,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640046742086</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add observer pattern for friendships, make Friends Controller Observer and Backend Controller Observable which notify observers when friendships are created, deleted or has status changed">
+      <created>1640699423398</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1640699423398</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +255,7 @@
     <MESSAGE value="Add search friends option by username substring" />
     <MESSAGE value="Refactor controllers to remove duplicated code.&#10;Add sign up functionality." />
     <MESSAGE value="Refactor design, introduce main page for common things in every page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor design, introduce main page for common things in every page" />
+    <MESSAGE value="Add observer pattern for friendships, make Friends Controller Observer and Backend Controller Observable which notify observers when friendships are created, deleted or has status changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add observer pattern for friendships, make Friends Controller Observer and Backend Controller Observable which notify observers when friendships are created, deleted or has status changed" />
   </component>
 </project>

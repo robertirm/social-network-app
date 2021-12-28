@@ -4,6 +4,7 @@ import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.FriendDTO;
+import com.codebase.socialnetwork.utils.observer.Observer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,7 +28,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
-public class FriendsController extends MainWindowController {
+public class FriendsController extends MainWindowController implements Observer {
     ObservableList<FriendDTO> observableListFriendDTO = FXCollections.observableArrayList();
     List<FriendDTO> friendDTOList;
 
@@ -45,6 +46,7 @@ public class FriendsController extends MainWindowController {
 
    @FXML
    public void initialize() {
+       backEndController.addObserver(this);
        textFieldName.textProperty().addListener(o -> handleSearch());
 
        List<String> type = Arrays.asList("Others", "Friends", "Request", "Sent Request");
@@ -124,8 +126,8 @@ public class FriendsController extends MainWindowController {
            public void handle(ActionEvent event) {
                System.out.println("Hey bro eu sunt: "  + buttonAdd.getId());
                backEndController.addFriend(buttonAdd.getId());
-               updateFriendDTOList();
-               handleSearch();
+//               updateFriendDTOList();
+//               handleSearch();
            }
        });
 
@@ -163,8 +165,8 @@ public class FriendsController extends MainWindowController {
             public void handle(ActionEvent event) {
                 System.out.println("Hey bro eu sunt: "  + buttonRemove.getId());
                 backEndController.removeFriend(buttonRemove.getId());
-                updateFriendDTOList();
-                handleSearch();
+//                updateFriendDTOList();
+//                handleSearch();
             }
         });
 
@@ -206,8 +208,8 @@ public class FriendsController extends MainWindowController {
             public void handle(ActionEvent event) {
                 System.out.println("Hey bro eu sunt: "  + buttonDecline.getId());
                 backEndController.setFriendshipStatus(buttonDecline.getId(), "rejected");
-                updateFriendDTOList();
-                handleSearch();
+//                updateFriendDTOList();
+//                handleSearch();
             }
         });
 
@@ -221,8 +223,8 @@ public class FriendsController extends MainWindowController {
             public void handle(ActionEvent event) {
                 System.out.println("Hey bro eu sunt: "  + buttonAccept.getId());
                 backEndController.setFriendshipStatus(buttonAccept.getId(), "approved");
-                updateFriendDTOList();
-                handleSearch();
+//                updateFriendDTOList();
+//                handleSearch();
             }
         });
 
@@ -264,8 +266,8 @@ public class FriendsController extends MainWindowController {
             public void handle(ActionEvent event) {
                 System.out.println("Hey bro eu sunt: "  + buttonCancel.getId());
                 backEndController.setFriendshipStatus(buttonCancel.getId(), "rejected");
-                updateFriendDTOList();
-                handleSearch();
+//                updateFriendDTOList();
+//                handleSearch();
             }
         });
 
@@ -304,4 +306,10 @@ public class FriendsController extends MainWindowController {
        }
        scrollPaneFriends.setContent(gridPaneFriends);
    }
+
+    @Override
+    public void update() {
+        updateFriendDTOList();
+        handleSearch();
+    }
 }
