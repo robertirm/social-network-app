@@ -4,11 +4,13 @@ public class User extends Entity<Long> {
     private final String firstName;
     private final String lastName;
     private final String username;
+    private final String password;
 
-    public User(String firstName, String lastName, String username) {
+    public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -20,6 +22,10 @@ public class User extends Entity<Long> {
     }
 
     public String getUsername() { return username; }
+
+    public String getPassword() {
+        return password;
+    }
 
     @Override
     public String toString() {

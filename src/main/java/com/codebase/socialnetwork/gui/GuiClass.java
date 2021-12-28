@@ -171,7 +171,9 @@ public class GuiClass implements Gui {
         this.printAll();
         System.out.println("Please enter the username:");
         String username = in.nextLine();
-        this.controller.login(username);
+        System.out.println("Please enter the password:");
+        String password = in.nextLine();
+        this.controller.login(username, password);
     }
 
     @Override
@@ -187,7 +189,9 @@ public class GuiClass implements Gui {
         String lastName = in.nextLine();
         System.out.println("Please enter the username:");
         String username = in.nextLine();
-        this.controller.signup(firstName, lastName, username);
+        System.out.println("Please enter the password:");
+        String password = in.nextLine();
+        this.controller.signup(firstName, lastName, username, password);
     }
 
     @Override

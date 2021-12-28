@@ -7,12 +7,12 @@ import java.util.HashSet;
 public interface UserService <ID, E extends Entity<ID>> {
     void startApp();
     void exitApp();
-    void login(String username);
+    void login(String username, String password);
     void logout();
     String getCurrentUsername();
     ID getCurrentUserId();
     HashSet<E> getAllUsers();
-    void addUser(String firstName, String lastName, String username);
+    void addUser(String firstName, String lastName, String username, String password);
     void removeUser();
     E getUserById(ID id);
     E getUserByUsername(String username);
