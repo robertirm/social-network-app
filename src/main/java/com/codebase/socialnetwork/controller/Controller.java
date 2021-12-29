@@ -14,11 +14,11 @@ public interface Controller {
     void exitApp();
     String getCurrentUsername();
     Long getCurrentUserId();
-    void login(String username);
+    void login(String username, String password);
     void logout();
     HashSet<User> getAllUsers();
     HashSet<Friendship> getAllFriendships();
-    void signup(String firstName, String lastName, String username);
+    void signup(String firstName, String lastName, String username, String password);
     void deleteAccount();
     void addFriend(String username);
     void removeFriend(String username);

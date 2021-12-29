@@ -1,6 +1,7 @@
 package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.exception.ValidationException;
+import com.codebase.socialnetwork.domain.exception.WrongUsernameException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -33,12 +34,23 @@ public class SignupController extends MainWindowController {
         String username = usernameTextField.getText().trim();
         String firstName = firstNameTextField.getText().trim();
         String lastName = lastNameTextField.getText().trim();
+        String password = passwordTextField.getText().trim();
+        String confirmPassword = confirmPasswordTextField.getText().trim();
+        if(!password.equals(confirmPassword)){
+            errorSignUpLabel.setText("Password doesn't match");
+            return;
+        }
+
+        if ("".equals(password)) {
+            errorSignUpLabel.setText("Password can't be empty. \n");
+            return;
+        }
 
         try{
-            backEndController.signup(firstName,lastName,username);
-            backEndController.login(username);
+            backEndController.signup(firstName,lastName,username, password);
+            backEndController.login(username, password);
             switchToProfilePage(event);
-        }catch (ValidationException e){
+        }catch (ValidationException | WrongUsernameException e){
             errorSignUpLabel.setText(e.getMessage());
         }
 

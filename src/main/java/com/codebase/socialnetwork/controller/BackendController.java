@@ -43,8 +43,8 @@ public class BackendController implements Controller {
     }
 
     @Override
-    public void login(String username) {
-        userService.login(username);
+    public void login(String username, String password) {
+        userService.login(username, password);
     }
 
     @Override
@@ -63,8 +63,8 @@ public class BackendController implements Controller {
     }
 
     @Override
-    public void signup(String firstName, String lastName, String username) {
-        userService.addUser(firstName, lastName, username);
+    public void signup(String firstName, String lastName, String username, String password) {
+        userService.addUser(firstName, lastName, username, password);
     }
 
     @Override

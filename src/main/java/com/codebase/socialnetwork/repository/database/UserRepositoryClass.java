@@ -24,12 +24,13 @@ public class UserRepositoryClass implements Repository<Long, User> {
 
     @Override
     public Long getCount() {
-        Long usersCount = 0L;
-        for(User ignored : this.findAll()){
-            usersCount++;
-        }
-
-        return usersCount;
+//        Long usersCount = 0L;
+//        for(User ignored : this.findAll()){
+//            usersCount++;
+//        }
+//
+//        return usersCount;
+        return (long)this.findAll().size();
     }
 
     @Override
@@ -52,8 +53,9 @@ public class UserRepositoryClass implements Repository<Long, User> {
             String firstName = resultSet.getString("first_name");
             String lastName = resultSet.getString("last_name");
             String username = resultSet.getString("username");
+            String password = resultSet.getString("password");
 
-            User user = new User(firstName, lastName, username);
+            User user = new User(firstName, lastName, username, password);
             user.setId(idUser);
 
             return user;
@@ -78,8 +80,9 @@ public class UserRepositoryClass implements Repository<Long, User> {
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
 
-                User user = new User(firstName, lastName, username);
+                User user = new User(firstName, lastName, username, password);
                 user.setId(idUser);
                 users.add(user);
             }
@@ -105,13 +108,14 @@ public class UserRepositoryClass implements Repository<Long, User> {
             return user;
         }
 
-        String queryAdd = "insert into users (first_name, last_name, username) values (?,?,?)";
+        String queryAdd = "insert into users (first_name, last_name, username, password) values (?,?,?, ?)";
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement  ps = connection.prepareStatement(queryAdd)) {
 
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getUsername());
+            ps.setString(4, user.getPassword());
 
             ps.executeUpdate();
 
