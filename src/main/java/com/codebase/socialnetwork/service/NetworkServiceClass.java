@@ -365,8 +365,4 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
         }
         return false;
     }
-
-
-
-
 }

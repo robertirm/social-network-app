@@ -4,14 +4,17 @@ import com.codebase.socialnetwork.domain.*;
 import com.codebase.socialnetwork.service.NetworkService;
 import com.codebase.socialnetwork.service.PostService;
 import com.codebase.socialnetwork.service.UserService;
+import com.codebase.socialnetwork.utils.observer.Observable;
+import com.codebase.socialnetwork.utils.observer.Observer;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class BackendController implements Controller {
+public class BackendController implements Observable, Controller {
     public final UserService<Long, User> userService;
     public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
     public final PostService<Long, Post> postService;
@@ -75,11 +78,13 @@ public class BackendController implements Controller {
     @Override
     public void addFriend(String username) {
         networkService.addFriendship(username);
+        notifyObservers();
     }
 
     @Override
     public void removeFriend(String username) {
         networkService.removeFriendship(username);
+        notifyObservers();
     }
 
     @Override
@@ -110,6 +115,7 @@ public class BackendController implements Controller {
     @Override
     public void setFriendshipStatus(String friendUsername, String status) {
         this.networkService.setFriendshipStatus(friendUsername, status);
+        notifyObservers();
     }
 
     @Override
@@ -219,5 +225,22 @@ public class BackendController implements Controller {
     @Override
     public List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate) {
         return networkService.getMessagesFromFriend(friend,startDate,endDate);
+    }
+
+    private List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        observers.forEach(Observer::update);
     }
 }

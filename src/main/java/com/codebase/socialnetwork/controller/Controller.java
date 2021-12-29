@@ -1,6 +1,7 @@
 package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
+import com.codebase.socialnetwork.utils.observer.Observer;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -47,4 +48,5 @@ public interface Controller {
     Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
     Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
+    void addObserver(Observer observer);
 }
