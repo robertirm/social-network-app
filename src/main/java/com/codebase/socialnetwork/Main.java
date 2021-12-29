@@ -34,7 +34,7 @@ public class Main extends Application {
         mainStage = stage;
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "";
+        String password = "bobert";
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
