@@ -4,6 +4,8 @@ import com.codebase.socialnetwork.Main;
 import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.FriendDTO;
 import com.codebase.socialnetwork.domain.Post;
+import com.codebase.socialnetwork.domain.User;
+import com.codebase.socialnetwork.repository.paging.Pageable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,6 +45,12 @@ public class ProfileController extends MainWindowController {
     Label labelUsernameProfilePage;
 
     @FXML
+    Label labelFirstNameProfilePage;
+
+    @FXML
+    Label labelLastNameProfilePage;
+
+    @FXML
     Button buttonChange;
 
     @FXML
@@ -53,8 +61,12 @@ public class ProfileController extends MainWindowController {
 
     @FXML
     public void initialize() throws IOException {
-        MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
-        labelUsernameProfilePage.setText(backEndController.getCurrentUsername());
+        String currentUsername = backEndController.getCurrentUsername();
+        MainWindow.mainWindowController.setUsername(currentUsername);
+        User currentUser = backEndController.getUserByUsername(currentUsername);
+        labelUsernameProfilePage.setText("@" + currentUsername);
+        labelFirstNameProfilePage.setText(currentUser.getFirstName());
+        labelLastNameProfilePage.setText(currentUser.getLastName());
         numberOfPhotos = 0;
 
         setProfileInfo();
@@ -86,13 +98,20 @@ public class ProfileController extends MainWindowController {
         if(currentOption.equals("Edit")){
             buttonProfileDescription.setText("Save");
             textAreaProfileDescription.setEditable(true);
+            String description = textAreaProfileDescription.getText().strip();
+            if(description.equals("Description...")){
+                textAreaProfileDescription.setText("");
+            }
+
         }
         else if(currentOption.equals("Save")){
             buttonProfileDescription.setText("Edit");
             textAreaProfileDescription.setEditable(false);
 
-
-            String description = textAreaProfileDescription.getText();
+            String description = textAreaProfileDescription.getText().strip();
+            if(description.equals("")){
+                description = "Description...";
+            }
             int likes = 0;
             String type = "profile";
             String username = backEndController.getCurrentUsername();
@@ -120,7 +139,7 @@ public class ProfileController extends MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File file = fileChooser.showOpenDialog(Main.mainStage);
         if(file != null){
             InputStream fileInputStream = new FileInputStream(file);
@@ -161,7 +180,8 @@ public class ProfileController extends MainWindowController {
             String username = backEndController.getCurrentUsername();
 
             backEndController.addPost(fileInputStream, description, likes, type, backEndController.getCurrentUsername());
-            updatePosts();
+            //updatePosts();
+            initPosts();
         }
     }
 
@@ -171,6 +191,7 @@ public class ProfileController extends MainWindowController {
         for(Post post : backEndController.getPostsOnCurrentPage(0, backEndController.getCurrentUsername())){
             createNewPost(post);
         }
+        updatePageControllButtons();
     }
 
     private void updatePosts(){
@@ -178,6 +199,28 @@ public class ProfileController extends MainWindowController {
         gridPaneProfile.getChildren().clear();
         for(Post post : backEndController.getPostsOnCurrentPage(-1, backEndController.getCurrentUsername())){
             createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void getFirstPagePosts(){
+        numberOfPhotos = 0;
+        gridPaneProfile.getChildren().clear();
+        for(Post post : backEndController.getFirstPagePosts(backEndController.getCurrentUsername())){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void updatePageControllButtons(){
+        Pageable pageable = backEndController.getPageable();
+        Long postsCount = backEndController.getPostsCount(backEndController.getCurrentUsername());
+        buttonPrevPage.setDisable(pageable.getPageNumber() == 0);
+        if((postsCount - 1)/ pageable.getPageSize() == pageable.getPageNumber()){
+            buttonNextPage.setDisable(true);
+        }
+        else{
+            buttonNextPage.setDisable(false);
         }
     }
 
@@ -188,6 +231,7 @@ public class ProfileController extends MainWindowController {
         for(Post post : backEndController.getPrevPosts(backEndController.getCurrentUsername())){
             createNewPost(post);
         }
+        updatePageControllButtons();
     }
 
     @FXML
@@ -197,6 +241,7 @@ public class ProfileController extends MainWindowController {
         for(Post post : backEndController.getNextPosts(backEndController.getCurrentUsername())){
             createNewPost(post);
         }
+        updatePageControllButtons();
     }
 
     private void createNewPost(Post post){

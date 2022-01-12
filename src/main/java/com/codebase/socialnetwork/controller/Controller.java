@@ -1,6 +1,7 @@
 package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
+import com.codebase.socialnetwork.repository.paging.Pageable;
 import com.codebase.socialnetwork.utils.observer.Observer;
 
 import java.io.InputStream;
@@ -38,13 +39,16 @@ public interface Controller {
     List<Conversation> getConversations(String username);
     Message createMessage(Message message,String text);
     Message createMessage(String text, List<User> receivers);
-    HashSet<Post> getAllPosts(String username);
+    List<Post> getAllPosts(String username);
+    Pageable getPageable();
+    Long getPostsCount(String username);
     Post getProfilePost(String username);
     void addPost(InputStream imageStream, String description, int likes, String type, String username);
     void updatePost(InputStream imageStream, String description, int likes, Long idPost, String username);
-    Set<Post> getPrevPosts(String username);
-    Set<Post> getNextPosts(String username);
-    Set<Post> getPostsOnCurrentPage(int page, String username);
+    List<Post> getPrevPosts(String username);
+    List<Post> getNextPosts(String username);
+    List<Post> getFirstPagePosts(String username);
+    List<Post> getPostsOnCurrentPage(int page, String username);
     Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
     Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);

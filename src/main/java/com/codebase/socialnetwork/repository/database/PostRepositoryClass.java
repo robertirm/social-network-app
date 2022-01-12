@@ -1,5 +1,6 @@
 package com.codebase.socialnetwork.repository.database;
 
+import com.codebase.socialnetwork.domain.Friendship;
 import com.codebase.socialnetwork.domain.Post;
 import com.codebase.socialnetwork.domain.User;
 import com.codebase.socialnetwork.domain.exception.EntityNullException;
@@ -12,7 +13,12 @@ import com.codebase.socialnetwork.repository.paging.PagingRepository;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
+import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
 
 public class PostRepositoryClass implements PagingRepository<Long, Post> {
     private final String dbUrl;
@@ -27,7 +33,7 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
 
     @Override
     public Long getCount(String username) {
-        HashSet<Post> posts = findAll(username);
+        List<Post> posts = findAll(username);
         return (long)posts.size();
     }
 
@@ -37,11 +43,11 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
     }
 
     @Override
-    public HashSet<Post> findAll(String username) {
-        HashSet<Post> posts = new HashSet<>();
+    public List<Post> findAll(String username) {
+        List<Post> posts = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-             PreparedStatement statement = connection.prepareStatement("SELECT * from posts WHERE username=? and type=?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * from posts WHERE username=? and type=? ORDER BY date_post DESC")) {
 
             statement.setString(1, username);
             statement.setString(2, "other");
@@ -54,8 +60,12 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
                 int likes = resultSet.getInt("likes");
                 String type = resultSet.getString("type");
                 String usernamePost = resultSet.getString("username");
+                Timestamp datePost = resultSet.getTimestamp("date_post");
 
-                Post post = new Post(imageStream, description, likes, type, usernamePost);
+                String dateTimeString = datePost.toString().strip().substring(0, 16);
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DATE_TIME_FORMATTER);
+
+                Post post = new Post(imageStream, description, likes, type, usernamePost, dateTime);
                 post.setId(idPost);
                 posts.add(post);
             }
@@ -92,8 +102,12 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
                 int likes = resultSet.getInt("likes");
                 String type = resultSet.getString("type");
                 String usernamePost = resultSet.getString("username");
+                Timestamp datePost = resultSet.getTimestamp("date_post");
 
-                Post post = new Post(imageStream, description, likes, type, usernamePost);
+                String dateTimeString = datePost.toString().strip().substring(0, 16);
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DATE_TIME_FORMATTER);
+
+                Post post = new Post(imageStream, description, likes, type, usernamePost, dateTime);
                 post.setId(idPost);
                 return post;
             }
@@ -114,7 +128,7 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
         }
 
 
-        String queryAdd = "insert into posts (image, description, likes, type, username) values (?,?,?,?,?)";
+        String queryAdd = "insert into posts (image, description, likes, type, username, date_post) values (?,?,?,?,?,?)";
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(queryAdd)) {
 
@@ -123,6 +137,7 @@ public class PostRepositoryClass implements PagingRepository<Long, Post> {
             ps.setInt(3, post.getLikes());
             ps.setString(4, post.getType());
             ps.setString(5, post.getUsername());
+            ps.setTimestamp(6, Timestamp.valueOf(post.getDate()));
 
             ps.executeUpdate();
 

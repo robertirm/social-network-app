@@ -3,13 +3,14 @@ package com.codebase.socialnetwork.repository;
 import com.codebase.socialnetwork.domain.Entity;
 
 import java.util.HashSet;
+import java.util.List;
 
 public interface PostRepository<ID, E extends Entity<ID>> {
     Long getCount(String username);
 
     E findOne(ID id);
 
-    HashSet<E> findAll(String username);
+    List<E> findAll(String username);
 
     E findProfilePost(String username);
 

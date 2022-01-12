@@ -2,6 +2,7 @@ package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
 import com.codebase.socialnetwork.repository.EventRepository;
+import com.codebase.socialnetwork.repository.paging.Pageable;
 import com.codebase.socialnetwork.service.EventService;
 import com.codebase.socialnetwork.service.NetworkService;
 import com.codebase.socialnetwork.service.PostService;
@@ -182,8 +183,18 @@ public class BackendController implements Observable, Controller {
     }
 
     @Override
-    public HashSet<Post> getAllPosts(String username) {
+    public List<Post> getAllPosts(String username) {
         return postService.getAllPosts(username);
+    }
+
+    @Override
+    public Pageable getPageable() {
+        return postService.getPageable();
+    }
+
+    @Override
+    public Long getPostsCount(String username) {
+        return postService.getPostsCount(username);
     }
 
     @Override
@@ -202,17 +213,22 @@ public class BackendController implements Observable, Controller {
     }
 
     @Override
-    public Set<Post> getPrevPosts(String username) {
+    public List<Post> getPrevPosts(String username) {
         return postService.getPrevPosts(username);
     }
 
     @Override
-    public Set<Post> getNextPosts(String username) {
+    public List<Post> getNextPosts(String username) {
         return postService.getNextPosts(username);
     }
 
     @Override
-    public Set<Post> getPostsOnCurrentPage(int page, String username) {
+    public List<Post> getFirstPagePosts(String username) {
+        return postService.getFirstPagePosts(username);
+    }
+
+    @Override
+    public List<Post> getPostsOnCurrentPage(int page, String username) {
         return postService.getPostsOnCurrentPage(page, username);
     }
 

@@ -1,6 +1,7 @@
 package com.codebase.socialnetwork.domain;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
 
 public class Post extends Entity<Long>{
     private InputStream imageStream;
@@ -8,13 +9,15 @@ public class Post extends Entity<Long>{
     private int likes;
     private final String type;
     private final String username;
+    private final LocalDateTime date;
 
-    public Post(InputStream imageStream, String description, int likes, String type, String username) {
+    public Post(InputStream imageStream, String description, int likes, String type, String username, LocalDateTime date) {
         this.imageStream = imageStream;
         this.description = description;
         this.likes = likes;
         this.type = type;
         this.username = username;
+        this.date = date;
     }
 
     public InputStream getImageStream() {
@@ -36,6 +39,8 @@ public class Post extends Entity<Long>{
     public String getUsername() {
         return username;
     }
+
+    public LocalDateTime getDate(){return this.date; }
 
     public void setImageStream(InputStream imageStream) {
         this.imageStream = imageStream;
