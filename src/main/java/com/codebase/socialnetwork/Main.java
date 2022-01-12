@@ -4,15 +4,14 @@ import com.codebase.socialnetwork.controller.Controller;
 import com.codebase.socialnetwork.controller.BackendController;
 import com.codebase.socialnetwork.controller.MainWindowController;
 import com.codebase.socialnetwork.domain.*;
+import com.codebase.socialnetwork.domain.validator.EventValidator;
 import com.codebase.socialnetwork.domain.validator.FriendshipValidator;
 import com.codebase.socialnetwork.domain.validator.UserValidator;
 import com.codebase.socialnetwork.domain.validator.Validator;
+import com.codebase.socialnetwork.repository.EventRepository;
 import com.codebase.socialnetwork.repository.MessageRepository;
 import com.codebase.socialnetwork.repository.Repository;
-import com.codebase.socialnetwork.repository.database.FriendshipRepositoryClass;
-import com.codebase.socialnetwork.repository.database.MessageRepositoryClass;
-import com.codebase.socialnetwork.repository.database.PostRepositoryClass;
-import com.codebase.socialnetwork.repository.database.UserRepositoryClass;
+import com.codebase.socialnetwork.repository.database.*;
 import com.codebase.socialnetwork.repository.memory.LoginSystem;
 import com.codebase.socialnetwork.repository.memory.LoginSystemClass;
 import com.codebase.socialnetwork.repository.paging.PagingRepository;
@@ -38,18 +37,21 @@ public class Main extends Application {
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
+        Validator<Event> eventValidator = new EventValidator();
 
         Repository<Long, User> userRepository = new UserRepositoryClass(url, username, password, userValidator);
         Repository<Tuple<Long, Long>, Friendship> friendshipRepository = new FriendshipRepositoryClass(url, username, password, friendshipValidator);
         MessageRepository messageRepository = new MessageRepositoryClass(url,username,password,userRepository);
         PagingRepository<Long, Post> postRepository = new PostRepositoryClass(url, username, password);
+        EventRepository eventRepository = new EventRepositoryClass(url,username,password,eventValidator);
 
         LoginSystem<Long, User> loginSystem = new LoginSystemClass();
         UserService<Long, User> userService = new UserServiceClass(userRepository, friendshipRepository, loginSystem);
         NetworkService<Tuple<Long, Long>, Friendship> statisticsService = new NetworkServiceClass(userRepository, friendshipRepository, messageRepository, loginSystem);
         PostService<Long, Post> postService = new PostServiceClass(postRepository);
+        EventService eventService = new EventServiceClass(eventRepository);
 
-        Controller controller = new BackendController(userService, statisticsService, postService);
+        Controller controller = new BackendController(userService, statisticsService, postService,eventService);
 
 
         stage.setTitle("App");

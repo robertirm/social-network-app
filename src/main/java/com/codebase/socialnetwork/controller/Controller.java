@@ -49,4 +49,11 @@ public interface Controller {
     Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
     void addObserver(Observer observer);
+    void addEvent(String nameEvent, LocalDateTime startingDate, LocalDateTime endingDate, String location, String description,
+                  String tags, String host, InputStream imageStream,Long creatorId);
+    Event findEvent(Long id);
+    List<Long> getAllEventsIds();
+    void addParticipant(Long idUser, Long idEvent);
+    void deleteParticipant(Long idUser, Long idEvent);
+    List<Long> getAttendedEvents(Long idUser);
 }

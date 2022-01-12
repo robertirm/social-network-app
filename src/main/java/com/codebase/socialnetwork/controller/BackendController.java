@@ -1,6 +1,8 @@
 package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.domain.*;
+import com.codebase.socialnetwork.repository.EventRepository;
+import com.codebase.socialnetwork.service.EventService;
 import com.codebase.socialnetwork.service.NetworkService;
 import com.codebase.socialnetwork.service.PostService;
 import com.codebase.socialnetwork.service.UserService;
@@ -18,11 +20,13 @@ public class BackendController implements Observable, Controller {
     public final UserService<Long, User> userService;
     public final NetworkService<Tuple<Long, Long>, Friendship> networkService;
     public final PostService<Long, Post> postService;
+    public final EventService eventService;
 
-    public BackendController(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService, PostService<Long, Post> postService) {
+    public BackendController(UserService<Long, User> userService, NetworkService<Tuple<Long, Long>, Friendship> statisticsService, PostService<Long, Post> postService,EventService eventService) {
         this.userService = userService;
         this.networkService = statisticsService;
         this.postService = postService;
+        this.eventService = eventService;
     }
 
     @Override
@@ -157,10 +161,10 @@ public class BackendController implements Observable, Controller {
     public Message createMessage(Message message, String text) {
         Message replyMessage = new Message(this.getUserByUsername(this.getCurrentUsername()), LocalDateTime.now(),text, true);
         replyMessage.addReceiver(message.getSender());
-//        for(User receiver: message.getReceivers()){
-//            if(!receiver.getId().equals(this.getCurrentUserId()))
-//                replyMessage.addReceiver(receiver);
-//        }
+        for(User receiver: message.getReceivers()){
+            if(!receiver.getId().equals(this.getCurrentUserId()))
+                replyMessage.addReceiver(receiver);
+        }
         message.addReply(replyMessage);
         this.sendMessage(replyMessage);
         this.sendMessage(message);
@@ -232,6 +236,36 @@ public class BackendController implements Observable, Controller {
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
+    }
+
+    @Override
+    public void addEvent(String nameEvent, LocalDateTime startingDate, LocalDateTime endingDate, String location, String description, String tags, String host, InputStream imageStream,Long creatorId) {
+        this.eventService.addEvent(nameEvent, startingDate, endingDate, location, description, tags, host, imageStream,creatorId);
+    }
+
+    @Override
+    public Event findEvent(Long id) {
+        return this.eventService.findEvent(id);
+    }
+
+    @Override
+    public List<Long> getAllEventsIds() {
+        return this.eventService.getAllEventsIds();
+    }
+
+    @Override
+    public void addParticipant(Long idUser, Long idEvent) {
+        this.eventService.addParticipant(idUser, idEvent);
+    }
+
+    @Override
+    public void deleteParticipant(Long idUser, Long idEvent) {
+        this.eventService.deleteParticipant(idUser, idEvent);
+    }
+
+    @Override
+    public List<Long> getAttendedEvents(Long idUser) {
+        return this.eventService.getAttendedEvents(idUser);
     }
 
     @Override
