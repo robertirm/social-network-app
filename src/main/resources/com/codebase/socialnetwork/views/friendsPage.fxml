@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.FriendsController">
    <children>
-      <AnchorPane id="friendsPageAnchorPane" prefHeight="526.0" prefWidth="924.0">
+      <AnchorPane id="friendsPageAnchorPane" fx:id="anchorPaneFriendsMain" prefHeight="526.0" prefWidth="924.0">
          <children>
             <VBox id="friendsRightPane" layoutY="89.0" prefHeight="437.0" prefWidth="222.0">
                <children>
@@ -36,6 +41,37 @@
                   </GridPane>
                </content>
             </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneFriendsProfile" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" visible="false">
+         <children>
+            <ImageView fx:id="imageViewFriendProfilePicture" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/hacker.png" />
+               </image>
+            </ImageView>
+            <TextArea fx:id="textAreaFriendProfileDescription" editable="false" layoutX="14.0" layoutY="232.0" prefHeight="245.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
+            <Label fx:id="labelUsernameFriendProfilePage" alignment="CENTER" layoutX="14.0" layoutY="206.0" prefHeight="20.0" prefWidth="200.0" text="username">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="anchorPaneFriendProfile" layoutX="225.0" layoutY="24.0" prefHeight="453.0" prefWidth="694.0">
+               <children>
+                  <GridPane fx:id="gridPaneFriendProfile" prefHeight="454.0" prefWidth="694.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <Button fx:id="buttonPrevPageFriend" layoutX="462.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToPrevPostsPage" text="Previous Page" />
+            <Button fx:id="buttonNextPageFriend" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
+            <Label fx:id="labelFirstNameFriendProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="179.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+            <Label fx:id="labelLastNameFriendProfilePage" layoutX="118.0" layoutY="179.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+            <Button fx:id="buttonBackToFriends" layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#goBackToFriendsPage" prefHeight="26.0" prefWidth="200.0" text="Back to firends" />
          </children>
       </AnchorPane>
    </children>

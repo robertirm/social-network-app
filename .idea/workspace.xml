@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Add date to post entity, first/last name user for profile page, display posts sorted by date descending." />
+    <list default="true" id="2f85afb0-2339-4dce-9b97-057ac479c507" name="Changes" comment="Add access friend profile page possibility" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,6 +173,7 @@
       <workItem from="1641832701837" duration="4284000" />
       <workItem from="1641930549242" duration="820000" />
       <workItem from="1641931567690" duration="1377000" />
+      <workItem from="1642066752907" duration="7563000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to JavaFX Application">
       <created>1638828198212</created>
@@ -251,7 +252,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641990549399</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add date to post entity, first/last name user for profile page, display posts sorted by date descending.">
+      <created>1641990584480</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1641990584480</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add access friend profile page possibility">
+      <created>1642076089572</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642076089572</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +293,8 @@
     <MESSAGE value="Refactor design, introduce main page for common things in every page" />
     <MESSAGE value="Add observer pattern for friendships, make Friends Controller Observer and Backend Controller Observable which notify observers when friendships are created, deleted or has status changed" />
     <MESSAGE value="Add date to post entity, first/last name user for profile page, display posts sorted by date descending." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add date to post entity, first/last name user for profile page, display posts sorted by date descending." />
+    <MESSAGE value="Add access friend profile page possibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add access friend profile page possibility" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,9 +2,12 @@ package com.codebase.socialnetwork.controller;
 
 import static com.codebase.socialnetwork.utils.Constants.DATE_TIME_FORMATTER;
 
+import com.codebase.socialnetwork.Main;
 import com.codebase.socialnetwork.MainWindow;
 import com.codebase.socialnetwork.domain.FriendDTO;
 import com.codebase.socialnetwork.domain.Post;
+import com.codebase.socialnetwork.domain.User;
+import com.codebase.socialnetwork.repository.paging.Pageable;
 import com.codebase.socialnetwork.utils.observer.Observer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,14 +15,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
+import org.controlsfx.control.action.Action;
 
-import java.io.File;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,6 +40,9 @@ public class FriendsController extends MainWindowController implements Observer 
     ObservableList<FriendDTO> observableListFriendDTO = FXCollections.observableArrayList();
     List<FriendDTO> friendDTOList;
 
+    @FXML
+    AnchorPane anchorPaneFriendsMain;
+
    @FXML
     TextField textFieldName;
 
@@ -44,6 +54,39 @@ public class FriendsController extends MainWindowController implements Observer 
 
    @FXML
     ScrollPane scrollPaneFriends;
+
+    private int numberOfPhotos;
+    private String friendUsername;
+
+    @FXML
+    ImageView imageViewFriendProfilePicture;
+
+    @FXML
+    AnchorPane anchorPaneFriendsProfile;
+
+    @FXML
+    GridPane gridPaneFriendProfile;
+
+    @FXML
+    TextArea textAreaFriendProfileDescription;
+
+    @FXML
+    Label labelUsernameFriendProfilePage;
+
+    @FXML
+    Label labelFirstNameFriendProfilePage;
+
+    @FXML
+    Label labelLastNameFriendProfilePage;
+
+    @FXML
+    Button buttonPrevPageFriend;
+
+    @FXML
+    Button buttonNextPageFriend;
+
+    @FXML
+    Button buttonBackToFriends;
 
    @FXML
    public void initialize() {
@@ -123,6 +166,17 @@ public class FriendsController extends MainWindowController implements Observer 
        ImageView imageView = new ImageView(image);
        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+       imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+           @Override
+           public void handle(MouseEvent event) {
+               try {
+                   goToFriendsPage(friendDTO.getUser().getUsername());
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+           }
+       });
+
        vBox.getChildren().add(imageView);
 
        Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
@@ -172,6 +226,16 @@ public class FriendsController extends MainWindowController implements Observer 
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
         imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    goToFriendsPage(friendDTO.getUser().getUsername());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         vBox.getChildren().add(imageView);
 
         Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
@@ -221,6 +285,16 @@ public class FriendsController extends MainWindowController implements Observer 
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
         imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    goToFriendsPage(friendDTO.getUser().getUsername());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
@@ -290,6 +364,16 @@ public class FriendsController extends MainWindowController implements Observer 
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
         imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    goToFriendsPage(friendDTO.getUser().getUsername());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
@@ -353,4 +437,156 @@ public class FriendsController extends MainWindowController implements Observer 
         updateFriendDTOList();
         handleSearch();
     }
+
+    @FXML
+    public void goBackToFriendsPage(){
+       anchorPaneFriendsMain.setDisable(false);
+       anchorPaneFriendsMain.setVisible(true);
+       anchorPaneFriendsProfile.setDisable(true);
+       anchorPaneFriendsProfile.setVisible(false);
+    }
+
+    // Friends profile
+    private void goToFriendsPage(String username) throws IOException {
+        anchorPaneFriendsMain.setDisable(true);
+        anchorPaneFriendsMain.setVisible(false);
+        anchorPaneFriendsProfile.setDisable(false);
+        anchorPaneFriendsProfile.setVisible(true);
+        this.friendUsername = username;
+
+        User currentUser = backEndController.getUserByUsername(this.friendUsername);
+        labelUsernameFriendProfilePage.setText("@" + this.friendUsername);
+        labelFirstNameFriendProfilePage.setText(currentUser.getFirstName());
+        labelLastNameFriendProfilePage.setText(currentUser.getLastName());
+        numberOfPhotos = 0;
+
+        setProfileInfo();
+        initPosts();
+//        MainWindow.setVisibility(true);
+    }
+
+    public void setProfileInfo(){
+        Post post = backEndController.getProfilePost(this.friendUsername);
+        if(post != null){
+            Image image = new Image(post.getImageStream());
+            imageViewFriendProfilePicture.setImage(image);
+            textAreaFriendProfileDescription.setText(post.getDescription());
+        }
+        else{
+            String imgURL = "./src/main/resources/com/codebase/socialnetwork/images/hacker.png";
+            Path imagePath = Paths.get(imgURL);
+            File imageFile = imagePath.toFile();
+            Image image = new Image(imageFile.toURI().toString());
+            imageViewFriendProfilePicture.setImage(image);
+            textAreaFriendProfileDescription.setText("Description...");
+        }
+    }
+
+    private void initPosts(){
+        numberOfPhotos = 0;
+        gridPaneFriendProfile.getChildren().clear();
+        for(Post post : backEndController.getPostsOnCurrentPage(0, this.friendUsername)){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void updatePosts(){
+        numberOfPhotos = 0;
+        gridPaneFriendProfile.getChildren().clear();
+        for(Post post : backEndController.getPostsOnCurrentPage(-1, this.friendUsername)){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void getFirstPagePosts(){
+        numberOfPhotos = 0;
+        gridPaneFriendProfile.getChildren().clear();
+        for(Post post : backEndController.getFirstPagePosts(this.friendUsername)){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void updatePageControllButtons(){
+        Pageable pageable = backEndController.getPageable();
+        Long postsCount = backEndController.getPostsCount(this.friendUsername);
+        buttonPrevPageFriend.setDisable(pageable.getPageNumber() == 0);
+        if((postsCount - 1)/ pageable.getPageSize() == pageable.getPageNumber()){
+            buttonNextPageFriend.setDisable(true);
+        }
+        else{
+            buttonNextPageFriend.setDisable(false);
+        }
+    }
+
+    @FXML
+    public void goToPrevPostsPage(){
+        numberOfPhotos = 0;
+        gridPaneFriendProfile.getChildren().clear();
+        for(Post post : backEndController.getPrevPosts(this.friendUsername)){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    @FXML
+    public void goToNextPostsPage(){
+        numberOfPhotos = 0;
+        gridPaneFriendProfile.getChildren().clear();
+        for(Post post : backEndController.getNextPosts(this.friendUsername)){
+            createNewPost(post);
+        }
+        updatePageControllButtons();
+    }
+
+    private void createNewPost(Post post){
+        Image image = new Image(post.getImageStream());
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setPrefHeight(0.33 * gridPaneFriendProfile.getPrefHeight());
+
+        VBox vBox = new VBox();
+
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(0.27 * gridPaneFriendProfile.getPrefHeight());
+        imageView.setFitWidth(0.32 * gridPaneFriendProfile.getPrefWidth());
+        vBox.getChildren().add(imageView);
+
+        HBox hBox = new HBox();
+
+        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));;
+
+        Button buttonLike = new Button("Like");
+        buttonLike.setId(post.getId().toString());
+
+        buttonLike.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hey bro eu sunt: "  + buttonLike.getId());
+                String currentOption = buttonLike.getText();
+                int numberOfLikes = Integer.parseInt(labelPhotoLikes.getText());
+                numberOfLikes += 1;
+                labelPhotoLikes.setText(String.valueOf(numberOfLikes));
+                backEndController.updatePost(null, post.getDescription(), numberOfLikes, post.getId(), friendUsername);
+            }
+        });
+
+        hBox.getChildren().add(buttonLike);
+        Label labelBeforeLikes = new Label("    You have ");
+        hBox.getChildren().add(labelBeforeLikes);
+        hBox.getChildren().add(labelPhotoLikes);
+        Label labelAfterLikes = new Label(" likes...");
+        hBox.getChildren().add(labelAfterLikes);
+
+        vBox.getChildren().add(hBox);
+
+        anchorPane.getChildren().add(vBox);
+
+        int newPostRow = numberOfPhotos / 3;
+        int newPostColumn = numberOfPhotos % 3;
+        numberOfPhotos += 1;
+        gridPaneFriendProfile.add(anchorPane, newPostColumn, newPostRow);
+    }
 }
+
