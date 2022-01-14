@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -144,9 +146,20 @@ public class FriendsController extends MainWindowController implements Observer 
 
    private Pane createAddFriendPane(FriendDTO friendDTO){
        AnchorPane anchorPane = new AnchorPane();
-       anchorPane.setPrefHeight(0.33 * scrollPaneFriends.getPrefHeight());
+
+//       anchorPane.setId("anchorPaneFriend");
+//       anchorPane.setPrefHeight(0.50 * gridPaneFriends.getPrefHeight());
+       anchorPane.setPrefHeight(0.40 * gridPaneFriends.getPrefHeight());
+       anchorPane.setPrefWidth(0.26 * gridPaneFriends.getPrefWidth());
+       GridPane.setMargin(anchorPane, new Insets(5));
+
 
        VBox vBox = new VBox();
+       vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+       vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+       vBox.setId("vboxFriend");
+       vBox.setAlignment(Pos.CENTER);
+//       vBox.setPadding(new Insets(20));
 
        // <Image url="@../images/logo2.jpg" />
        //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
@@ -164,8 +177,11 @@ public class FriendsController extends MainWindowController implements Observer 
        }
 
        ImageView imageView = new ImageView(image);
-       imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
-       imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+       imageView.setId("imageViewFriendController");
+//       imageView.setFitHeight(0.40 * gridPaneFriends.getPrefHeight());
+//       imageView.setFitWidth(0.20 * gridPaneFriends.getPrefWidth());
+       imageView.setFitHeight(0.50 * vBox.getPrefHeight());
+       imageView.setFitWidth(0.50 * vBox.getPrefWidth());
        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
            @Override
            public void handle(MouseEvent event) {
@@ -180,11 +196,12 @@ public class FriendsController extends MainWindowController implements Observer 
        vBox.getChildren().add(imageView);
 
        Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
+       labelFriendUsername.setId("labelFriendUsername");
        vBox.getChildren().add(labelFriendUsername);
 
        Button buttonAdd = new Button("Add");
-
        buttonAdd.setId(labelFriendUsername.getText());
+       buttonAdd.setStyle("-fx-background-radius:  100;");
 
        buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -204,9 +221,17 @@ public class FriendsController extends MainWindowController implements Observer 
 
     private Pane createRemoveFriendPane(FriendDTO friendDTO){
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(0.33 * scrollPaneFriends.getPrefHeight());
+//        anchorPane.setId("anchorPaneFriend");
+        anchorPane.setPrefHeight(0.40 * gridPaneFriends.getPrefHeight());
+        anchorPane.setPrefWidth(0.26 * gridPaneFriends.getPrefWidth());
+        GridPane.setMargin(anchorPane, new Insets(5));
 
         VBox vBox = new VBox();
+        vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+        vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+        vBox.setId("vboxFriend");
+        vBox.setAlignment(Pos.CENTER);
+//        vBox.setPadding(new Insets(20));
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
@@ -224,8 +249,11 @@ public class FriendsController extends MainWindowController implements Observer 
         }
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
-        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.setId("imageViewFriendController");
+//        imageView.setFitHeight(0.40 * gridPaneFriends.getPrefHeight());
+//        imageView.setFitWidth(0.20 * gridPaneFriends.getPrefWidth());
+        imageView.setFitHeight(0.50 * vBox.getPrefHeight());
+        imageView.setFitWidth(0.50 * vBox.getPrefWidth());
         imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -238,12 +266,17 @@ public class FriendsController extends MainWindowController implements Observer 
         });
         vBox.getChildren().add(imageView);
 
+        Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
+        labelDate.setId("labelDateFriendship");
+        vBox.getChildren().add(labelDate);
+
         Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
+        labelFriendUsername.setId("labelFriendUsername");
         vBox.getChildren().add(labelFriendUsername);
 
         Button buttonRemove = new Button("Remove");
-
         buttonRemove.setId(labelFriendUsername.getText());
+        buttonRemove.setStyle("-fx-background-radius:  100;");
 
         buttonRemove.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -263,9 +296,17 @@ public class FriendsController extends MainWindowController implements Observer 
 
     private Pane createRequestFriendPane(FriendDTO friendDTO){
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(0.33 * scrollPaneFriends.getPrefHeight());
+//        anchorPane.setId("anchorPaneFriend");
+        anchorPane.setPrefHeight(0.40 * gridPaneFriends.getPrefHeight());
+        anchorPane.setPrefWidth(0.26 * gridPaneFriends.getPrefWidth());
+        GridPane.setMargin(anchorPane, new Insets(5));
 
         VBox vBox = new VBox();
+        vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+        vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+        vBox.setId("vboxFriend");
+        vBox.setAlignment(Pos.CENTER);
+//        vBox.setPadding(new Insets(20));
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
@@ -283,8 +324,11 @@ public class FriendsController extends MainWindowController implements Observer 
         }
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
-        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.setId("imageViewFriendController");
+//        imageView.setFitHeight(0.40 * gridPaneFriends.getPrefHeight());
+//        imageView.setFitWidth(0.20 * gridPaneFriends.getPrefWidth());
+        imageView.setFitHeight(0.50 * vBox.getPrefHeight());
+        imageView.setFitWidth(0.50 * vBox.getPrefWidth());
         imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -298,15 +342,18 @@ public class FriendsController extends MainWindowController implements Observer 
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
+        labelDate.setId("labelDateFriendship");
         vBox.getChildren().add(labelDate);
 
         Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
+        labelFriendUsername.setId("labelFriendUsername");
         vBox.getChildren().add(labelFriendUsername);
 
         HBox hBox = new HBox();
 
         Button buttonDecline = new Button("Decline");
         buttonDecline.setId(labelFriendUsername.getText());
+        buttonDecline.setStyle("-fx-background-radius:  100;");
 
         buttonDecline.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -322,6 +369,7 @@ public class FriendsController extends MainWindowController implements Observer 
 
         Button buttonAccept = new Button("Accept");
         buttonAccept.setId(labelFriendUsername.getText());
+        buttonAccept.setStyle("-fx-background-radius:  100;");
 
         buttonAccept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -334,6 +382,7 @@ public class FriendsController extends MainWindowController implements Observer 
         });
 
         hBox.getChildren().add(buttonAccept);
+        hBox.setAlignment(Pos.CENTER);
         vBox.getChildren().add(hBox);
 
         anchorPane.getChildren().add(vBox);
@@ -342,16 +391,27 @@ public class FriendsController extends MainWindowController implements Observer 
 
     private Pane createSentRequestFriendPane(FriendDTO friendDTO){
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(0.33 * scrollPaneFriends.getPrefHeight());
+        //anchorPane.setId("anchorPaneFriend");
+        anchorPane.setPrefHeight(0.40 * gridPaneFriends.getPrefHeight());
+        anchorPane.setPrefWidth(0.26 * gridPaneFriends.getPrefWidth());
+        GridPane.setMargin(anchorPane, new Insets(5));
 
         VBox vBox = new VBox();
+        vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+        vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+        vBox.setId("vboxFriend");
+        vBox.setAlignment(Pos.CENTER);
+//        vBox.setPadding(new Insets(30));
 
         // <Image url="@../images/logo2.jpg" />
         //URL url = Paths.get("./src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml").toUri().toURL();
 
         Image image;
         Post post = backEndController.getProfilePost(friendDTO.getUser().getUsername());
+//        double highimg = 0.40 * gridPaneFriends.getPrefHeight();
+//        double widthimg = 0.40 * gridPaneFriends.getPrefHeight();
         if(post != null){
+//            image = new Image(post.getImageStream(), highimg, widthimg,false,false);
             image = new Image(post.getImageStream());
         }
         else {
@@ -361,9 +421,13 @@ public class FriendsController extends MainWindowController implements Observer 
             image = new Image(imageFile.toURI().toString());
         }
 
+
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.27 * gridPaneFriends.getPrefHeight());
-        imageView.setFitWidth(0.32 * gridPaneFriends.getPrefWidth());
+        imageView.setId("imageViewFriendController");
+//        imageView.setFitHeight(0.40 * gridPaneFriends.getPrefHeight());
+//        imageView.setFitWidth(0.17 * gridPaneFriends.getPrefWidth());
+        imageView.setFitHeight(0.50 * vBox.getPrefHeight());
+        imageView.setFitWidth(0.50 * vBox.getPrefWidth());
         imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -377,14 +441,17 @@ public class FriendsController extends MainWindowController implements Observer 
         vBox.getChildren().add(imageView);
 
         Label labelDate = new Label(friendDTO.getDataOfFriendship().format(DATE_TIME_FORMATTER));
+        labelDate.setId("labelDateFriendship");
         vBox.getChildren().add(labelDate);
 
         Label labelFriendUsername = new Label(friendDTO.getUser().getUsername());
+        labelFriendUsername.setId("labelFriendUsername");
         vBox.getChildren().add(labelFriendUsername);
 
 
         Button buttonCancel = new Button("Cancel");
         buttonCancel.setId(labelFriendUsername.getText());
+        buttonCancel.setStyle("-fx-background-radius:  100;");
 
         buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -447,6 +514,9 @@ public class FriendsController extends MainWindowController implements Observer 
     }
 
     // Friends profile
+    @FXML
+    Label labelNoPostFriend;
+
     private void goToFriendsPage(String username) throws IOException {
         anchorPaneFriendsMain.setDisable(true);
         anchorPaneFriendsMain.setVisible(false);
@@ -485,8 +555,16 @@ public class FriendsController extends MainWindowController implements Observer 
     private void initPosts(){
         numberOfPhotos = 0;
         gridPaneFriendProfile.getChildren().clear();
+        boolean anyPost = false;
         for(Post post : backEndController.getPostsOnCurrentPage(0, this.friendUsername)){
             createNewPost(post);
+            anyPost = true;
+        }
+        if(anyPost){
+            labelNoPostFriend.setVisible(false);
+        }
+        else{
+            labelNoPostFriend.setVisible(true);
         }
         updatePageControllButtons();
     }
@@ -544,21 +622,32 @@ public class FriendsController extends MainWindowController implements Observer 
     private void createNewPost(Post post){
         Image image = new Image(post.getImageStream());
         AnchorPane anchorPane = new AnchorPane();
+//        anchorPane.setPrefHeight(0.33 * gridPaneFriendProfile.getPrefHeight());
         anchorPane.setPrefHeight(0.33 * gridPaneFriendProfile.getPrefHeight());
+        anchorPane.setPrefWidth(0.33 * gridPaneFriendProfile.getPrefWidth());
 
         VBox vBox = new VBox();
+        vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+        vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+        vBox.setId("vboxPost");
+        vBox.setAlignment(Pos.CENTER);
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.27 * gridPaneFriendProfile.getPrefHeight());
-        imageView.setFitWidth(0.32 * gridPaneFriendProfile.getPrefWidth());
+//        imageView.setFitHeight(0.27 * gridPaneFriendProfile.getPrefHeight());
+//        imageView.setFitWidth(0.32 * gridPaneFriendProfile.getPrefWidth());
+        imageView.setFitHeight(0.60 * vBox.getPrefHeight());
+        imageView.setFitWidth(0.60 * vBox.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
 
-        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));;
+        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));
+        labelPhotoLikes.setId("labelPhotoLike");
 
-        Button buttonLike = new Button("Like");
+        Button buttonLike = new Button("Love");
         buttonLike.setId(post.getId().toString());
+        buttonLike.setStyle("-fx-background-radius:  100;");
 
         buttonLike.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -573,10 +662,12 @@ public class FriendsController extends MainWindowController implements Observer 
         });
 
         hBox.getChildren().add(buttonLike);
-        Label labelBeforeLikes = new Label("    You have ");
+        Label labelBeforeLikes = new Label("    ");
+        labelBeforeLikes.setId("labelLike");
         hBox.getChildren().add(labelBeforeLikes);
         hBox.getChildren().add(labelPhotoLikes);
-        Label labelAfterLikes = new Label(" likes...");
+        Label labelAfterLikes = new Label(" loves...");
+        labelAfterLikes.setId("labelLike");
         hBox.getChildren().add(labelAfterLikes);
 
         vBox.getChildren().add(hBox);

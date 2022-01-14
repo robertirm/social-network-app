@@ -12,33 +12,38 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.ProfileController">
    <children>
-      <ImageView fx:id="imageViewProfilePicture" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true">
+      <ImageView fx:id="imageViewProfilePicture" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true">
          <image>
             <Image url="@../images/hacker.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonChange" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#changeProfilePicture" prefHeight="26.0" prefWidth="75.0" text="Change" />
-      <Button layoutX="103.0" layoutY="173.0" mnemonicParsing="false" onAction="#sharePhotos" prefHeight="26.0" prefWidth="110.0" text="Share" />
-      <TextArea fx:id="textAreaProfileDescription" editable="false" layoutX="14.0" layoutY="271.0" prefHeight="206.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
+      <Button fx:id="buttonChange" layoutX="14.0" layoutY="183.0" mnemonicParsing="false" onAction="#changeProfilePicture" prefHeight="26.0" prefWidth="75.0" text="Change" />
+      <Button layoutX="103.0" layoutY="183.0" mnemonicParsing="false" onAction="#sharePhotos" prefHeight="26.0" prefWidth="110.0" text="Share" />
+      <TextArea fx:id="textAreaProfileDescription" editable="false" layoutX="14.0" layoutY="278.0" prefHeight="200.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
       <Button fx:id="buttonProfileDescription" layoutX="75.0" layoutY="485.0" mnemonicParsing="false" onAction="#editProfileDescription" prefHeight="26.0" prefWidth="56.0" text="Edit" />
-      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="241.0" prefHeight="20.0" prefWidth="200.0" text="username">
+      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="251.0" prefHeight="20.0" prefWidth="200.0" text="username">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></Label>
       <AnchorPane fx:id="anchorPaneProfile" layoutX="225.0" layoutY="24.0" prefHeight="453.0" prefWidth="694.0">
          <children>
-            <GridPane fx:id="gridPaneProfile" prefHeight="454.0" prefWidth="694.0">
+            <GridPane fx:id="gridPaneProfile" prefHeight="453.0" prefWidth="694.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
             </GridPane>
+            <Label fx:id="labelNoPost" alignment="CENTER" prefHeight="454.0" prefWidth="694.0" text="Feel free to share your passions...">
+               <font>
+                  <Font name="Cambria Italic" size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Button fx:id="buttonPrevPage" layoutX="462.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToPrevPostsPage" text="Previous Page" />
       <Button fx:id="buttonNextPage" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
-      <Label fx:id="labelFirstNameProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="214.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
-      <Label fx:id="labelLastNameProfilePage" layoutX="118.0" layoutY="214.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+      <Label fx:id="labelFirstNameProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+      <Label fx:id="labelLastNameProfilePage" layoutX="118.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
    </children>
 </AnchorPane>
