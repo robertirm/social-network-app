@@ -192,7 +192,7 @@ public class MainWindowController {
                                             );
 
                                     dialogVbox.getChildren().add(label);
-                                    Scene dialogScene = new Scene(dialogVbox, 400, 50);
+                                    Scene dialogScene = new Scene(dialogVbox, 600, 50);
 
                                     dialog.setScene(dialogScene);
                                     dialog.show();

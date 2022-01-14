@@ -124,7 +124,7 @@ public class EventsController extends MainWindowController {
         String dateString = event.getStartingDate().toLocalDate().toString()+ " ";
         String time = event.getStartingDate().toLocalTime().toString() + " ";
         dateString += time;
-        dateString += " - ";
+        dateString += " -  ";
         dateString += event.getEndingDate().toLocalDate().toString();
         dateString += " ";
         dateString += event.getEndingDate().toLocalTime().toString();

@@ -60,4 +60,6 @@ public interface Controller {
     void addParticipant(Long idUser, Long idEvent);
     void deleteParticipant(Long idUser, Long idEvent);
     List<Long> getAttendedEvents(Long idUser);
+    List<Event> getAllUserEvents(Long id);
+    List<Long> getEventsByName(String text);
 }

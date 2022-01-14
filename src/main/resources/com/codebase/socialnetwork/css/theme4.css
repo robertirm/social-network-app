@@ -183,7 +183,7 @@
 
 }
 #nextEventButton,#prevEventButton,#yourEventsButton,#exploreButton,#createButton,#uploadImageButton,
-#createSuccessButton,#cancelButton{
+#createSuccessButton,#cancelButton,#participationButton{
     -fx-background-size: 1200 900;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
@@ -236,6 +236,12 @@
     -fx-font-weight: bold;
     -fx-font-style: italic;
     -fx-font-size: 19px;
+}
+
+#twoPointLabel1,#twoPointLabel2{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 19px;
+
 }
 #nothingPane {
     -fx-font-size: 60px;

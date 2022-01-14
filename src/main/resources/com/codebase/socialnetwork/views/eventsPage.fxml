@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.EventsController">
    <children>
-      <AnchorPane fx:id="eventPane" layoutX="193.0" layoutY="135.0" prefHeight="338.0" prefWidth="540.0">
+      <AnchorPane fx:id="eventPane" layoutX="192.0" layoutY="136.0" prefHeight="338.0" prefWidth="540.0">
          <children>
             <Label fx:id="nameLabel" layoutX="100.0" layoutY="78.0" prefHeight="18.0" prefWidth="74.0" text="name" />
             <Label fx:id="nameText" layoutX="211.0" layoutY="78.0" prefHeight="18.0" prefWidth="300.0" />
@@ -20,8 +20,8 @@
             <Label fx:id="locationText" layoutX="211.0" layoutY="139.0" prefHeight="18.0" prefWidth="300.0" />
             <Label fx:id="hostLabel" layoutX="100.0" layoutY="169.0" prefHeight="18.0" prefWidth="74.0" text="host" />
             <Label fx:id="hostText" layoutX="211.0" layoutY="169.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="tagsLabel" layoutX="100.0" layoutY="195.0" prefHeight="18.0" prefWidth="74.0" text="tags" />
-            <Label fx:id="tagsText" layoutX="211.0" layoutY="195.0" prefHeight="18.0" prefWidth="300.0" />
+            <Label fx:id="tagsLabel" layoutX="100.0" layoutY="199.0" prefHeight="18.0" prefWidth="74.0" text="tags" />
+            <Label fx:id="tagsText" layoutX="211.0" layoutY="199.0" prefHeight="18.0" prefWidth="300.0" />
             <Label fx:id="descriptionText" layoutX="100.0" layoutY="227.0" prefHeight="64.0" prefWidth="368.0" text="desc" />
             <Button fx:id="participationButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#onAttendButtonClick" prefHeight="42.0" prefWidth="134.0" text="Button" />
          </children>
@@ -34,7 +34,7 @@
          </children>
       </AnchorPane>
       <ImageView fx:id="eventImage" blendMode="SRC_ATOP" fitHeight="140.0" fitWidth="312.0" layoutX="309.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane fx:id="createEventPane" layoutX="64.0" layoutY="34.0" prefHeight="458.0" prefWidth="506.0">
+      <AnchorPane fx:id="createEventPane" layoutX="69.0" layoutY="34.0" prefHeight="458.0" prefWidth="790.0" visible="false">
          <children>
             <Label id="createNewEventTitle" layoutX="30.0" layoutY="14.0" prefHeight="42.0" prefWidth="312.0" text="Create new event" />
             <Label layoutX="33.0" layoutY="82.0" prefHeight="26.0" prefWidth="102.0" text="Name" />
@@ -45,11 +45,11 @@
             <TextField fx:id="hostTextField" layoutX="152.0" layoutY="165.0" prefHeight="26.0" prefWidth="214.0" />
             <Label layoutX="33.0" layoutY="208.0" prefHeight="26.0" prefWidth="102.0" text="Tags" />
             <TextField fx:id="tagsTextField" layoutX="152.0" layoutY="208.0" prefHeight="26.0" prefWidth="214.0" />
-            <DatePicker fx:id="startDatePicker" layoutX="459.0" layoutY="84.0" prefHeight="26.0" prefWidth="118.0" />
+            <DatePicker fx:id="startDatePicker" layoutX="459.0" layoutY="84.0" prefHeight="26.0" prefWidth="130.0" />
             <Label layoutX="403.0" layoutY="56.0" prefHeight="26.0" prefWidth="147.0" text="Time interval" />
-            <DatePicker fx:id="endDatePicker" layoutX="625.0" layoutY="84.0" prefHeight="26.0" prefWidth="118.0" />
+            <DatePicker fx:id="endDatePicker" layoutX="634.0" layoutY="84.0" prefHeight="26.0" prefWidth="130.0" />
             <Label layoutX="403.0" layoutY="89.0" text="from" />
-            <Label layoutX="590.0" layoutY="88.0" text="to" />
+            <Label layoutX="601.0" layoutY="89.0" text="to" />
             <Label layoutX="32.0" layoutY="313.0" prefHeight="26.0" prefWidth="118.0" text="Description" />
             <TextField fx:id="descriptionTextField" layoutX="155.0" layoutY="275.0" prefHeight="127.0" prefWidth="214.0" />
             <ImageView fx:id="uploadedImageView" fitHeight="80.0" fitWidth="134.0" layoutX="586.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
@@ -58,19 +58,21 @@
             <Button fx:id="createSuccessButton" layoutX="457.0" layoutY="367.0" mnemonicParsing="false" onAction="#onCreateEventButtonClick" prefHeight="34.0" prefWidth="102.0" text="Create" />
             <Label fx:id="errorsLabel" layoutX="435.0" layoutY="261.0" prefHeight="94.0" prefWidth="250.0" />
             <Button fx:id="cancelButton" layoutX="583.0" layoutY="367.0" mnemonicParsing="false" onAction="#onCancelButtonClick" prefHeight="34.0" prefWidth="102.0" text="Cancel" />
-            <Spinner fx:id="endMinuteSpinner" initialValue="0" layoutX="685.0" layoutY="117.0" max="59" min="0" prefHeight="26.0" prefWidth="55.0">
+            <Label id="twoPointLabel1" alignment="CENTER" layoutX="510.0" layoutY="117.0" prefHeight="26.0" prefWidth="28.0" text=":" />
+            <Label id="twoPointLabel2" alignment="CENTER" layoutX="685.0" layoutY="118.0" prefHeight="26.0" prefWidth="28.0" text=":" />
+            <Spinner fx:id="endMinuteSpinner" initialValue="0" layoutX="708.0" layoutY="117.0" max="59" min="0" prefHeight="26.0" prefWidth="55.0">
 
             </Spinner>
-            <Spinner fx:id="endHourSpinner" initialValue="0" layoutX="625.0" layoutY="117.0" max="23" min="0" prefHeight="26.0" prefWidth="55.0" />
-            <Spinner fx:id="startMinuteSpinner" initialValue="0" layoutX="522.0" layoutY="117.0" max="59" min="0" prefHeight="26.0" prefWidth="55.0" />
-            <Spinner fx:id="startHourSpinner" initialValue="0" layoutX="457.0" layoutY="117.0" max="23" min="0" prefHeight="26.0" prefWidth="55.0" />
+            <Spinner fx:id="endHourSpinner" initialValue="0" layoutX="634.0" layoutY="117.0" max="23" min="0" prefHeight="26.0" prefWidth="55.0" />
+            <Spinner fx:id="startMinuteSpinner" initialValue="0" layoutX="532.0" layoutY="117.0" max="59" min="0" prefHeight="26.0" prefWidth="55.0" />
+            <Spinner fx:id="startHourSpinner" initialValue="0" layoutX="461.0" layoutY="118.0" max="23" min="0" prefHeight="26.0" prefWidth="55.0" />
          </children>
       </AnchorPane>
       <Button fx:id="nextEventButton" layoutX="742.0" layoutY="466.0" mnemonicParsing="false" onAction="#onNextEventButtonClick" prefHeight="34.0" prefWidth="40.0" text="&gt;&gt;" />
       <Button fx:id="prevEventButton" layoutX="144.0" layoutY="466.0" mnemonicParsing="false" onAction="#onPrevEventButtonClick" prefHeight="34.0" prefWidth="40.0" text="&lt;&lt;" />
       <TextField fx:id="eventsSearchBar" layoutX="79.0" layoutY="14.0" prefHeight="26.0" prefWidth="156.0" />
       <Button fx:id="eventsSearchButton" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchEventsButtonClick" prefHeight="26.0" prefWidth="48.0" text="Search" />
-      <AnchorPane fx:id="nothingPane" layoutX="76.0" layoutY="48.0" prefHeight="430.0" prefWidth="790.0">
+      <AnchorPane fx:id="nothingPane" layoutX="76.0" layoutY="48.0" prefHeight="430.0" prefWidth="790.0" visible="false">
          <children>
             <Label layoutX="28.0" layoutY="84.0" prefHeight="246.0" prefWidth="744.0" text="       Nothing here :(" />
          </children>
