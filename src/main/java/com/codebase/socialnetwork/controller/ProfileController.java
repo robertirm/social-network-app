@@ -9,6 +9,7 @@ import com.codebase.socialnetwork.repository.paging.Pageable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -58,6 +59,9 @@ public class ProfileController extends MainWindowController {
 
     @FXML
     Button buttonNextPage;
+
+    @FXML
+    Label labelNoPost;
 
     @FXML
     public void initialize() throws IOException {
@@ -188,8 +192,16 @@ public class ProfileController extends MainWindowController {
     private void initPosts(){
         numberOfPhotos = 0;
         gridPaneProfile.getChildren().clear();
+        boolean anyPost = false;
         for(Post post : backEndController.getPostsOnCurrentPage(0, backEndController.getCurrentUsername())){
             createNewPost(post);
+            anyPost = true;
+        }
+        if(anyPost){
+           labelNoPost.setVisible(false);
+        }
+        else{
+            labelNoPost.setVisible(true);
         }
         updatePageControllButtons();
     }
@@ -247,21 +259,32 @@ public class ProfileController extends MainWindowController {
     private void createNewPost(Post post){
         Image image = new Image(post.getImageStream());
         AnchorPane anchorPane = new AnchorPane();
+//        anchorPane.setPrefHeight(0.33 * gridPaneProfile.getPrefHeight());
         anchorPane.setPrefHeight(0.33 * gridPaneProfile.getPrefHeight());
+        anchorPane.setPrefWidth(0.33 * gridPaneProfile.getPrefWidth());
 
         VBox vBox = new VBox();
+        vBox.setPrefHeight(0.90 * anchorPane.getPrefHeight());
+        vBox.setPrefWidth(0.90 * anchorPane.getPrefWidth());
+        vBox.setId("vboxPost");
+        vBox.setAlignment(Pos.CENTER);
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(0.27 * gridPaneProfile.getPrefHeight());
-        imageView.setFitWidth(0.32 * gridPaneProfile.getPrefWidth());
+//        imageView.setFitHeight(0.27 * gridPaneProfile.getPrefHeight());
+//        imageView.setFitWidth(0.32 * gridPaneProfile.getPrefWidth());
+        imageView.setFitHeight(0.60 * vBox.getPrefHeight());
+        imageView.setFitWidth(0.60 * vBox.getPrefWidth());
         vBox.getChildren().add(imageView);
 
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
 
-        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));;
+        Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));
+        labelPhotoLikes.setId("labelPhotoLike");
 
-        Button buttonLike = new Button("Like");
+        Button buttonLike = new Button("Love");
         buttonLike.setId(post.getId().toString());
+        buttonLike.setStyle("-fx-background-radius:  100;");
 
         buttonLike.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -276,10 +299,12 @@ public class ProfileController extends MainWindowController {
         });
 
         hBox.getChildren().add(buttonLike);
-        Label labelBeforeLikes = new Label("    You have ");
+        Label labelBeforeLikes = new Label("    ");
+        labelBeforeLikes.setId("labelLike");
         hBox.getChildren().add(labelBeforeLikes);
         hBox.getChildren().add(labelPhotoLikes);
-        Label labelAfterLikes = new Label(" likes...");
+        Label labelAfterLikes = new Label(" loves...");
+        labelAfterLikes.setId("labelLike");
         hBox.getChildren().add(labelAfterLikes);
 
         vBox.getChildren().add(hBox);

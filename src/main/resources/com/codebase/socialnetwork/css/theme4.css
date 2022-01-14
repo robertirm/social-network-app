@@ -111,7 +111,7 @@
 }
 
 /* ================ FRIENDS PAGE ==================*/
-#searchFriendLabel {
+#searchFriendLabel, #labelDateFriendship, #labelFriendUsername {
     -fx-background-color:-light-main-color;
     -fx-text-fill: -light-color;
 }
@@ -124,6 +124,38 @@
 }
 #friendsRightPane {
     -fx-padding: 15px 20px 20px 15px;
+}
+
+#imageViewFriendController {
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-width: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+/*#anchorPaneFriend {*/
+/*    -fx-background-radius: 100;*/
+/*    -fx-border-radius: 100;*/
+/*    -fx-background-color: red;*/
+/*    -fx-alignment: center;*/
+/*    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
+/*}*/
+
+/*#gridPaneFriends  {*/
+/*    -fx-background-insets: 15px;*/
+/*}*/
+
+#vboxFriend {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-background-color: -dark-main-color;
+    -fx-alignment: center;
+    -fx-border-style: solid;
+    -fx-border-insets: 15px;
+    /*-fx-padding: 20px 10px 20px 10px;*/
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 /* ================ MESSAGE PAGE ===================*/
 #messagesPagePane > .button{
@@ -262,9 +294,21 @@
 
 /* ================= PROFILE PAGE ===================*/
 
+#labelPhotoLike, #labelLike {
+    -fx-background-color:-light-main-color;
+    -fx-text-fill: -light-color;
+}
 
-
-
+#vboxPost {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-background-color: -dark-main-color;
+    -fx-alignment: center;
+    -fx-border-style: solid;
+    /*-fx-border-insets: 15px;*/
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
 
 
 /* ================ POPUP =====================*/
