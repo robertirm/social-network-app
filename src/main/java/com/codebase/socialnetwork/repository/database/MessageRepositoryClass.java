@@ -234,50 +234,80 @@ public class MessageRepositoryClass implements MessageRepository {
     }
 
     @Override
-    public Integer getNumberOfSentMessages(Long idUser,LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfSentMessages(Long idUser,LocalDateTime startDate, LocalDateTime endDate) {
         String start = startDate.format(DATE_TIME_FORMATTER);
         String end = endDate.format(DATE_TIME_FORMATTER);
 
-        int counter = 0;
+        List<Message> messages = new ArrayList<>();
+
+
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
-            PreparedStatement ps = connection.prepareStatement("select count(messages.id_message) from messages " +
+            PreparedStatement ps = connection.prepareStatement("select messages.id_message,message_content,message_date from messages " +
                                                 "where id_sender = "+ idUser +"   and message_date >= '" + start + "' and message_date <= '" +end + "'");
             ResultSet resultSet = ps.executeQuery()){
 
-            if (resultSet.next()){
-                counter = resultSet.getInt("count");
+            while (resultSet.next()){
+                long idMessage = resultSet.getLong("id_message");
+                String content = resultSet.getString("message_content");
+                Timestamp messageDate = resultSet.getTimestamp("message_date");
+                String messageDateString = messageDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
+
+                Message message = new Message(null,dateOfMessage,content,false);
+
+                try (Connection connection1 = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+                     PreparedStatement ps1 = connection1.prepareStatement("SELECT * FROM sending_relation WHERE id_message=" +idMessage);
+                     ResultSet resultSet1 = ps1.executeQuery()) {
+
+                    while (resultSet1.next()) {
+                        Long idReceiver = resultSet1.getLong("id_receiver");
+                        User foundUser = userRepository.findOne(idReceiver);
+                        if (foundUser != null)
+                            message.addReceiver(foundUser);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                messages.add(message);
             }
 
         }catch (SQLException e){
             e.printStackTrace();
         }
 
-        return counter;
+        return messages;
     }
 
     @Override
-    public Integer getNumberOfReceivedMessages(Long idUser, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfReceivedMessages(Long idUser, LocalDateTime startDate, LocalDateTime endDate) {
         String start = startDate.format(DATE_TIME_FORMATTER);
         String end = endDate.format(DATE_TIME_FORMATTER);
 
-        int counter = 0;
+        List<Message> messages = new ArrayList<>();
+
         try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
             PreparedStatement ps = connection.prepareStatement(
-                    "select count(messages.id_message) from messages " +
+                    "select distinct message_content,message_date,messages.id_sender from messages " +
                         "inner join sending_relation on messages.id_message = sending_relation.id_message " +
                         "where messages.id_sender !="+ idUser + " and sending_relation.id_receiver =" + idUser +
                         " and message_date >= '" + start + "' and message_date <= '" +end + "'"
             );
             ResultSet resultSet = ps.executeQuery()){
 
-            if (resultSet.next()){
-                counter = resultSet.getInt("count");
+            while (resultSet.next()){
+                Long idSender = resultSet.getLong("id_sender");
+                String content = resultSet.getString("message_content");
+                Timestamp messageDate = resultSet.getTimestamp("message_date");
+                String messageDateString = messageDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
+                Message message = new Message(userRepository.findOne(idSender), dateOfMessage,content,false);
+                messages.add(message);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
 
-        return counter;
+        return messages;
     }
 
     @Override

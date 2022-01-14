@@ -74,7 +74,40 @@ public class EventRepositoryClass implements EventRepository {
 
     @Override
     public HashSet<Event> findAll() {
-        return null;
+        HashSet<Event> events = new HashSet<>();
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM events");
+            ResultSet resultSet = ps.executeQuery()){
+
+            while(resultSet.next()){
+                Long idEvent = resultSet.getLong("id_event");
+                String name = resultSet.getString("name_event");
+                String description = resultSet.getString("description");
+                String location = resultSet.getString("location_event");
+                String tags = resultSet.getString("tags");
+                String host = resultSet.getString("host");
+                InputStream imageStream = resultSet.getBinaryStream("image");
+
+                Timestamp startingDate = resultSet.getTimestamp("starting_date");
+                String startingDateString = startingDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfStart = LocalDateTime.parse(startingDateString, DATE_TIME_FORMATTER);
+
+                Timestamp endingDate = resultSet.getTimestamp("ending_date");
+                String endingDateString = endingDate.toString().strip().substring(0, 16);
+                LocalDateTime dateOfEnd = LocalDateTime.parse(endingDateString, DATE_TIME_FORMATTER);
+
+                Long creatorId = resultSet.getLong("id_creator");
+                Event event = new Event(name,dateOfStart,dateOfEnd,location,description,tags,host,imageStream,creatorId);
+                event.setId(idEvent);
+                events.add(event);
+            }
+
+        }catch (SQLException e){
+            System.out.println("da");
+
+            e.printStackTrace();
+        }
+        return events;
     }
 
     @Override
@@ -182,5 +215,25 @@ public class EventRepositoryClass implements EventRepository {
             e.printStackTrace();
         }
         return eventIds.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Long> getEventsByName(String text) {
+        List<Long> ids = new ArrayList<>();
+        try(Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
+            PreparedStatement ps = connection.prepareStatement("SELECT id_event FROM events where position('"+text+"' in name_event)>0;");
+            ResultSet resultSet = ps.executeQuery()){
+
+            while(resultSet.next()) {
+                Long id = resultSet.getLong("id_event");
+                ids.add(id);
+            }
+
+        }catch (SQLException e){
+            System.out.println("da");
+
+            e.printStackTrace();
+        }
+        return ids;
     }
 }

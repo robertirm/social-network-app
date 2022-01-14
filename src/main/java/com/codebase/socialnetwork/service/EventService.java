@@ -4,6 +4,7 @@ import com.codebase.socialnetwork.domain.Event;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 public interface EventService {
@@ -14,4 +15,6 @@ public interface EventService {
     void addParticipant(Long idUser, Long idEvent);
     List<Long> getAttendedEvents(Long idUser);
     void deleteParticipant(Long idUser, Long idEvent);
+    List<Event> getAllUserEvents(Long id);
+    List<Long> getEventsByName(String text);
 }

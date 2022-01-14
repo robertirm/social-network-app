@@ -341,12 +341,12 @@ public class NetworkServiceClass implements NetworkService<Tuple<Long, Long>, Fr
     }
 
     @Override
-    public Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
         return this.messageRepository.getNumberOfSentMessages(this.loginSystem.getCurrentUserId(), startDate,endDate);
     }
 
     @Override
-    public Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
         return this.messageRepository.getNumberOfReceivedMessages(this.loginSystem.getCurrentUserId(), startDate,endDate);
 
     }

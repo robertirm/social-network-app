@@ -217,12 +217,12 @@ public class BackendController implements Observable, Controller {
     }
 
     @Override
-    public Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate) {
         return networkService.getNumberOfSentMessages(startDate,endDate);
     }
 
     @Override
-    public Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Message> getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate) {
         return networkService.getNumberOfReceivedMessages(startDate,endDate);
     }
 
@@ -266,6 +266,16 @@ public class BackendController implements Observable, Controller {
     @Override
     public List<Long> getAttendedEvents(Long idUser) {
         return this.eventService.getAttendedEvents(idUser);
+    }
+
+    @Override
+    public List<Event> getAllUserEvents(Long id) {
+        return this.eventService.getAllUserEvents(id);
+    }
+
+    @Override
+    public List<Long> getEventsByName(String text) {
+        return eventService.getEventsByName(text);
     }
 
     @Override

@@ -30,8 +30,10 @@ public class LoginController extends MainWindowController {
         String password = passwordLoginTextField.getText().trim();
         try{
             backEndController.login(username, password);
+            startThread();
 //            switchToProfilePage(event);
             switchToWelcomePage(event);
+
         }catch (WrongUsernameException | WrongPasswordException | IOException e){
 //            errorLoginLabel.setText("The user doesn't exist!");
             errorLoginLabel.setText(e.getMessage());

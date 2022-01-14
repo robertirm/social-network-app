@@ -4,10 +4,7 @@ import com.codebase.socialnetwork.Main;
 import com.codebase.socialnetwork.domain.Event;
 import com.codebase.socialnetwork.domain.exception.ValidationException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +20,7 @@ public class EventsController extends MainWindowController {
 
     List<Long> eventIds;
     List<Long> attendedEventsIds;
+    List<Long> searchedEvents;
     int currentIndex;
 
     @FXML
@@ -89,6 +87,20 @@ public class EventsController extends MainWindowController {
     Label errorsLabel;
 
     @FXML
+    Spinner<Integer> startHourSpinner;
+    @FXML
+    Spinner<Integer> startMinuteSpinner;
+    @FXML
+    Spinner<Integer> endHourSpinner;
+    @FXML
+    Spinner<Integer> endMinuteSpinner;
+
+    @FXML
+    TextField eventsSearchBar;
+    @FXML
+    Button eventsSearchButton;
+
+    @FXML
     public void initialize() {
         eventIds = backEndController.getAllEventsIds();
         attendedEventsIds = backEndController.getAttendedEvents(backEndController.getCurrentUserId());
@@ -97,9 +109,10 @@ public class EventsController extends MainWindowController {
         exploreButton.setVisible(false);
         createEventPane.setVisible(false);
         nothingPane.setVisible(false);
-//        uploadedFileInputStream = null;
         uploadedImageView.setFitHeight(300);
         uploadedImageView.setFitWidth(140);
+
+
     }
 
     private void setItems(Event event){
@@ -108,10 +121,15 @@ public class EventsController extends MainWindowController {
         tagsText.setText(event.getTags());
         descriptionText.setText(event.getDescription());
         hostText.setText(event.getHost());
-        String dateString = event.getStartingDate().toLocalDate().toString();
+        String dateString = event.getStartingDate().toLocalDate().toString()+ " ";
+        String time = event.getStartingDate().toLocalTime().toString() + " ";
+        dateString += time;
         dateString += " - ";
         dateString += event.getEndingDate().toLocalDate().toString();
+        dateString += " ";
+        dateString += event.getEndingDate().toLocalTime().toString();
         dateText.setText(dateString);
+
 
         if(attendedEventsIds.contains(eventIds.get(currentIndex))){
             participationButton.setText("Attended!");
@@ -120,8 +138,7 @@ public class EventsController extends MainWindowController {
             participationButton.setText("Attend");
         }
 
-//        Image image = new Image(backEndController.getAllPosts("bob").stream().toList().get(0).getImageStream());
-        Image image = new Image(event.getImageStream());
+        Image image = new Image(event.getImageStream(),430,200,false,false);
         eventImage.setImage(image);
     }
 
@@ -191,6 +208,8 @@ public class EventsController extends MainWindowController {
         eventPane.setVisible(false);
         eventImage.setVisible(false);
         buttonsPane.setVisible(false);
+        eventsSearchBar.setVisible(false);
+        eventsSearchButton.setVisible(false);
         showSwitchButtons(false,false);
     }
 
@@ -207,9 +226,15 @@ public class EventsController extends MainWindowController {
         String tags = tagsTextField.getText();
         String description = descriptionTextField.getText();
 
-        LocalTime time = LocalTime.of(0,0,0,0);
-        LocalDateTime startDate = LocalDateTime.of(startDatePicker.getValue(), time);
-        LocalDateTime endDate = LocalDateTime.of(endDatePicker.getValue(), time);
+        int startHour = startHourSpinner.getValue();
+        int startMinute = startMinuteSpinner.getValue();
+        int endHour = endHourSpinner.getValue();
+        int endMinute = endHourSpinner.getValue();
+
+        LocalTime startTime = LocalTime.of(startHour,startMinute,0,0);
+        LocalTime endTime = LocalTime.of(endHour,endMinute,0,0);
+        LocalDateTime startDate = LocalDateTime.of(startDatePicker.getValue(), startTime);
+        LocalDateTime endDate = LocalDateTime.of(endDatePicker.getValue(), endTime);
 
         try{
             backEndController.addEvent(name,startDate,endDate,location,description,tags,host,uploadedFileInputStream, backEndController.getCurrentUserId());
@@ -227,6 +252,8 @@ public class EventsController extends MainWindowController {
         eventPane.setVisible(true);
         eventImage.setVisible(true);
         buttonsPane.setVisible(true);
+        eventsSearchBar.setVisible(true);
+        eventsSearchButton.setVisible(true);
 
         nameTextField.clear();
         locationTextField.clear();
@@ -270,4 +297,17 @@ public class EventsController extends MainWindowController {
             attendedEventsIds.removeIf(aLong -> aLong.equals(eventIds.get(currentIndex)));
         }
     }
+
+    @FXML void onSearchEventsButtonClick(){
+        String text = eventsSearchBar.getText();
+
+        yourEventsButton.setVisible(true);
+        exploreButton.setVisible(false);
+        eventIds = backEndController.getEventsByName(text);
+        currentIndex = 0;
+        checkIndex();
+
+        eventsSearchBar.clear();
+    }
+
 }

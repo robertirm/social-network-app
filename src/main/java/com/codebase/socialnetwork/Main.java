@@ -79,6 +79,9 @@ public class Main extends Application {
 
         MainWindow.setMainWindowController(mainWindowController);
         MainWindow.loadPage(MainWindow.LOGIN);
+        mainStage.setOnHidden(e ->{
+            mainWindowController.shutdown();
+        });
 
         return mainPane;
     }

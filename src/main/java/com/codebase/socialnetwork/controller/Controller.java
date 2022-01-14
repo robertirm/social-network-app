@@ -45,8 +45,8 @@ public interface Controller {
     Set<Post> getPrevPosts(String username);
     Set<Post> getNextPosts(String username);
     Set<Post> getPostsOnCurrentPage(int page, String username);
-    Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
-    Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
     void addObserver(Observer observer);
     void addEvent(String nameEvent, LocalDateTime startingDate, LocalDateTime endingDate, String location, String description,
@@ -56,4 +56,6 @@ public interface Controller {
     void addParticipant(Long idUser, Long idEvent);
     void deleteParticipant(Long idUser, Long idEvent);
     List<Long> getAttendedEvents(Long idUser);
+    List<Event> getAllUserEvents(Long id);
+    List<Long> getEventsByName(String text);
 }
