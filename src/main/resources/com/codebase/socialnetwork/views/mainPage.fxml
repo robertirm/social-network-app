@@ -67,20 +67,23 @@
          <children>
             <Separator prefWidth="50.0" />
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" text="Sample" >
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" text="NoName" >
                <graphic>
-                  <FontIcon iconColor="white" iconLiteral="fas-theater-masks" iconSize="30" selectionEnd="0"/>
+                  <FontIcon iconColor="white" iconLiteral="fab-fort-awesome-alt" iconSize="30" selectionEnd="0"/>
                </graphic>
             </Label>
             <Separator prefWidth="175.0" />
             <Label id="currentPageNameLabel" fx:id="currentPageLabel" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" />
             <Separator prefWidth="175.0" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" />
+            <ImageView fx:id="mainPageProfileImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" />
+            <Label prefHeight="50.0" prefWidth="10.0" text=" "> </Label>
             <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="150.0" text="username">
-               <graphic>
-                  <FontIcon iconColor="white" iconLiteral="far-user-circle" iconSize="30" selectionEnd="0"/>
-               </graphic>
+<!--               <graphic>-->
+<!--                  <FontIcon iconColor="white" iconLiteral="far-user-circle" iconSize="30" selectionEnd="0"/>-->
+<!--               </graphic>-->
             </Label>
+<!--            <Label prefHeight="50.0" prefWidth="10.0" text=" "> </Label>-->
+<!--            <ImageView fx:id="mainPageProfileImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" />-->
          </children>
       </HBox>
       <Pane fx:id="coloredLoginPane" prefHeight="576.0" prefWidth="291.0" />

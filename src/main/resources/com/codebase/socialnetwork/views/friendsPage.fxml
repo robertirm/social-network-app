@@ -15,6 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.FriendsController">
    <children>
       <AnchorPane id="friendsPageAnchorPane" fx:id="anchorPaneFriendsMain" prefHeight="526.0" prefWidth="924.0">
@@ -23,8 +25,12 @@
                <children>
                   <HBox prefHeight="53.0" prefWidth="290.0">
                      <children>
-                        <Label id="searchFriendLabel" prefHeight="46.0" prefWidth="46.0" text="   Search:" />
-                        <TextField fx:id="textFieldName" prefHeight="55.0" prefWidth="242.0" />
+                        <Label id="searchFriendLabel" alignment="CENTER" prefHeight="46.0" prefWidth="46.0" text="" >
+                           <graphic>
+                              <FontIcon iconColor="white" iconLiteral="fas-search" iconSize="10" selectionEnd="0"/>
+                           </graphic>
+                        </Label>
+                        <TextField fx:id="textFieldName" prefHeight="46.0" prefWidth="240.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -56,9 +62,9 @@
                </image>
             </ImageView>
             <TextArea fx:id="textAreaFriendProfileDescription" editable="false" layoutX="14.0" layoutY="242.0" prefHeight="236.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
-            <Label fx:id="labelUsernameFriendProfilePage" alignment="CENTER" layoutX="14.0" layoutY="216.0" prefHeight="20.0" prefWidth="200.0" text="username">
+            <Label fx:id="labelUsernameFriendProfilePage" alignment="CENTER" layoutX="14.0" layoutY="210.0" prefHeight="20.0" prefWidth="200.0" text="username">
                <font>
-                  <Font name="System Italic" size="12.0" />
+                  <Font name="System Italic" size="14.0" />
                </font>
             </Label>
             <AnchorPane fx:id="anchorPaneFriendProfile" layoutX="225.0" layoutY="24.0" prefHeight="453.0" prefWidth="694.0">
@@ -79,8 +85,14 @@
             </AnchorPane>
             <Button fx:id="buttonPrevPageFriend" layoutX="462.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToPrevPostsPage" text="Previous Page" />
             <Button fx:id="buttonNextPageFriend" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
-            <Label fx:id="labelFirstNameFriendProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="189.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
-            <Label fx:id="labelLastNameFriendProfilePage" layoutX="118.0" layoutY="189.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+            <Label fx:id="labelFirstNameFriendProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="183.0" prefHeight="26.0" prefWidth="95.0" text="Label">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font></Label>
+            <Label fx:id="labelLastNameFriendProfilePage" layoutX="118.0" layoutY="183.0" prefHeight="26.0" prefWidth="95.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <Button fx:id="buttonBackToFriends" layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#goBackToFriendsPage" prefHeight="26.0" prefWidth="200.0" text="Back to friends" />
          </children>
       </AnchorPane>

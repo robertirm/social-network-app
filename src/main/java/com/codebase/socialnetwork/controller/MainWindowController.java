@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -48,12 +50,21 @@ public class MainWindowController {
     @FXML
     protected Label currentPageLabel;
 
+    @FXML
+    protected ImageView mainPageProfileImage;
+
     public void setPage(Node node){
         pageHolder.getChildren().setAll(node);
     }
 
     public void setUsername(String username){
         usernameLabel.setText(username);
+    }
+
+    public void setMainImage(Image image){
+        mainPageProfileImage.setFitWidth(50);
+        mainPageProfileImage.setFitHeight(60);
+        mainPageProfileImage.setImage(image);
     }
 
     public void setButtonsLayoutVisible(boolean value){
@@ -181,7 +192,7 @@ public class MainWindowController {
                                     Stage dialog = new Stage();
                                     dialog.setResizable(false);
                                     VBox dialogVbox = new VBox(20);
-                                    dialogVbox.setStyle("-fx-background-color: #00253e");
+                                    dialogVbox.setStyle("-fx-background-color: #F2003C");
 
                                     Label label = new Label(text);
                                     label.setStyle("-fx-font-weight: bold;" +

@@ -49,7 +49,7 @@ public class SignupController extends MainWindowController {
         try{
             backEndController.signup(firstName,lastName,username, password);
             backEndController.login(username, password);
-            switchToProfilePage(event);
+            switchToWelcomePage(event);
         }catch (ValidationException | WrongUsernameException e){
             errorSignUpLabel.setText(e.getMessage());
         }

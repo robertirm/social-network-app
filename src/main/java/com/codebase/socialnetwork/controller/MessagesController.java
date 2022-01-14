@@ -219,8 +219,12 @@ public class MessagesController extends MainWindowController {
     @FXML
     TextField messageSearchBar;
 
+    @FXML
+    Label chatsLabel;
 
     private void changeToListView(){
+        labelNoConversations.setVisible(false);
+        chatsLabel.setVisible(true);
         listViewCurrentConversation.setVisible(true);
         sendMessageButton.setVisible(true);
         sendMessageTextField.setVisible(true);
@@ -228,6 +232,9 @@ public class MessagesController extends MainWindowController {
     }
 
     private void changeToNewChatView(){
+
+        labelNoConversations.setVisible(false);
+        chatsLabel.setVisible(false);
         listViewCurrentConversation.setVisible(false);
         sendMessageButton.setVisible(false);
         sendMessageTextField.setVisible(false);

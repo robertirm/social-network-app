@@ -17,7 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -282,7 +284,11 @@ public class ProfileController extends MainWindowController {
         Label labelPhotoLikes = new Label(String.valueOf(post.getLikes()));
         labelPhotoLikes.setId("labelPhotoLike");
 
-        Button buttonLike = new Button("Love");
+        FontIcon icon = new FontIcon("fas-heart");
+        Button buttonLike = new Button();
+        icon.setIconColor(Paint.valueOf("red"));
+        icon.setIconSize(15);
+        buttonLike.setGraphic(icon);
         buttonLike.setId(post.getId().toString());
         buttonLike.setStyle("-fx-background-radius:  100;");
 
@@ -299,11 +305,11 @@ public class ProfileController extends MainWindowController {
         });
 
         hBox.getChildren().add(buttonLike);
-        Label labelBeforeLikes = new Label("    ");
+        Label labelBeforeLikes = new Label("  ");
         labelBeforeLikes.setId("labelLike");
         hBox.getChildren().add(labelBeforeLikes);
         hBox.getChildren().add(labelPhotoLikes);
-        Label labelAfterLikes = new Label(" loves...");
+        Label labelAfterLikes = new Label(" hearts...");
         labelAfterLikes.setId("labelLike");
         hBox.getChildren().add(labelAfterLikes);
 

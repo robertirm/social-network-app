@@ -8,22 +8,23 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.EventsController">
    <children>
       <AnchorPane fx:id="eventPane" layoutX="192.0" layoutY="136.0" prefHeight="338.0" prefWidth="540.0">
          <children>
-            <Label fx:id="nameLabel" layoutX="100.0" layoutY="78.0" prefHeight="18.0" prefWidth="74.0" text="name" />
+            <Label fx:id="nameLabel" layoutX="100.0" layoutY="78.0" prefHeight="18.0" prefWidth="74.0" text="name:" />
             <Label fx:id="nameText" layoutX="211.0" layoutY="78.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="dateLabel" layoutX="100.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="data" />
+            <Label fx:id="dateLabel" layoutX="100.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="data:" />
             <Label fx:id="dateText" layoutX="211.0" layoutY="109.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="locationLabel" layoutX="100.0" layoutY="139.0" prefHeight="18.0" prefWidth="74.0" text="location" />
+            <Label fx:id="locationLabel" layoutX="100.0" layoutY="139.0" prefHeight="18.0" prefWidth="74.0" text="location:" />
             <Label fx:id="locationText" layoutX="211.0" layoutY="139.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="hostLabel" layoutX="100.0" layoutY="169.0" prefHeight="18.0" prefWidth="74.0" text="host" />
+            <Label fx:id="hostLabel" layoutX="100.0" layoutY="169.0" prefHeight="18.0" prefWidth="74.0" text="host:" />
             <Label fx:id="hostText" layoutX="211.0" layoutY="169.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="tagsLabel" layoutX="100.0" layoutY="199.0" prefHeight="18.0" prefWidth="74.0" text="tags" />
+            <Label fx:id="tagsLabel" layoutX="100.0" layoutY="199.0" prefHeight="18.0" prefWidth="74.0" text="tags:" />
             <Label fx:id="tagsText" layoutX="211.0" layoutY="199.0" prefHeight="18.0" prefWidth="300.0" />
-            <Label fx:id="descriptionText" layoutX="100.0" layoutY="227.0" prefHeight="64.0" prefWidth="368.0" text="desc" />
-            <Button fx:id="participationButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#onAttendButtonClick" prefHeight="42.0" prefWidth="134.0" text="Button" />
+            <Label fx:id="descriptionText" alignment="CENTER" layoutX="100.0" layoutY="227.0" prefHeight="64.0" prefWidth="368.0" text="desc" />
+            <Button fx:id="participationButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#onAttendButtonClick" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: red;" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="buttonsPane" layoutX="799.0" layoutY="12.0" prefHeight="499.0" prefWidth="102.0">
@@ -71,7 +72,11 @@
       <Button fx:id="nextEventButton" layoutX="742.0" layoutY="466.0" mnemonicParsing="false" onAction="#onNextEventButtonClick" prefHeight="34.0" prefWidth="40.0" text="&gt;&gt;" />
       <Button fx:id="prevEventButton" layoutX="144.0" layoutY="466.0" mnemonicParsing="false" onAction="#onPrevEventButtonClick" prefHeight="34.0" prefWidth="40.0" text="&lt;&lt;" />
       <TextField fx:id="eventsSearchBar" layoutX="79.0" layoutY="14.0" prefHeight="26.0" prefWidth="156.0" />
-      <Button fx:id="eventsSearchButton" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchEventsButtonClick" prefHeight="26.0" prefWidth="48.0" text="Search" />
+      <Button fx:id="eventsSearchButton" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchEventsButtonClick" prefHeight="26.0" prefWidth="48.0" text="" >
+         <graphic>
+            <FontIcon iconColor="white" iconLiteral="fas-search" iconSize="10" selectionEnd="0"/>
+         </graphic>
+      </Button>
       <AnchorPane fx:id="nothingPane" layoutX="76.0" layoutY="48.0" prefHeight="430.0" prefWidth="790.0" visible="false">
          <children>
             <Label layoutX="28.0" layoutY="84.0" prefHeight="246.0" prefWidth="744.0" text="       Nothing here :(" />
