@@ -5,6 +5,8 @@
 .root {
     -light-main-color : #003356;
     -dark-main-color : #00253e;
+    /*-light-main-color : #a60221;*/
+    /*-dark-main-color : #640101;*/
 
     -light-color : white;
     -forth-color : black;
@@ -72,9 +74,9 @@
 /* ================ WELCOME PAGE ==================*/
 #welcomeLabel {
     -fx-text-fill: -dark-main-color;
-    -fx-font-size: 100px;
+    -fx-font-size: 80px;
     -fx-alignment: center;
-    -fx-font-family: "Edwardian Script ITC";
+    -fx-font-family: "Comic Sans MS";
     -fx-font-weight: bold;
 
 }
@@ -156,3 +158,103 @@
 }
 
 /* ================= PROFILE PAGE ===================*/
+
+
+
+
+
+
+/* ================ POPUP =====================*/
+#labelPopup {
+    -fx-text-fill: -dark-main-color;
+}
+#vboxPopup {
+    -fx-background-color: white;
+}
+
+/* ================ EVENTS ====================*/
+#eventPane {
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+
+}
+#nextEventButton,#prevEventButton,#yourEventsButton,#exploreButton,#createButton,#uploadImageButton,
+#createSuccessButton,#cancelButton{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
+#yourEventsButton,#exploreButton,#createButton,#participationButton{
+    -fx-font-size: 20px;
+}
+#createNewEventTitle {
+    -fx-font-size: 30px;
+}
+
+#descriptionText{
+    -fx-font-style: italic;
+}
+
+#createEventPane {
+    -fx-background-color: derive(-dark-main-color, 15%);
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 50;
+    -fx-border-radius: 30;
+    -fx-border-width: 5;
+}
+#createEventPane > .label{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+}
+#createEventPane > .button{
+    -fx-background-color: -light-color;
+    -fx-text-fill: -dark-main-color;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+#eventImage{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#eventPane > .label {
+    -fx-text-fill: -light-color;
+    -fx-font-size: 17px;
+}
+#nameLabel,#dateLabel,#locationLabel,#hostLabel,#tagsLabel {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 19px;
+}
+#nothingPane {
+    -fx-font-size: 60px;
+    -fx-font-family: "Comic Sans MS";
+}
+#nothingPane > .label{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-background-radius: 100;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
+
+#eventsSearchButton{
+    -fx-background-radius: 0,0,0,30;
+    -fx-border-radius: 0,0,0,30;
+}
+
+#eventsSearchBar{
+    -fx-font-weight: bold;
+    -fx-text-fill: -dark-main-color;
+}

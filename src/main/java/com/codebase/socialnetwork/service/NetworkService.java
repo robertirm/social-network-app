@@ -22,7 +22,7 @@ public interface NetworkService<ID, E extends Entity<ID>> {
     Message getMessageById(Long id);
     List<List<Message>> getConversations(String username1, String username2);
     List<Conversation> getConversations(String username);
-    Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
-    Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
 }

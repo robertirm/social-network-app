@@ -1,20 +1,34 @@
 package com.codebase.socialnetwork.controller;
 
 import com.codebase.socialnetwork.MainWindow;
+import com.codebase.socialnetwork.domain.Event;
+import com.codebase.socialnetwork.domain.exception.LogInException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainWindowController {
 
     public static Controller backEndController;
+
+    static Thread thread;
 
     @FXML
     private StackPane pageHolder;
@@ -50,6 +64,7 @@ public class MainWindowController {
 
     public static void setBackEndController(Controller backEndController) {
         MainWindowController.backEndController = backEndController;
+        startThread();
     }
 
     private void switchPage(ActionEvent event, String pageName) throws IOException {
@@ -143,5 +158,60 @@ public class MainWindowController {
         usernameLabel.setText("no user");
         backEndController.logout();
         switchPage(event, MainWindow.LOGIN);
+    }
+
+    public static void startThread(){
+        thread = new Thread(() -> {
+            List<Event> notifiedEventsTenMinutes = new ArrayList<>();
+
+            while(backEndController.getCurrentUsername() != null){
+                try{
+                    Thread.sleep(100);
+                    List<Event> events = backEndController.getAllUserEvents(backEndController.getCurrentUserId());
+
+                    for(Event event: events){
+                        if(!notifiedEventsTenMinutes.contains(event)){
+                            long minutes = ChronoUnit.MINUTES.between(LocalDateTime.now(),event.getStartingDate());
+                            if(minutes < 60 && minutes > 0){
+                                notifiedEventsTenMinutes.add(event);
+
+                                Platform.runLater(() -> {
+                                    String text = event.getNameEvent().toUpperCase(Locale.ROOT) + " will start in less than an hour!!!";
+
+                                    Stage dialog = new Stage();
+                                    dialog.setResizable(false);
+                                    VBox dialogVbox = new VBox(20);
+                                    dialogVbox.setStyle("-fx-background-color: #00253e");
+
+                                    Label label = new Label(text);
+                                    label.setStyle("-fx-font-weight: bold;" +
+                                            "-fx-font-family: 'Times New Roman';" +
+                                            "-fx-text-fill: white;"+
+                                            "-fx-font-size: 20px;"+
+                                            "-fx-padding: 10 10 10 10;"
+                                            );
+
+                                    dialogVbox.getChildren().add(label);
+                                    Scene dialogScene = new Scene(dialogVbox, 400, 50);
+
+                                    dialog.setScene(dialogScene);
+                                    dialog.show();
+                                });
+                            }
+                        }
+                    }
+
+                } catch (InterruptedException | LogInException e) {
+                    System.out.println(e.getMessage());
+
+                }
+
+            }
+        });
+        thread.start();
+    }
+
+    public void     shutdown(){
+        thread.stop();
     }
 }

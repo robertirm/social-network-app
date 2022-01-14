@@ -9,4 +9,5 @@ public interface EventRepository extends Repository<Long, Event>{
     void addParticipant(Long idUser, Long idEvent);
     void deleteParticipant(Long idUser, Long idEvent);
     List<Long> getAttendedEvents(Long idUser);
+    List<Long> getEventsByName(String text);
 }

@@ -8,10 +8,12 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -122,11 +124,14 @@ public class StatisticsController extends MainWindowController {
         LocalDateTime startDate = LocalDateTime.of(activityStartDatePicker.getValue(), time);
         LocalDateTime endDate = LocalDateTime.of(activityEndDatePicker.getValue(), time);
 
+        List<FriendDTO> friendDTOList = backEndController.getAllFriendsForUser(backEndController.getCurrentUsername()).stream().
+            filter(friendDTO -> friendDTO.getDataOfFriendship().isAfter(startDate) && friendDTO.getDataOfFriendship().isBefore(endDate)).collect(Collectors.toList());
+
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Sent\n Messages", backEndController.getNumberOfSentMessages(startDate,endDate)),
-                        new PieChart.Data("Received\n Messages", backEndController.getNumberOfReceivedMessages(startDate,endDate)),
-                        new PieChart.Data("New Friends", backEndController.getAllFriendsForUser(backEndController.getCurrentUsername()).size())
+                        new PieChart.Data("Sent\n Messages", backEndController.getNumberOfSentMessages(startDate,endDate).size()),
+                        new PieChart.Data("Received\n Messages", backEndController.getNumberOfReceivedMessages(startDate,endDate).size()),
+                        new PieChart.Data("New Friends", friendDTOList.size())
                 );
 
         pieChartData.forEach(data ->
@@ -185,7 +190,7 @@ public class StatisticsController extends MainWindowController {
             return;
 
         int textX = 100;
-        int textY = 700;
+        AtomicInteger textY = new AtomicInteger(700);
         if(activityStartDatePicker.getValue() == null ||  activityEndDatePicker.getValue() == null)
             return;
 
@@ -198,33 +203,89 @@ public class StatisticsController extends MainWindowController {
         PDPage page = new PDPage();
         document.addPage( page );
 
-        PDFont font = PDType1Font.HELVETICA_BOLD;
+        PDFont font1 = PDType1Font.HELVETICA_BOLD;
+        PDFont font2 = PDType1Font.HELVETICA;
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
+        List<Message> sendMessages = backEndController.getNumberOfSentMessages(startDate,endDate);
         contentStream.beginText();
-        contentStream.setFont( font, 10 );
-        contentStream.newLineAtOffset(textX,textY);
-        contentStream.showText("number of sent messages : " +backEndController.getNumberOfSentMessages(startDate,endDate));
+        contentStream.setFont(font1, 20 );
+        contentStream.newLineAtOffset(textX,textY.get());
+        contentStream.showText("Sent Messages :");
         contentStream.endText();
+        textY.addAndGet(-20);
 
-        textY += 20;
+        sendMessages.forEach(x -> {
+            try {
+                StringBuilder receivers = new StringBuilder();
+                for(User u : x.getReceivers()){
+                    receivers.append(u.getUsername()).append(" ");
+                }
 
+                contentStream.beginText();
+                contentStream.setFont( font2, 10 );
+                contentStream.newLineAtOffset(textX-20,textY.get());
+                contentStream.showText(x.getMessageDate().format(DATE_TIME_FORMATTER) + " : " +  x.getMessageContent() + " --- to: " + receivers);
+                contentStream.endText();
+                textY.addAndGet(-10);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        List<Message> receivedMessages = backEndController.getNumberOfReceivedMessages(startDate,endDate);
+
+        textY.addAndGet(-30);
         contentStream.beginText();
-        contentStream.setFont( font, 10 );
-        contentStream.newLineAtOffset(textX,textY);
-        contentStream.showText("number of received messages : " +backEndController.getNumberOfReceivedMessages(startDate,endDate));
+        contentStream.setFont(font1, 20 );
+        contentStream.newLineAtOffset(textX,textY.get());
+        contentStream.showText("Received Messages :");
         contentStream.endText();
+        textY.addAndGet(-20);
 
-        textY += 20;
+        receivedMessages.forEach(x -> {
+            try {
+                contentStream.beginText();
+                contentStream.setFont( font2, 10 );
+                contentStream.newLineAtOffset(textX-20,textY.get());
+                contentStream.showText(x.getMessageDate().format(DATE_TIME_FORMATTER) + " : " +  x.getMessageContent() + " --- from: " + x.getSender().getUsername());
+                contentStream.endText();
+                textY.addAndGet(-10);
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        List<FriendDTO> friendDTOList = backEndController.getAllFriendsForUser(backEndController.getCurrentUsername()).stream().
+                filter(friendDTO -> friendDTO.getDataOfFriendship().isAfter(startDate) && friendDTO.getDataOfFriendship().isBefore(endDate)).collect(Collectors.toList());
+
+        textY.addAndGet(-30);
         contentStream.beginText();
-        contentStream.setFont( font, 10 );
-        contentStream.newLineAtOffset(textX,textY);
-        contentStream.showText("number of sent messages : " +backEndController.getAllFriendsForUser(backEndController.getCurrentUsername()).size());
+        contentStream.setFont(font1, 20 );
+        contentStream.newLineAtOffset(textX,textY.get());
+        contentStream.showText("New Friends :");
         contentStream.endText();
+        textY.addAndGet(-20);
+
+        friendDTOList.forEach(x -> {
+            try {
+                contentStream.beginText();
+                contentStream.setFont( font2, 10 );
+                contentStream.newLineAtOffset(textX-20,textY.get());
+                contentStream.showText(x.getDataOfFriendship().format(DATE_TIME_FORMATTER) + " : " +  x.getUser().getUsername());
+                contentStream.endText();
+                textY.addAndGet(-10);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
 
         contentStream.close();
-
         document.save( selectedDirectory+"/"+backEndController.getCurrentUsername()+ "_activityReport.pdf");
         document.close();
 
@@ -255,8 +316,6 @@ public class StatisticsController extends MainWindowController {
         PDFont font1 = PDType1Font.HELVETICA_BOLD;
         PDFont font2 = PDType1Font.HELVETICA;
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-        //WritableImage image = barChart.snapshot(new SnapshotParameters(), null);
 
         contentStream.beginText();
         contentStream.setFont(font1, 20 );

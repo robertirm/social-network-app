@@ -49,8 +49,8 @@ public interface Controller {
     List<Post> getNextPosts(String username);
     List<Post> getFirstPagePosts(String username);
     List<Post> getPostsOnCurrentPage(int page, String username);
-    Integer getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
-    Integer getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfSentMessages(LocalDateTime startDate, LocalDateTime endDate);
+    List<Message> getNumberOfReceivedMessages(LocalDateTime startDate, LocalDateTime endDate);
     List<Message> getMessagesFromFriend(User friend, LocalDateTime startDate, LocalDateTime endDate);
     void addObserver(Observer observer);
     void addEvent(String nameEvent, LocalDateTime startingDate, LocalDateTime endingDate, String location, String description,

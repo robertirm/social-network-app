@@ -13,6 +13,6 @@ public class WelcomeController extends MainWindowController{
     public void initialize() {
         MainWindow.setVisibility(true);
         MainWindow.mainWindowController.setUsername(backEndController.getCurrentUsername());
-        welcomeLabel.setText("Welcome back, " + backEndController.getCurrentUsername() + "!");
+        welcomeLabel.setText("Welcome,\n   " + backEndController.getCurrentUsername() + "!");
     }
 }

@@ -3,8 +3,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <AnchorPane prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.WelcomeController">
    <children>
-      <Label fx:id="welcomeLabel" layoutX="68.0" layoutY="88.0" prefHeight="250.0" prefWidth="667.0" text="WELCOME BACK !" />
+      <Label fx:id="welcomeLabel" layoutX="298.0" layoutY="89.0" prefHeight="250.0" prefWidth="535.0" text="WELCOME BACK !" />
+      <Label fx:id="smileLabel" alignment="CENTER_RIGHT" layoutX="40.0" layoutY="88.0" prefHeight="257.0" prefWidth="251.0">
+         <graphic>
+            <FontIcon iconColor="black" iconLiteral="fas-smile-beam" iconSize="150" selectionEnd="0"/>
+         </graphic>
+      </Label>
    </children>
 </AnchorPane>

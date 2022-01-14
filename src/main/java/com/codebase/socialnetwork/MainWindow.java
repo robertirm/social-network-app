@@ -31,6 +31,7 @@ public class MainWindow {
 
     public static void setMainWindowController(MainWindowController mainWindowController){
         MainWindow.mainWindowController = mainWindowController;
+
     }
 
     public static void loadPage(String fxml){
