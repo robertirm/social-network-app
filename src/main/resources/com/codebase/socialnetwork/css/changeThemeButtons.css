@@ -1,13 +1,13 @@
 #buttonTheme1 {
-    -fx-background-color: linear-gradient(to right, black , red);
+    -fx-background-color: linear-gradient(to right, black , #FF1DCE);
     -fx-background-radius: 50%;
 }
 #buttonTheme2 {
-    -fx-background-color: linear-gradient(to right, black , orange);
+    -fx-background-color: linear-gradient(to right, black , rgb(18, 0, 124));
     -fx-background-radius: 50%;
 }
 #buttonTheme3 {
-    -fx-background-color: linear-gradient(to right, black , mediumpurple);
+    -fx-background-color: linear-gradient(to right, black , #00AD43);
     -fx-background-radius: 50%
 }
 #buttonTheme4 {
@@ -15,10 +15,10 @@
     -fx-background-radius: 50%;
 }
 #buttonTheme5 {
-    -fx-background-color: linear-gradient(to right, whitesmoke , #b22c26);
+    -fx-background-color: linear-gradient(to right, whitesmoke , #FF7538);
     -fx-background-radius: 50%;
 }
 #buttonTheme6 {
-    -fx-background-color: linear-gradient(to right, whitesmoke , #ef7195);
+    -fx-background-color: linear-gradient(to right, whitesmoke , #8F00FF);
     -fx-background-radius: 50%;
 }

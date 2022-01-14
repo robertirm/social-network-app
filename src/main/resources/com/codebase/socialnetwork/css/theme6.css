@@ -1,9 +1,12 @@
 @import url(changeThemeButtons.css);
 
+
 /* ================ WHOLE PROJECT ==================*/
 .root {
-    -light-main-color : #ef7195;
-    -dark-main-color : #f64b76;
+    -light-main-color : #8F00FF;
+    -dark-main-color : #7F00FF;
+    /*-light-main-color : #a60221;*/
+    /*-dark-main-color : #640101;*/
 
     -light-color : white;
     -forth-color : black;
@@ -23,10 +26,21 @@
     -fx-background-color: -light-main-color;
     -fx-text-fill: -light-color;
 }
+.button:hover{
+    -fx-background-color: -dark-main-color;
+    -fx-cursor: hand;
+}
 
 .label {
     -fx-text-fill: -dark-main-color;
 }
+
+.list-view, .split-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+
 
 /* =============== MAIN PAGE ====================*/
 #mainPageTopLayout {
@@ -69,11 +83,13 @@
 /* ================ WELCOME PAGE ==================*/
 #welcomeLabel {
     -fx-text-fill: -dark-main-color;
-    -fx-font-size: 100px;
+    -fx-font-size: 80px;
     -fx-alignment: center;
-    -fx-font-family: "Edwardian Script ITC";
+    -fx-font-family: "Comic Sans MS";
     -fx-font-weight: bold;
+
 }
+
 
 /* ================ LOGIN PAGE ==================*/
 #welcomeLoginLabel {
@@ -87,7 +103,6 @@
     -fx-font-style: italic;
 }
 
-
 /* ================ SIGN UP PAGE ==================*/
 #errorSignUpLabel {
     -fx-text-fill: -light-main-color;
@@ -100,13 +115,13 @@
 }
 
 /* ================ FRIENDS PAGE ==================*/
-#searchFriendLabel {
+#searchFriendLabel, #labelDateFriendship, #labelFriendUsername {
     -fx-background-color:-light-main-color;
     -fx-text-fill: -light-color;
 }
 #gridPaneFriends {
     -fx-background-color: derive(-light-color,15%);
-    -fx-text-fill: -light-color;
+    -fx-text-fill: -dark-main-color;
 }
 #scrollPaneFriends {
     -fx-background-color: derive(-light-color,15%);
@@ -114,24 +129,165 @@
 #friendsRightPane {
     -fx-padding: 15px 20px 20px 15px;
 }
-/* ================ MESSAGE PAGE ===================*/
-/*#sendMessageTextField {*/
-/*    -fx-border-radius: 25px;*/
+
+#imageViewFriendController {
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-width: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+#listViewFriendType {
+    -fx-cursor: hand;
+}
+
+/*#anchorPaneFriend {*/
+/*    -fx-background-radius: 100;*/
+/*    -fx-border-radius: 100;*/
+/*    -fx-background-color: red;*/
+/*    -fx-alignment: center;*/
+/*    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
 /*}*/
+
+/*#gridPaneFriends  {*/
+/*    -fx-background-insets: 15px;*/
+/*}*/
+
+#vboxFriend {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-background-color: -dark-main-color;
+    -fx-alignment: center;
+    -fx-border-style: solid;
+    -fx-border-insets: 15px;
+    /*-fx-padding: 20px 10px 20px 10px;*/
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+/* ================ MESSAGE PAGE ===================*/
+#messagesPagePane > .button{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 13px;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
 #listViewConversations{
     -fx-font-size: 15px;
 }
 #listViewCurrentConversation{
     -fx-font-size: 18px;
 }
+#chatTitleLabel {
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
+#listViewCurrentConversation{
+    -fx-background-color: -light-color;
+    -fx-control-inner-background: -light-color;
+    -fx-control-inner-background-alt: -light-color;
+}
+#listViewCurrentConversation .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+#listViewCurrentConversation{
+    -fx-accent: -light-color;
+    /*-fx-focus-color: derive(-light-main-color,150%)*/
+    -fx-focus-color: -light-color;
+}
+#listViewCurrentConversation:focused{
+    -fx-background-color: -light-color;
+}
+#listViewCurrentConversation:selected{
+    -fx-background-color: -light-color;
+}
+#replyButtonOnMessage{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+    -fx-font-size: 10px;
+}
+#replyPane {
+    -fx-background-color: -dark-main-color;
+
+}
+#replyPane > .label {
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: white;
+
+}
+#replyingLabel {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+    -fx-font-size: 10px;
+}
+#coloredMessagePane{
+    -fx-background-color: -dark-main-color;
+}
+
+#listViewConversations {
+    -fx-font-size: 20px;
+    -fx-font-family: "Comic Sans MS";
+    -fx-control-inner-background: -light-main-color;
+    -fx-control-inner-background-alt: -dark-main-color;
+    -fx-accent: derive(-light-main-color,150%);
+    -fx-focus-color: derive(-light-main-color,150%)
+}
+
 #messagesPagePane {
-    -fx-background-color: derive(-light-color,15%);
+    -fx-background-color: -light-color
 }
 #createNewChatPane > .label{
     -fx-text-alignment: center;
     -fx-font-weight: bold;
     -fx-text-fill: -light-main-color;
     -fx-font-size: 14px;
+}
+
+#vBoxMessage{
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+#vBoxMessage > .label{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+}
+#vBoxMessage > #messageReplyText {
+    -fx-background-color: -dark-main-color;
+    -fx-font-size: 14px;
+}
+
+#vBoxMessage > #messageDateText {
+    -fx-background-color: -dark-main-color;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+    -fx-font-family: "Comic Sans MS";
+}
+
+#conversationBubble{
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
+#chatsLabel{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 18px;
 }
 
 /* ================= STATISTICS PAGE ===================*/
@@ -141,9 +297,135 @@
     -fx-text-fill: -light-main-color;
     -fx-font-size: 14px;
 }
+
 #historyPane > .label{
     fx-text-alignment: center;
     -fx-font-weight: bold;
     -fx-text-fill: -light-main-color;
     -fx-font-size: 14px;
+}
+
+/* ================= PROFILE PAGE ===================*/
+
+#labelPhotoLike, #labelLike {
+    -fx-background-color:-light-main-color;
+    -fx-text-fill: -light-color;
+}
+
+#vboxPost {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-background-color: -dark-main-color;
+    -fx-alignment: center;
+    -fx-border-style: solid;
+    /*-fx-border-insets: 15px;*/
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+
+/* ================ POPUP =====================*/
+#labelPopup {
+    -fx-text-fill: -dark-main-color;
+}
+#vboxPopup {
+    -fx-background-color: white;
+}
+
+/* ================ EVENTS ====================*/
+#eventPane {
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+
+}
+#nextEventButton,#prevEventButton,#yourEventsButton,#exploreButton,#createButton,#uploadImageButton,
+#createSuccessButton,#cancelButton,#participationButton{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
+#yourEventsButton,#exploreButton,#createButton,#participationButton{
+    -fx-font-size: 20px;
+}
+#createNewEventTitle {
+    -fx-font-size: 30px;
+}
+
+#descriptionText{
+    -fx-font-style: italic;
+}
+
+#createEventPane {
+    -fx-background-color: derive(-dark-main-color, 15%);
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 50;
+    -fx-border-radius: 30;
+    -fx-border-width: 5;
+}
+#createEventPane > .label{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+}
+#createEventPane > .button{
+    -fx-background-color: -light-color;
+    -fx-text-fill: -dark-main-color;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+#eventImage{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#eventPane > .label {
+    -fx-text-fill: -light-color;
+    -fx-font-size: 17px;
+}
+#nameLabel,#dateLabel,#locationLabel,#hostLabel,#tagsLabel {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 19px;
+}
+
+#twoPointLabel1,#twoPointLabel2{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 19px;
+
+}
+#nothingPane {
+    -fx-font-size: 60px;
+    -fx-font-family: "Comic Sans MS";
+}
+#nothingPane > .label{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-background-radius: 100;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
+
+#eventsSearchButton{
+    -fx-background-radius: 0,0,0,30;
+    -fx-border-radius: 0,0,0,30;
+}
+
+#eventsSearchBar{
+    -fx-font-weight: bold;
+    -fx-text-fill: -dark-main-color;
+}
+
+#descriptionText{
+    -fx-border-radius: 100;
+    -fx-background-color: -light-main-color;
 }

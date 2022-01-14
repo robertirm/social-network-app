@@ -21,9 +21,9 @@
       <Button layoutX="103.0" layoutY="183.0" mnemonicParsing="false" onAction="#sharePhotos" prefHeight="26.0" prefWidth="110.0" text="Share" />
       <TextArea fx:id="textAreaProfileDescription" editable="false" layoutX="14.0" layoutY="278.0" prefHeight="200.0" prefWidth="200.0" text="Description...&#10;" wrapText="true" />
       <Button fx:id="buttonProfileDescription" layoutX="75.0" layoutY="485.0" mnemonicParsing="false" onAction="#editProfileDescription" prefHeight="26.0" prefWidth="56.0" text="Edit" />
-      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="251.0" prefHeight="20.0" prefWidth="200.0" text="username">
+      <Label fx:id="labelUsernameProfilePage" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="20.0" prefWidth="200.0" text="username">
          <font>
-            <Font name="System Italic" size="12.0" />
+            <Font name="Cambria Italic" size="14.0" />
          </font></Label>
       <AnchorPane fx:id="anchorPaneProfile" layoutX="225.0" layoutY="24.0" prefHeight="453.0" prefWidth="694.0">
          <children>
@@ -43,7 +43,13 @@
       </AnchorPane>
       <Button fx:id="buttonPrevPage" layoutX="462.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToPrevPostsPage" text="Previous Page" />
       <Button fx:id="buttonNextPage" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
-      <Label fx:id="labelFirstNameProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
-      <Label fx:id="labelLastNameProfilePage" layoutX="118.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
+      <Label fx:id="labelFirstNameProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="216.0" prefHeight="26.0" prefWidth="95.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="labelLastNameProfilePage" layoutX="118.0" layoutY="216.0" prefHeight="26.0" prefWidth="95.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>

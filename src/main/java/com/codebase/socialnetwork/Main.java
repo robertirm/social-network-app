@@ -33,7 +33,7 @@ public class Main extends Application {
         mainStage = stage;
         String url = "jdbc:postgresql://localhost:5432/SocialNetwork";
         String username = "postgres";
-        String password = "bobert";
+        String password = "";
 
         Validator<User> userValidator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
@@ -54,7 +54,7 @@ public class Main extends Application {
         Controller controller = new BackendController(userService, statisticsService, postService,eventService);
 
 
-        stage.setTitle("App");
+        stage.setTitle("NoName");
         stage.setScene(
                 createScene(
                         loadMainPane(controller)
@@ -93,7 +93,7 @@ public class Main extends Application {
         );
 
         scene.getStylesheets().setAll(
-                getClass().getResource("css/theme4.css").toExternalForm()
+                getClass().getResource("css/theme3.css").toExternalForm()
         );
 
         return scene;

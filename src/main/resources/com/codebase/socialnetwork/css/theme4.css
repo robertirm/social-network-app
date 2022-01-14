@@ -26,6 +26,10 @@
     -fx-background-color: -light-main-color;
     -fx-text-fill: -light-color;
 }
+.button:hover{
+    -fx-background-color: -dark-main-color;
+    -fx-cursor: hand;
+}
 
 .label {
     -fx-text-fill: -dark-main-color;
@@ -132,6 +136,11 @@
     -fx-border-radius: 50;
     -fx-border-width: 5;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+#listViewFriendType {
+    -fx-cursor: hand;
 }
 
 /*#anchorPaneFriend {*/
@@ -414,4 +423,9 @@
 #eventsSearchBar{
     -fx-font-weight: bold;
     -fx-text-fill: -dark-main-color;
+}
+
+#descriptionText{
+    -fx-border-radius: 100;
+    -fx-background-color: -light-main-color;
 }

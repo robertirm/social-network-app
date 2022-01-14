@@ -10,7 +10,7 @@
       <Label fx:id="welcomeLabel" layoutX="298.0" layoutY="89.0" prefHeight="250.0" prefWidth="535.0" text="WELCOME BACK !" />
       <Label fx:id="smileLabel" alignment="CENTER_RIGHT" layoutX="40.0" layoutY="88.0" prefHeight="257.0" prefWidth="251.0">
          <graphic>
-            <FontIcon iconColor="black" iconLiteral="fas-smile-beam" iconSize="150" selectionEnd="0"/>
+            <FontIcon iconColor="#00AD43" iconLiteral="fas-smile-beam" iconSize="150" selectionEnd="0"/>
          </graphic>
       </Label>
    </children>
