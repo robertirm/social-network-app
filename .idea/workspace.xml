@@ -13,14 +13,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/domain/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/domain/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/gui/GuiClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codebase/socialnetwork/gui/GuiClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SocialNetwork-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/css/theme4.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/friendsPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/profilePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MessagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebase/socialnetwork/controller/MessagesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/messagesPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/codebase/socialnetwork/views/messagesPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,12 +63,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/lab7-notifications" />
+    <option name="BRANCH" value="origin/lab7-friendsControllerDesign" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lab7" />
+        <entry key="$PROJECT_DIR$" value="messagesDesign" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

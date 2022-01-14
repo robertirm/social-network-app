@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebase.socialnetwork.controller.MessagesController">
    <children>
@@ -32,12 +33,18 @@
                </children>
             </AnchorPane>
             <Label fx:id="chatTitleLabel" alignment="CENTER" layoutX="350.0" layoutY="14.0" prefHeight="34.0" prefWidth="371.0" />
+            <Label fx:id="chatsLabel" alignment="CENTER" layoutX="25.0" layoutY="84.0" prefHeight="30.0" prefWidth="170.0" text="CHATS" />
             <AnchorPane fx:id="replyPane" layoutX="335.0" layoutY="429.0" prefHeight="30.0" prefWidth="402.0">
                <children>
                   <Button fx:id="stopReplyButton" layoutX="354.0" layoutY="-1.0" mnemonicParsing="false" onAction="#onStopReplyButton" prefHeight="30.0" prefWidth="48.0" text="X" />
                   <Label fx:id="replyingLabel" layoutY="1.0" prefHeight="30.0" prefWidth="354.0" />
                </children>
             </AnchorPane>
+            <Label fx:id="labelNoConversations" alignment="CENTER" layoutX="223.0" layoutY="17.0" prefHeight="454.0" prefWidth="694.0" text="Make some friends...">
+               <font>
+                  <Font name="Cambria Italic" size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

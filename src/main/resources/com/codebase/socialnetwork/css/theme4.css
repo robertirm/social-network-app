@@ -275,7 +275,11 @@
     -fx-border-radius: 100;
     -fx-border-width:5;
 }
-
+#chatsLabel{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 18px;
+}
 
 /* ================= STATISTICS PAGE ===================*/
 #activityPane > .label {

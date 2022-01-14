@@ -55,6 +55,8 @@ public class MessagesController extends MainWindowController {
 
     @FXML
     Pane coloredMessagePane;
+    @FXML
+    Label labelNoConversations;
 
     public void onStopReplyButton(){
         replyPane.setVisible(false);
@@ -114,6 +116,8 @@ public class MessagesController extends MainWindowController {
 
     @FXML
     public void initialize(){
+
+
         messageSearchBar.textProperty().addListener(o -> handleSearch());
         createNewChatPane.setVisible(false);
         replyPane.setVisible(false);
@@ -126,10 +130,18 @@ public class MessagesController extends MainWindowController {
         usersListView.setItems(userObservableList);
 
         listViewConversations.setItems(conversationsObservableList);
+
+        if(conversationsObservableList.size()==0)
+            labelNoConversations.setVisible(true);
+        else
+            labelNoConversations.setVisible(false);
+
+
         listViewConversations.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     Conversation conversation = listViewConversations.getSelectionModel().getSelectedItem();
                     if(conversation != null) {
+                        labelNoConversations.setVisible(false);
                         sendMessageButton.setDisable(false);
                         sendMessageTextField.setDisable(false);
                         initializePaneMessages(conversation);
