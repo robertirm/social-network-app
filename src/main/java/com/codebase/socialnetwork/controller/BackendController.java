@@ -160,7 +160,7 @@ public class BackendController implements Observable, Controller {
 
     @Override
     public Message createMessage(Message message, String text) {
-        Message replyMessage = new Message(this.getUserByUsername(this.getCurrentUsername()), LocalDateTime.now(),text, true);
+        Message replyMessage = new Message(this.getUserByUsername(this.getCurrentUsername()), LocalDateTime.now(),text, true,message.getMessageContent());
         replyMessage.addReceiver(message.getSender());
         for(User receiver: message.getReceivers()){
             if(!receiver.getId().equals(this.getCurrentUserId()))
@@ -174,7 +174,7 @@ public class BackendController implements Observable, Controller {
 
     @Override
     public Message createMessage(String text, List<User> receivers){
-        Message message = new Message(this.getUserById(this.getCurrentUserId()),LocalDateTime.now(),text, false);
+        Message message = new Message(this.getUserById(this.getCurrentUserId()),LocalDateTime.now(),text, false,"");
         for(User user: receivers){
             message.addReceiver(user);
         }

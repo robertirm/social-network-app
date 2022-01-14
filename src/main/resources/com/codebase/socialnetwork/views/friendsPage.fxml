@@ -71,7 +71,7 @@
             <Button fx:id="buttonNextPageFriend" layoutX="572.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToNextPostsPage" text="Next Page" />
             <Label fx:id="labelFirstNameFriendProfilePage" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="179.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
             <Label fx:id="labelLastNameFriendProfilePage" layoutX="118.0" layoutY="179.0" prefHeight="26.0" prefWidth="95.0" text="Label" />
-            <Button fx:id="buttonBackToFriends" layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#goBackToFriendsPage" prefHeight="26.0" prefWidth="200.0" text="Back to firends" />
+            <Button fx:id="buttonBackToFriends" layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#goBackToFriendsPage" prefHeight="26.0" prefWidth="200.0" text="Back to friends" />
          </children>
       </AnchorPane>
    </children>

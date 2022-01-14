@@ -295,7 +295,7 @@ public class GuiClass implements Gui {
             System.out.println("Send to: (usernames separated by comma)");
             String receivers = in.nextLine();
             String[] users = receivers.split(",");
-            Message message = new Message(controller.getUserById(controller.getCurrentUserId()),LocalDateTime.now(),text, false);
+            Message message = new Message(controller.getUserById(controller.getCurrentUserId()),LocalDateTime.now(),text, false,"");
             for(String user: users){
                 message.addReceiver(controller.getUserByUsername(user));
             }
@@ -330,7 +330,7 @@ public class GuiClass implements Gui {
                         System.out.println("Write your message:");
                         String text = in.nextLine();
 
-                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true);
+                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true,"");
 
                         replyMessage.addReceiver(message.getSender());
                         for(User receiver: message.getReceivers()){
@@ -347,7 +347,7 @@ public class GuiClass implements Gui {
                         System.out.println("Write your message:");
                         String text = in.nextLine();
 
-                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true);
+                        Message replyMessage = new Message(controller.getUserByUsername(controller.getCurrentUsername()), LocalDateTime.now(),text, true,"");
                         replyMessage.addReceiver(message.getSender());
 
                         message.addReply(replyMessage);

@@ -27,15 +27,7 @@ public class MessageRepositoryClass implements MessageRepository {
         this.dbUsername = dbUsername;
         this.dbPassword = dbPassword;
         this.userRepository = userRepository;
-//        LocalDateTime st = LocalDateTime.of(2021, Month.DECEMBER, 15, 12,0,0,0);
-//        LocalDateTime sf = LocalDateTime.of(2021, Month.DECEMBER, 30, 12,0,0,0);
-//
-//        System.out.println("messages date size : " + this.getNumberOfSentMessages(4L,st,sf));
-//        System.out.println("messages date size : " + this.getNumberOfReceivedMessages(4L,st,sf));
-//
-//        this.getMessagesFromFriend(userRepository.findOne(10L), userRepository.findOne(4L), st,sf).forEach(x->{
-//            System.out.println(x.getMessageContent() + " | " + x.getMessageDate() + " | ");
-//        });
+
     }
 
     @Override
@@ -58,11 +50,13 @@ public class MessageRepositoryClass implements MessageRepository {
                 String messageContent =resultSet.getString("message_content");
                 Timestamp messageDate = resultSet.getTimestamp("message_date");
                 int isAReply = resultSet.getInt("is_a_reply");
+                String repliedTo = resultSet.getString("replied_to");
+
                 Boolean isAReplyValue = isAReply != 0;
                 String messageDateString = messageDate.toString().strip().substring(0, 16);
                 LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
 
-                message = new Message(userRepository.findOne(idSender),dateOfMessage,messageContent, isAReplyValue);
+                message = new Message(userRepository.findOne(idSender),dateOfMessage,messageContent, isAReplyValue,repliedTo);
                 message.setId(idMessage);
             }
 
@@ -115,11 +109,12 @@ public class MessageRepositoryClass implements MessageRepository {
                     String messageContent =resultSet.getString("message_content");
                     Timestamp messageDate = resultSet.getTimestamp("message_date");
                     int isAReply = resultSet.getInt("is_a_reply");
+                    String repliedTo = resultSet.getString("replied_to");
                     Boolean isAReplyValue = isAReply != 0;
                     String messageDateString = messageDate.toString().strip().substring(0, 16);
                     LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
 
-                    Message message = new Message(userRepository.findOne(idSender),dateOfMessage,messageContent, isAReplyValue);
+                    Message message = new Message(userRepository.findOne(idSender),dateOfMessage,messageContent, isAReplyValue,repliedTo);
                     message.setId(idMessage);
                     messagesEntities.add(message);
             }
@@ -174,7 +169,7 @@ public class MessageRepositoryClass implements MessageRepository {
         Message searchedMessage = findOne(message.getId());
         if(searchedMessage == null) {
             message.setId(1L);
-            String querySaveMessage = "INSERT INTO messages(id_sender,message_content,message_date,is_a_reply) VALUES (?,?,?,?) returning *";
+            String querySaveMessage = "INSERT INTO messages(id_sender,message_content,message_date,is_a_reply,replied_to) VALUES (?,?,?,?,?) returning *";
 
             try (Connection connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
                  PreparedStatement ps = connection.prepareStatement(querySaveMessage))
@@ -183,6 +178,8 @@ public class MessageRepositoryClass implements MessageRepository {
                 ps.setString(2,message.getMessageContent());
                 ps.setTimestamp(3,Timestamp.valueOf(message.getMessageDate()));
                 ps.setInt(4,((message.isAReply()) ? 1 : 0));
+                ps.setString(5,message.getRepliedTo());
+
 
                 try(ResultSet resultSet = ps.executeQuery()){
                     if (resultSet.next()) {
@@ -253,7 +250,7 @@ public class MessageRepositoryClass implements MessageRepository {
                 String messageDateString = messageDate.toString().strip().substring(0, 16);
                 LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
 
-                Message message = new Message(null,dateOfMessage,content,false);
+                Message message = new Message(null,dateOfMessage,content,false,"");
 
                 try (Connection connection1 = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
                      PreparedStatement ps1 = connection1.prepareStatement("SELECT * FROM sending_relation WHERE id_message=" +idMessage);
@@ -300,7 +297,7 @@ public class MessageRepositoryClass implements MessageRepository {
                 Timestamp messageDate = resultSet.getTimestamp("message_date");
                 String messageDateString = messageDate.toString().strip().substring(0, 16);
                 LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
-                Message message = new Message(userRepository.findOne(idSender), dateOfMessage,content,false);
+                Message message = new Message(userRepository.findOne(idSender), dateOfMessage,content,false,"");
                 messages.add(message);
             }
         }catch (SQLException e){
@@ -333,7 +330,7 @@ public class MessageRepositoryClass implements MessageRepository {
                 String messageDateString = messageDate.toString().strip().substring(0, 16);
                 LocalDateTime dateOfMessage = LocalDateTime.parse(messageDateString, DATE_TIME_FORMATTER);
 
-                Message message = new Message(friend,dateOfMessage,messageContent, true);
+                Message message = new Message(friend,dateOfMessage,messageContent, true,"");
                 message.setId(idMessage);
                 messages.add(message);
             }

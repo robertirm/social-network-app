@@ -8,15 +8,22 @@ public class Message extends Entity<Long>{
     private final User sender;
     private final List<User> receivers;
     private final LocalDateTime messageDate;
-    private final String messageContent;
+    private String messageContent;
     private final List<Message> replies;
     private final Boolean isAReply;
 
-    public Message(User sender, LocalDateTime messageDate, String messageContent, Boolean isAReply) {
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
+    }
+
+    private String repliedTo;
+
+    public Message(User sender, LocalDateTime messageDate, String messageContent, Boolean isAReply,String repliedTo) {
         this.sender = sender;
         this.messageDate = messageDate;
         this.messageContent = messageContent;
         this.isAReply = isAReply;
+        this.repliedTo = repliedTo;
 
         receivers = new ArrayList<>();
         replies = new ArrayList<>();
@@ -52,6 +59,13 @@ public class Message extends Entity<Long>{
 
     public Boolean isAReply() {
         return isAReply;
+    }
+
+    public String getRepliedTo() {
+        return repliedTo;
+    }
+    public void setRepliedTo(String repliedTo) {
+        this.repliedTo = repliedTo;
     }
 
     @Override

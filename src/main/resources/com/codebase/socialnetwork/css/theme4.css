@@ -31,6 +31,11 @@
     -fx-text-fill: -dark-main-color;
 }
 
+.list-view, .split-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
 
 
 /* =============== MAIN PAGE ====================*/
@@ -121,17 +126,84 @@
     -fx-padding: 15px 20px 20px 15px;
 }
 /* ================ MESSAGE PAGE ===================*/
-/*#sendMessageTextField {*/
-/*    -fx-border-radius: 25px;*/
-/*}*/
+#messagesPagePane > .button{
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 13px;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
 #listViewConversations{
     -fx-font-size: 15px;
 }
 #listViewCurrentConversation{
     -fx-font-size: 18px;
 }
+#chatTitleLabel {
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
+#listViewCurrentConversation{
+    -fx-background-color: -light-color;
+    -fx-control-inner-background: -light-color;
+    -fx-control-inner-background-alt: -light-color;
+}
+#listViewCurrentConversation .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+#listViewCurrentConversation{
+    -fx-accent: -light-color;
+    /*-fx-focus-color: derive(-light-main-color,150%)*/
+    -fx-focus-color: -light-color;
+}
+#listViewCurrentConversation:focused{
+    -fx-background-color: -light-color;
+}
+#listViewCurrentConversation:selected{
+    -fx-background-color: -light-color;
+}
+#replyButtonOnMessage{
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+    -fx-font-size: 10px;
+}
+#replyPane {
+    -fx-background-color: -dark-main-color;
+
+}
+#replyPane > .label {
+    -fx-background-color: -dark-main-color;
+    -fx-text-fill: white;
+
+}
+#replyingLabel {
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+    -fx-font-size: 10px;
+}
+#coloredMessagePane{
+    -fx-background-color: -dark-main-color;
+}
+
+#listViewConversations {
+    -fx-font-size: 20px;
+    -fx-font-family: "Comic Sans MS";
+    -fx-control-inner-background: -light-main-color;
+    -fx-control-inner-background-alt: -dark-main-color;
+    -fx-accent: derive(-light-main-color,150%);
+    -fx-focus-color: derive(-light-main-color,150%)
+}
+
 #messagesPagePane {
-    -fx-background-color: derive(-light-color,15%);
+    -fx-background-color: -light-color
 }
 #createNewChatPane > .label{
     -fx-text-alignment: center;
@@ -140,6 +212,37 @@
     -fx-font-size: 14px;
 }
 
+#vBoxMessage{
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+#vBoxMessage > .label{
+    -fx-text-fill: -light-color;
+    -fx-font-size: 20px;
+}
+#vBoxMessage > #messageReplyText {
+    -fx-background-color: -dark-main-color;
+    -fx-font-size: 14px;
+}
+
+#vBoxMessage > #messageDateText {
+    -fx-background-color: -dark-main-color;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+    -fx-font-family: "Comic Sans MS";
+}
+
+#conversationBubble{
+    -fx-background-color: -dark-main-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 100;
+    -fx-border-radius: 100;
+    -fx-border-width:5;
+}
 
 
 /* ================= STATISTICS PAGE ===================*/
